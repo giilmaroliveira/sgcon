@@ -1,14 +1,11 @@
 ﻿using SgCon.API.Models;
 using SgCon.API.Repository.Contracts;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace SgCon.API.Controllers
 {
-    [System.Web.Http.Route("api/condominio")]
+    [RoutePrefix("condominio")]
     public class CondominioController : Controller
     {
         private readonly ICondominioRepository _condominioRepository;
@@ -17,7 +14,8 @@ namespace SgCon.API.Controllers
             _condominioRepository = condominioRepository;
         }
 
-        public IEnumerable<Condominio> GetAll()
+        [HttpGet]
+        public List<Condominio> Index()
         {
             var condominios = _condominioRepository.GetAll();
 
