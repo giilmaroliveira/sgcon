@@ -11,14 +11,35 @@ namespace SgCon.API.Repository
 {
     internal class CondominioRepository : BaseDataService<Condominio>, ICondominioRepository
     {
-        private readonly SgConContext _context;
+        //private readonly SgConContext _context;
         public CondominioRepository(SgConContext context) : base(context)
         {
-            _context = context;
+            //_context = context;
         }
-        public List<Condominio> GetAll()
+
+        public Condominio Add(Condominio item)
         {
-            return Entities.Where(c => c.Active == true).ToList();
+            throw new NotImplementedException();
+        }
+
+        public Condominio Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Condominio> GetAll()
+        {
+            return Entities.Where(x => x.Active == true).ToList();
+        }
+
+        public void Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(Condominio item)
+        {
+            throw new NotImplementedException();
         }
     }
 }

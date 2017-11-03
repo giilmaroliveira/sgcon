@@ -6,12 +6,12 @@ using System.Web;
 
 namespace SgCon.API.Repository.Contracts
 {
-    public interface ICondominioRepository
+    public interface IProdutoRepository
     {
-        IEnumerable<Condominio> GetAll();
-        Condominio Get(int id);
-        Condominio Add(Condominio item);
+        IEnumerable<Produto> GetAll();
+        Produto Get(int id);
+        Produto Add(Produto item);
         void Remove(int id);
-        bool Update(Condominio item);
+        bool Update(Produto item);
     }
 }
