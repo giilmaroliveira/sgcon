@@ -23,11 +23,11 @@ namespace SgConAPI.EntityFramework
 
         public DbSet<Condominium> Condominium { get; set; }
         public DbSet<House> House { get; set; }
-        //public DbSet<Employee> Employees { get; set; }
-        //public DbSet<Role> Roles { get; set; }
-        //public DbSet<Profile> Profiles { get; set; }
-        //public DbSet<Policy> Policies { get; set; }
-        //public DbSet<ProfilePolicy> ProfilePolicies { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Policy> Policies { get; set; }
+        public DbSet<ProfilePolicy> ProfilePolicies { get; set; }
 
 
         public SgConContext(DbContextOptions<SgConContext> options) : base(options)
@@ -98,15 +98,25 @@ namespace SgConAPI.EntityFramework
                 .WithMany(p => p.House)
                 .HasForeignKey(p => p.CondominiumId);
 
-            //modelBuilder.Entity<Employee>().ToTable("Employee").Property(a => a.Active).HasDefaultValueSql("1");
-            //modelBuilder.Entity<Employee>().HasIndex(e => e.UserName).IsUnique();
-            //modelBuilder.Entity<Employee>().HasIndex(e => e.Email).IsUnique();
+            modelBuilder.Entity<Employee>().ToTable("Employee").Property(a => a.Active).HasDefaultValueSql("1");
+            modelBuilder.Entity<Employee>().HasIndex(e => e.UserName).IsUnique();
+            modelBuilder.Entity<Employee>().HasIndex(e => e.Email).IsUnique();
 
-            //modelBuilder.Entity<Role>().ToTable("Role").Property(a => a.Active).HasDefaultValueSql("1");
+            modelBuilder.Entity<Role>().ToTable("Role").Property(a => a.Active).HasDefaultValueSql("1");
 
-            //modelBuilder.Entity<Profile>().ToTable("Profile").Property(a => a.Active).HasDefaultValueSql("1");
+            modelBuilder.Entity<Profile>().ToTable("Profile").Property(a => a.Active).HasDefaultValueSql("1");
 
-            //modelBuilder.Entity<ProfilePolicy>().ToTable("ProfilePolicies").Property(a => a.Active).HasDefaultValueSql("1");
+            modelBuilder.Entity<ProfilePolicy>().ToTable("ProfilePolicies").HasKey(t => new { t.ProfileId, t.PolicyId });
+
+            modelBuilder.Entity<ProfilePolicy>()
+                .HasOne(pp => pp.Profile)
+                .WithMany(pp => pp.ProfilePolicies)
+                .HasForeignKey(pp => pp.ProfileId);
+
+            modelBuilder.Entity<ProfilePolicy>()
+                .HasOne(pt => pt.Policy)
+                .WithMany(t => t.ProfilePolicies)
+                .HasForeignKey(pt => pt.PolicyId);
 
         }
 
