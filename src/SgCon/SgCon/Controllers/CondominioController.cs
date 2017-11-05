@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using SgConAPI.Business.Contracts;
 
 namespace SgConAPI.Controllers
 {
@@ -16,9 +17,11 @@ namespace SgConAPI.Controllers
     public class CondominioController : BaseController, IController<Condominio>
     {
         private readonly ICondominioRepository _condominioRepository;
-        public CondominioController(ICondominioRepository repository)
+        private readonly ICondominioBusinessService _condominioBusinessService;
+        public CondominioController(ICondominioRepository repository, ICondominioBusinessService condominioBusinessService)
         {
             _condominioRepository = repository;
+            _condominioBusinessService = condominioBusinessService;
         }
 
         [HttpGet]
@@ -28,10 +31,12 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Get([FromRoute] int id)
         {
-            var result = _condominioRepository.Get(id);
+            var result = _condominioBusinessService.GetById(id);
 
-            return Ok(result);
-                  
+            if (result == null)
+                return BadRequest("Nenhum condomínio encontrado");
+
+            return Ok(result);   
         }
 
         [HttpPost]
@@ -40,7 +45,7 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Post([FromBody, Required] Condominio condominio)
         {
-            var result = _condominioRepository.Post(condominio);
+            var result = _condominioBusinessService.CreateCondominio(condominio);
 
             return Ok(result);
         }
@@ -52,7 +57,7 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Put([FromBody] Condominio condominio, [FromRoute] int id)
         {
-            var result = _condominioRepository.Update(condominio);
+            var result = _condominioBusinessService.UpdateCondominio(condominio, id);
 
             return Ok(result);
         }
@@ -67,7 +72,7 @@ namespace SgConAPI.Controllers
             var result = _condominioRepository.Get(id);
 
             if (result != null)
-                _condominioRepository.Delete(id);
+                _condominioBusinessService.DeleteCondominio(id);
 
             return Ok();
         }

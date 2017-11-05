@@ -138,7 +138,7 @@ namespace SgCon
 
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterModule<RepositoryModule>();
-            //containerBuilder.RegisterModule<ServicesModule>();
+            containerBuilder.RegisterModule<ServicesModule>();
             containerBuilder.Populate(services);
             var container = containerBuilder.Build();
             return new AutofacServiceProvider(container);
