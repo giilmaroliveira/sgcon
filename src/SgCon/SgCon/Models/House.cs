@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace SgConAPI.Models
 {
-    public class Condominio : BaseModel
+    public class House : BaseModel
     {
         [Required]
-        public string Descricao { get; set; }
+        public string Description { get; set; }
         [Required]
-        public string Cnpj { get; set; }
-        public int NumPredios { get; set; }
-        
-        public ICollection<Predio> Predios { get; set; }
+        public int CondominiumId { get; set; }
+        public Condominium Condominium { get; set; }
     }
 }

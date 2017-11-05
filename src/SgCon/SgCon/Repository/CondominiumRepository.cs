@@ -5,9 +5,9 @@ using SgConAPI.Repository.Contracts;
 
 namespace SgConAPI.Repository
 {
-    internal class CondominioRepository : BaseDataService<Condominio>, ICondominioRepository
+    internal class CondominiumRepository : BaseDataService<Condominium>, ICondominiumRepository
     {
-        public CondominioRepository(SgConContext context) :base(context)
+        public CondominiumRepository(SgConContext context) :base(context)
         {
 
         }

@@ -21,18 +21,19 @@ namespace SgConAPI.EntityFramework
             }
 #endif
 
-        public DbSet<Condominio> Condominio { get; set; }
-        public DbSet<Predio> Predio { get; set; }
+        public DbSet<Condominium> Condominium { get; set; }
+        public DbSet<House> House { get; set; }
+        //public DbSet<Employee> Employees { get; set; }
+        //public DbSet<Role> Roles { get; set; }
+        //public DbSet<Profile> Profiles { get; set; }
+        //public DbSet<Policy> Policies { get; set; }
+        //public DbSet<ProfilePolicy> ProfilePolicies { get; set; }
+
 
         public SgConContext(DbContextOptions<SgConContext> options) : base(options)
-        {
-            
-        }
+        { }
 
-        public void SetJwtCurrentUser(JwtCurrentUserFactory jwtCurrentUsertFactory)
-        {
-            this._jwtCurrentUsertFactory = jwtCurrentUsertFactory;
-        }
+        public void SetJwtCurrentUser(JwtCurrentUserFactory jwtCurrentUsertFactory) => this._jwtCurrentUsertFactory = jwtCurrentUsertFactory;
 
         public override void Dispose()
         {
@@ -87,15 +88,26 @@ namespace SgConAPI.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Condominio>().ToTable("Condominio").Property(a => a.Ativo).HasDefaultValueSql("1");
+            modelBuilder.Entity<Condominium>().ToTable("Condominium").Property(a => a.Active).HasDefaultValueSql("1");
 
-            modelBuilder.Entity<Predio>().ToTable("Predio")
-                .Property(a => a.Ativo).HasDefaultValueSql("1");
+            modelBuilder.Entity<House>().ToTable("House")
+                .Property(a => a.Active).HasDefaultValueSql("1");
 
-            modelBuilder.Entity<Predio>()
-                .HasOne(p => p.Condominio)
-                .WithMany(p => p.Predios)
-                .HasForeignKey(p => p.CondominioId);
+            modelBuilder.Entity<House>()
+                .HasOne(p => p.Condominium)
+                .WithMany(p => p.House)
+                .HasForeignKey(p => p.CondominiumId);
+
+            //modelBuilder.Entity<Employee>().ToTable("Employee").Property(a => a.Active).HasDefaultValueSql("1");
+            //modelBuilder.Entity<Employee>().HasIndex(e => e.UserName).IsUnique();
+            //modelBuilder.Entity<Employee>().HasIndex(e => e.Email).IsUnique();
+
+            //modelBuilder.Entity<Role>().ToTable("Role").Property(a => a.Active).HasDefaultValueSql("1");
+
+            //modelBuilder.Entity<Profile>().ToTable("Profile").Property(a => a.Active).HasDefaultValueSql("1");
+
+            //modelBuilder.Entity<ProfilePolicy>().ToTable("ProfilePolicies").Property(a => a.Active).HasDefaultValueSql("1");
+
         }
 
         public override int SaveChanges()
@@ -123,10 +135,10 @@ namespace SgConAPI.EntityFramework
             {
                 if (entity.State == EntityState.Added)
                 {
-                    ((BaseModel)entity.Entity).CriadoEm = DateTime.Now;
+                    ((BaseModel)entity.Entity).CreatedAt = DateTime.Now;
                 }
 
-                ((BaseModel)entity.Entity).AtualizadoEm = DateTime.Now;
+                ((BaseModel)entity.Entity).UpdatedAt = DateTime.Now;
             }
         }
 
@@ -151,10 +163,10 @@ namespace SgConAPI.EntityFramework
             {
                 if (entity.State == EntityState.Added)
                 {
-                    ((BaseModel)entity.Entity).CriadoPor = userName;
+                    ((BaseModel)entity.Entity).CreatedBy = userName;
                 }
 
-               ((BaseModel)entity.Entity).AtualizadoPor = userName;
+               ((BaseModel)entity.Entity).UpdatedBy = userName;
             }
         }
 

@@ -9,33 +9,33 @@ using System.Threading.Tasks;
 
 namespace SgConAPI.Business
 {
-    internal class CondominioBusinessService : BaseBusinessService<ICondominioRepository, Condominio>, ICondominioBusinessService
+    internal class CondominiumBusinessService : BaseBusinessService<ICondominiumRepository, Condominium>, ICondominiumBusinessService
     {
-        public CondominioBusinessService(ICondominioRepository repository) : base(repository)
+        public CondominiumBusinessService(ICondominiumRepository repository) : base(repository)
         {
 
         }
 
-        public Condominio GetById(int id)
+        public Condominium GetById(int id)
         {
             return Repository.Get(id);
         }
 
-        public Condominio CreateCondominio(Condominio model)
+        public Condominium CreateCondominium(Condominium model)
         {
             var result = Repository.Post(model);
 
             return result;
         }
 
-        public Condominio UpdateCondominio(Condominio model, int id)
+        public Condominium UpdateCondominium(Condominium model, int id)
         {
             var result = Repository.Update(model);
 
             return result;
         }
 
-        public void DeleteCondominio(int id)
+        public void DeleteCondominium(int id)
         {
             Repository.Delete(id);
         }

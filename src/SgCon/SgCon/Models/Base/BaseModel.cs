@@ -15,19 +15,19 @@ namespace SgConAPI.Models.Base
         public int Id { get; set; }
 
         [Required]
-        public DateTime CriadoEm { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        public DateTime? AtualizadoEm { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [Required]
-        public bool Ativo { get; set; }
+        public bool Active { get; set; }
 
         [JsonIgnore]
-        public DateTime? ExcluidoEm { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         [Required]
-        public string CriadoPor { get; set; }
+        public string CreatedBy { get; set; }
 
-        public string AtualizadoPor { get; set; }
+        public string UpdatedBy { get; set; }
     }
 }

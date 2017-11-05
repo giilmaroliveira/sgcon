@@ -13,25 +13,25 @@ using SgConAPI.Business.Contracts;
 
 namespace SgConAPI.Controllers
 {
-    [Route("api/condominio")]
-    public class CondominioController : BaseController, IController<Condominio>
+    [Route("api/condominium")]
+    public class CondominiumController : BaseController, IController<Condominium>
     {
-        private readonly ICondominioRepository _condominioRepository;
-        private readonly ICondominioBusinessService _condominioBusinessService;
-        public CondominioController(ICondominioRepository repository, ICondominioBusinessService condominioBusinessService)
+        private readonly ICondominiumRepository _condominiumRepository;
+        private readonly ICondominiumBusinessService _condominiumBusinessService;
+        public CondominiumController(ICondominiumRepository repository, ICondominiumBusinessService condominiumBusinessService)
         {
-            _condominioRepository = repository;
-            _condominioBusinessService = condominioBusinessService;
+            _condominiumRepository = repository;
+            _condominiumBusinessService = condominiumBusinessService;
         }
 
         [HttpGet]
         [Route("{id}")]
-        [ProducesResponseType(typeof(Condominio), 200)]
+        [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult Get([FromRoute] int id)
         {
-            var result = _condominioBusinessService.GetById(id);
+            var result = _condominiumBusinessService.GetById(id);
 
             if (result == null)
                 return BadRequest("Nenhum condomínio encontrado");
@@ -40,50 +40,50 @@ namespace SgConAPI.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Condominio), 200)]
+        [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
-        public IActionResult Post([FromBody, Required] Condominio condominio)
+        public IActionResult Post([FromBody, Required] Condominium condominium)
         {
-            var result = _condominioBusinessService.CreateCondominio(condominio);
+            var result = _condominiumBusinessService.CreateCondominium(condominium);
 
             return Ok(result);
         }
 
         [HttpPut]
         [Route("{id}")]
-        [ProducesResponseType(typeof(Condominio), 200)]
+        [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
-        public IActionResult Put([FromBody] Condominio condominio, [FromRoute] int id)
+        public IActionResult Put([FromBody] Condominium condominium, [FromRoute] int id)
         {
-            var result = _condominioBusinessService.UpdateCondominio(condominio, id);
+            var result = _condominiumBusinessService.UpdateCondominium(condominium, id);
 
             return Ok(result);
         }
 
         [HttpDelete]
         [Route("{id}")]
-        [ProducesResponseType(typeof(Condominio), 200)]
+        [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult Delete([FromRoute] int id)
         {
-            var result = _condominioRepository.Get(id);
+            var result = _condominiumRepository.Get(id);
 
             if (result != null)
-                _condominioBusinessService.DeleteCondominio(id);
+                _condominiumBusinessService.DeleteCondominium(id);
 
             return Ok();
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Condominio), 200)]
+        [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult GetAll([FromHeader] string filtersJson = null)
         {
-            var itens = _condominioRepository.GetAll(issueFilterJson(filtersJson));
+            var itens = _condominiumRepository.GetAll(issueFilterJson(filtersJson));
 
             return Ok(itens);
         }

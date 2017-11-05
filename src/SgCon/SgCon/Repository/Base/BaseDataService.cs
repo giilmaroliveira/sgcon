@@ -58,8 +58,8 @@ namespace SgConAPI.Repository.Base
         public virtual void Delete(int id)
         {
             var entity = this.Entities.Find(id);
-            entity.ExcluidoEm = DateTime.Now;
-            entity.Ativo = false;
+            entity.DeletedAt = DateTime.Now;
+            entity.Active = false;
             this.context.SaveChanges();
         }
 
@@ -79,7 +79,7 @@ namespace SgConAPI.Repository.Base
 
         public virtual bool Exists (int id)
         {
-            return this.Entities.Any(r => r.Id == id && r.ExcluidoEm == null);
+            return this.Entities.Any(r => r.Id == id && r.DeletedAt == null);
         }
     }
 }
