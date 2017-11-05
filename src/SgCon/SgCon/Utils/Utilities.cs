@@ -21,5 +21,17 @@ namespace SgConAPI.Utils
                                        .Value == description);
             return field == null ? default(T) : (T)field.Field.GetRawConstantValue();
         }
+
+        public static string FormatStringDocument(this string value)
+        {
+            value = value.Replace(".", string.Empty);
+            value = value.Replace(",", string.Empty);
+            value = value.Replace("-", string.Empty);
+            value = value.Replace("/", string.Empty);
+            value = value.Replace(@"\", string.Empty);
+            value = value.Replace("_", string.Empty);
+
+            return value;
+        }
     }
 }

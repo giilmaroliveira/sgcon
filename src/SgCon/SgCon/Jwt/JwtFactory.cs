@@ -7,7 +7,7 @@ using SgConAPI.Options;
 using System;
 using SgConAPI.EntityFramework;
 using SgConAPI.Models.Contracts;
-
+using SgConAPI.Repository.Contracts;
 
 namespace SgConAPI.Jwt
 {
@@ -15,12 +15,60 @@ namespace SgConAPI.Jwt
     {
         private readonly SgConContext _context;
         private readonly JwtCurrentUserFactory _jwCurrentUsertFactory;
+        private readonly IEmployeeRepository _employeeRepository;
         public JwtFactory(
             JwtCurrentUserFactory jwtCurrentUserFactory,
-            SgConContext context)
+            SgConContext context,
+            IEmployeeRepository employeeRepository)
         {
             _jwCurrentUsertFactory = jwtCurrentUserFactory;
             _context = context;
+            _employeeRepository = employeeRepository;
+        }
+
+        public Employee GetCurrentEmployeeUser()
+        {
+            ApplicationUser appUser = _jwCurrentUsertFactory.getCurrentLoggedUser();
+            Employee employee = JwtFactory.GetCurrentEmployeeUser(_employeeRepository, appUser);
+
+            return employee;
+        }
+
+        internal static Employee GetCurrentEmployeeUser(IEmployeeRepository repository, ApplicationUser appUser)
+        {
+            Employee employee = null;
+            if (appUser != null && !(string.IsNullOrEmpty(appUser.UserName)) && appUser.ClassType.Equals("SgConAPI.Models.Employee"))
+            {
+                employee = repository.GetEmployeeByUserName(appUser.UserName);
+            }
+            return employee;
+        }
+
+
+        //TODO
+        //Inserir métodos para busca de moradores, iguais ao employee
+        public Profile GetCurrentEmployeeProfile()
+        {
+            Employee employee = GetCurrentEmployeeUser();
+            if (employee != null)
+                return employee.Profile;
+
+            //TODO
+            //Morador
+
+            return null;
+        }
+
+        public IAuthenticable GetCurrentUser()
+        {
+            Employee employee = GetCurrentEmployeeUser();
+            if (employee != null)
+                return employee;
+
+            //TODO
+            //Morador
+
+            return null;
         }
 
         public void InitJwt(IApplicationBuilder app, IConfigurationRoot configuration, SymmetricSecurityKey signingKey)
@@ -57,20 +105,20 @@ namespace SgConAPI.Jwt
         public async void JwtTokenLogFailed(IAuthenticable user, string message)
         {
             var usr = JsonConvert.SerializeObject(user);
-            Funcionario funcionario = null;
-            if (user is Funcionario)
+            Employee funcionario = null;
+            if (user is Employee)
             {
-                funcionario = (Funcionario)user;
+                funcionario = (Employee)user;
             }
         }
 
         public async void JwtTokenLogSuccess(IAuthenticable user, string message)
         {
             var usr = JsonConvert.SerializeObject(user);
-            Funcionario funcionario = null;
-            if (user is Funcionario)
+            Employee employee = null;
+            if (user is Employee)
             {
-                funcionario = (Funcionario)user;
+                employee = (Employee)user;
             }
         }
 

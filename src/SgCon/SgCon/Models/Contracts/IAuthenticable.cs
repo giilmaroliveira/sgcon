@@ -15,12 +15,12 @@ namespace SgConAPI.Models.Contracts
         int Id { get; set; }
 
         [Required]
-        string Nome { get; set; }
+        string Name { get; set; }
 
         [JsonIgnore]
-        Perfil Perfil { get; set; }
+        Profile Profile { get; set; }
 
-        int PerfilId { get; set; }
+        int ProfileId { get; set; }
 
         [Required]
         string UserName { get; set; }
