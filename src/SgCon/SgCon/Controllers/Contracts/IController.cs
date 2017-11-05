@@ -11,11 +11,17 @@ namespace SgConAPI.Controllers.Contracts
     {
         [HttpGet]
         IActionResult Get([FromRoute] int id);
+
         [HttpPost]
         IActionResult Post([FromBody, Required] T model);
+
         [HttpPut("{id}")]
         IActionResult Put([FromBody] T model, [FromRoute] int id);
+
         [HttpDelete("{id}")]
         IActionResult Delete([FromRoute] int id);
+
+        [HttpGet]
+        IActionResult GetAll([FromHeader] string filtersJson = null);
     }
 }

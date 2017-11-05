@@ -71,5 +71,16 @@ namespace SgConAPI.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(Condominio), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult GetAll([FromHeader] string filtersJson = null)
+        {
+            var itens = _condominioRepository.GetAll(issueFilterJson(filtersJson));
+
+            return Ok(itens);
+        }
     }
 }

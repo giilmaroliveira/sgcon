@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SgConAPI.EntityFramework;
+using SgConAPI.EntityFramework.QueryFilter;
 
 namespace SgConAPI.Repository.Base
 {
@@ -48,7 +49,7 @@ namespace SgConAPI.Repository.Base
         public virtual T Update(T entity)
         {
             this.context.Entry(entity).State = EntityState.Modified;
-            this.context.Attach(entity);
+            //this.context.Attach(entity);
             this.context.SaveChanges();
 
             return entity;
@@ -60,6 +61,25 @@ namespace SgConAPI.Repository.Base
             entity.ExcluidoEm = DateTime.Now;
             entity.Ativo = false;
             this.context.SaveChanges();
+        }
+
+        public virtual IQueryable<T> GetAll(Dictionary<string, object> filters = null)
+        {
+            IQueryable<T> entities = this.Entities;
+            if (filters != null)
+            {
+                var qFilter = new QueryFilterFactory<T>();
+                foreach (var tuple in filters)
+                {
+                    entities = qFilter.QueryFieldContains(entities, tuple.Key, tuple.Value);
+                }
+            }
+            return entities;
+        }
+
+        public virtual bool Exists (int id)
+        {
+            return this.Entities.Any(r => r.Id == id && r.ExcluidoEm == null);
         }
     }
 }

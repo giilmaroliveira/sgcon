@@ -12,6 +12,8 @@ namespace SgConAPI.Repository.Contracts
         T Post(T entity);
         T Update(T entity);
         void Delete(int id);
+        IQueryable<T> GetAll(Dictionary<string, object> filters = null);
         DbSet<T> Entities { get; }
+        bool Exists(int id);
     }
 }
