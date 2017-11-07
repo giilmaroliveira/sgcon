@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CondominioRoutingModule } from './condominio.routing.module';
 import { CondominioComponent } from './condominio.component';
-import { CondominioListComponent } from './list/condominio.component';
-import { CondominioEditComponent } from './edit/condominio.component';
+import { CondominioRoutingModule } from './condominio.routing.module';
+import { CondominioSelectComponent } from './condominio-select/condominio-select.component';
+import { CondominioInsertComponent } from './condominio-insert/condominio-insert.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    CondominioRoutingModule
+    CondominioRoutingModule,
   ],
   declarations: [
     CondominioComponent,
-    CondominioListComponent,
-    CondominioEditComponent
+    CondominioSelectComponent,
+    CondominioInsertComponent,
 ]
 })
 export class CondominioModule { }

@@ -3,27 +3,55 @@
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
         </a>
-        <a routerLink="/condominio/list" [routerLinkActive]="['router-link-active']" class="list-group-item">
+
+        <a routerLink="/condominio" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Condomínio' | translate }}
         </a>
+
+        <a routerLink="/condominium" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'CondomíniosTeste' | translate }}
+        </a>
+
+        <a routerLink="/dweller" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'MoradoresTeste' | translate }}
+        </a>
+
+        <a routerLink="/company" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'EmpresasTeste' | translate }}
+        </a>
+
+        <a routerLink="/employee" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'FuncionáriosTeste' | translate }}
+        </a>
+
+        <a routerLink="/notices" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'NotíciasTeste' | translate }}
+        </a>
+
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
         </a>
+
         <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Tables' | translate }}
         </a>
+
         <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Forms' | translate }}
         </a>
+
         <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'Boostrap Element' | translate }}
         </a>
+
         <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-wrench"></i>&nbsp;{{ 'Boostrap Grid' | translate }}
         </a>
+
         <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-th-list"></i>&nbsp;{{ 'Component' | translate }}
         </a>
+
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <span>
