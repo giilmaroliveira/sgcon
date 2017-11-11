@@ -28,6 +28,7 @@ namespace SgConAPI.EntityFramework
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Policy> Policies { get; set; }
         public DbSet<ProfilePolicy> ProfilePolicies { get; set; }
+        public DbSet<Apartment> Apartments { get; set; }
 
 
         public SgConContext(DbContextOptions<SgConContext> options) : base(options)
@@ -94,9 +95,9 @@ namespace SgConAPI.EntityFramework
                 .Property(a => a.Active).HasDefaultValueSql("1");
 
             modelBuilder.Entity<House>()
-                .HasOne(p => p.Condominium)
-                .WithMany(p => p.House)
-                .HasForeignKey(p => p.CondominiumId);
+                .HasOne(h => h.Apartment)
+                .WithMany(h => h.House)
+                .HasForeignKey(h => h.ApartmentId);
 
             modelBuilder.Entity<Employee>().ToTable("Employee").Property(a => a.Active).HasDefaultValueSql("1");
             modelBuilder.Entity<Employee>().HasIndex(e => e.UserName).IsUnique();
@@ -117,6 +118,13 @@ namespace SgConAPI.EntityFramework
                 .HasOne(pt => pt.Policy)
                 .WithMany(t => t.ProfilePolicies)
                 .HasForeignKey(pt => pt.PolicyId);
+
+            modelBuilder.Entity<Apartment>().ToTable("Apartment").Property(a => a.Active).HasDefaultValueSql("1");
+
+            modelBuilder.Entity<Apartment>()
+                .HasOne(a => a.Condominium)
+                .WithMany(a => a.Apartment)
+                .HasForeignKey(a => a.CondominiumId);
 
         }
 
