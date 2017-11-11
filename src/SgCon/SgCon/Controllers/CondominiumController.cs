@@ -4,21 +4,19 @@ using SgConAPI.Controllers.Base;
 using SgConAPI.Controllers.Contracts;
 using SgConAPI.Models;
 using SgConAPI.Repository.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using SgConAPI.Business.Contracts;
 
 namespace SgConAPI.Controllers
 {
     [Route("api/condominium")]
-    public class CondominiumController : BaseController, IController<Condominium>
+    public class CondominiumController : BaseController
     {
         private readonly ICondominiumRepository _condominiumRepository;
         private readonly ICondominiumBusinessService _condominiumBusinessService;
-        public CondominiumController(ICondominiumRepository repository, ICondominiumBusinessService condominiumBusinessService)
+        public CondominiumController(
+            ICondominiumRepository repository, 
+            ICondominiumBusinessService condominiumBusinessService)
         {
             _condominiumRepository = repository;
             _condominiumBusinessService = condominiumBusinessService;
@@ -36,7 +34,18 @@ namespace SgConAPI.Controllers
             if (result == null)
                 return BadRequest("Nenhum condomínio encontrado");
 
-            return Ok(result);   
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult GetAll([FromHeader] string filtersJson = null)
+        {
+            var itens = _condominiumBusinessService.GetAll(filtersJson);
+
+            return Ok(itens);
         }
 
         [HttpPost]
@@ -69,23 +78,12 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Delete([FromRoute] int id)
         {
-            var result = _condominiumRepository.Get(id);
+            var result = _condominiumBusinessService.GetById(id);
 
             if (result != null)
                 _condominiumBusinessService.DeleteCondominium(id);
 
             return Ok();
-        }
-
-        [HttpGet]
-        [ProducesResponseType(typeof(Condominium), 200)]
-        [ProducesResponseType(typeof(string), 420)]
-        [AllowAnonymous]
-        public IActionResult GetAll([FromHeader] string filtersJson = null)
-        {
-            var itens = _condominiumRepository.GetAll(issueFilterJson(filtersJson));
-
-            return Ok(itens);
         }
     }
 }

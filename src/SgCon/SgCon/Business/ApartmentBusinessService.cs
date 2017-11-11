@@ -6,38 +6,38 @@ using System.Linq;
 
 namespace SgConAPI.Business
 {
-    internal class CondominiumBusinessService : BaseBusinessService<ICondominiumRepository, Condominium>, ICondominiumBusinessService
+    internal class ApartmentBusinessService : BaseBusinessService<IApartmentRepository, Apartment>, IApartmentBusinessService
     {
-        public CondominiumBusinessService(ICondominiumRepository repository) : base(repository)
+        public ApartmentBusinessService(IApartmentRepository repository) : base(repository)
         {
 
         }
 
-        public Condominium GetById(int id)
+        public Apartment GetById(int id)
         {
             return Repository.Get(id);
         }
 
-        public Condominium CreateCondominium(Condominium model)
+        public Apartment CreateApartment(Apartment model)
         {
             var result = Repository.Post(model);
 
             return result;
         }
 
-        public Condominium UpdateCondominium(Condominium model, int id)
+        public Apartment UpdateApartment(Apartment model, int id)
         {
             var result = Repository.Update(model);
 
             return result;
         }
 
-        public void DeleteCondominium(int id)
+        public void DeleteApartment(int id)
         {
             Repository.Delete(id);
         }
 
-        public IQueryable<Condominium> GetAll (string filters)
+        public IQueryable<Apartment> GetAll(string filters)
         {
             var result = Repository.GetAll(issueFilterJson(filters));
 
