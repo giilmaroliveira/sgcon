@@ -13,8 +13,7 @@ export class CondominiumListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-    this.getAllCondominium();
+          this.getAllCondominium();
   }
 
   getAllCondominium() {
