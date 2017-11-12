@@ -2,6 +2,7 @@
 using SgConAPI.Business.Contracts;
 using SgConAPI.Models;
 using SgConAPI.Repository.Contracts;
+using System;
 using System.Linq;
 
 namespace SgConAPI.Business
@@ -20,6 +21,8 @@ namespace SgConAPI.Business
 
         public Condominium CreateCondominium(Condominium model)
         {
+            model.CreatedBy = "Sistema";
+
             var result = Repository.Post(model);
 
             return result;
@@ -27,6 +30,9 @@ namespace SgConAPI.Business
 
         public Condominium UpdateCondominium(Condominium model, int id)
         {
+
+            model.UpdatedBy = "Sistema";
+
             var result = Repository.Update(model);
 
             return result;
