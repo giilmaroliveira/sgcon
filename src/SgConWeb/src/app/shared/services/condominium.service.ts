@@ -26,4 +26,25 @@ export class CondominiumService {
 
         return this._httpBase.get(url, "Condomínio");
     }
+
+    postCondominium(condominium): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('postCondominium');
+
+        return this._httpBase.post(url, condominium, "Condomínio");
+    }
+
+    updateCondominium(condominium, id): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('updateCondominium') + id;
+
+        return this._httpBase.put(url, condominium, "Condomínio");
+    }
+
+    deleteCondominium(id): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('deleteCondominium') + id;
+
+        return this._httpBase.delete(url, "Condomínio");
+    }
 }

@@ -13,6 +13,9 @@ export class ApiRoutesService {
         //condominium
         { alias: 'getCondomiumById', verb: 'get', path: '/api/condominium/' },
         { alias: 'getAllCondomium', verb: 'get', path: '/api/condominium/' },
+        { alias: 'postCondominium', verb: 'post', path: '/api/condominium/' },
+        { alias: 'updateCondominium', verb: 'put', path: '/api/condominium/' },
+        { alias: 'deleteCondomium', verb: 'delete', path: '/api/condominium/' },
 
       ];
   }
