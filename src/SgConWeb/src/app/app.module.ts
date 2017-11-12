@@ -28,10 +28,8 @@ export function HttpLoaderFactory(http: Http) {
         AppComponent,
         ModalComponent
     ],
-    imports: [
-        BrowserModule,
+    imports: [BrowserModule,
         BrowserAnimationsModule,
-        FormsModule,
         HttpModule,
         AppRoutingModule,
         BlockUIModule,
