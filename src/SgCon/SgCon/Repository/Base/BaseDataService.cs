@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SgConAPI.EntityFramework;
 using SgConAPI.EntityFramework.QueryFilter;
+using Newtonsoft.Json;
 
 namespace SgConAPI.Repository.Base
 {
@@ -81,5 +82,15 @@ namespace SgConAPI.Repository.Base
         {
             return this.Entities.Any(r => r.Id == id && r.DeletedAt == null);
         }
+
+        //protected Dictionary<string, object> issueFilterJson(string filtersJson)
+        //{
+        //    Dictionary<string, object> filters = null;
+        //    if (!string.IsNullOrEmpty(filtersJson))
+        //    {
+        //        filters = JsonConvert.DeserializeObject<Dictionary<string, object>>(filtersJson);
+        //    }
+        //    return filters;
+        //}
     }
 }

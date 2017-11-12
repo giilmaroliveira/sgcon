@@ -12,9 +12,10 @@ using System;
 namespace SgConAPI.Migrations
 {
     [DbContext(typeof(SgConContext))]
-    partial class SgConContextModelSnapshot : ModelSnapshot
+    [Migration("20171111210803_AddApartment")]
+    partial class AddApartment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,6 +32,11 @@ namespace SgConAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("1");
 
+                    b.Property<string>("Block")
+                        .IsRequired();
+
+                    b.Property<int>("CondominiumId");
+
                     b.Property<DateTime>("CreatedAt");
 
                     b.Property<string>("CreatedBy")
@@ -38,20 +44,13 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime?>("DeletedAt");
 
-                    b.Property<string>("Floor")
-                        .IsRequired();
-
-                    b.Property<int>("Number");
-
-                    b.Property<int>("TowerId");
-
                     b.Property<DateTime?>("UpdatedAt");
 
                     b.Property<string>("UpdatedBy");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TowerId");
+                    b.HasIndex("CondominiumId");
 
                     b.ToTable("Apartment");
                 });
@@ -66,6 +65,8 @@ namespace SgConAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("1");
 
+                    b.Property<int>("ApartmentNumber");
+
                     b.Property<string>("Cnpj")
                         .IsRequired();
 
@@ -78,8 +79,6 @@ namespace SgConAPI.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired();
-
-                    b.Property<int>("TowerNumber");
 
                     b.Property<DateTime?>("UpdatedAt");
 
@@ -144,6 +143,41 @@ namespace SgConAPI.Migrations
                         .IsUnique();
 
                     b.ToTable("Employee");
+                });
+
+            modelBuilder.Entity("SgConAPI.Models.House", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("1");
+
+                    b.Property<int>("ApartmentId");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired();
+
+                    b.Property<DateTime?>("DeletedAt");
+
+                    b.Property<string>("Floor")
+                        .IsRequired();
+
+                    b.Property<int>("Number");
+
+                    b.Property<DateTime?>("UpdatedAt");
+
+                    b.Property<string>("UpdatedBy");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApartmentId");
+
+                    b.ToTable("House");
                 });
 
             modelBuilder.Entity("SgConAPI.Models.Policy", b =>
@@ -279,44 +313,11 @@ namespace SgConAPI.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("SgConAPI.Models.Tower", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValueSql("1");
-
-                    b.Property<string>("Block")
-                        .IsRequired();
-
-                    b.Property<int>("CondominiumId");
-
-                    b.Property<DateTime>("CreatedAt");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
-
-                    b.Property<DateTime?>("DeletedAt");
-
-                    b.Property<DateTime?>("UpdatedAt");
-
-                    b.Property<string>("UpdatedBy");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CondominiumId");
-
-                    b.ToTable("Tower");
-                });
-
             modelBuilder.Entity("SgConAPI.Models.Apartment", b =>
                 {
-                    b.HasOne("SgConAPI.Models.Tower", "Tower")
+                    b.HasOne("SgConAPI.Models.Condominium", "Condominium")
                         .WithMany("Apartment")
-                        .HasForeignKey("TowerId")
+                        .HasForeignKey("CondominiumId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -325,6 +326,14 @@ namespace SgConAPI.Migrations
                     b.HasOne("SgConAPI.Models.Profile", "Profile")
                         .WithMany()
                         .HasForeignKey("ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SgConAPI.Models.House", b =>
+                {
+                    b.HasOne("SgConAPI.Models.Apartment", "Apartment")
+                        .WithMany("House")
+                        .HasForeignKey("ApartmentId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -346,14 +355,6 @@ namespace SgConAPI.Migrations
                     b.HasOne("SgConAPI.Models.Profile", "Profile")
                         .WithMany("ProfilePolicies")
                         .HasForeignKey("ProfileId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SgConAPI.Models.Tower", b =>
-                {
-                    b.HasOne("SgConAPI.Models.Condominium", "Condominium")
-                        .WithMany("Tower")
-                        .HasForeignKey("CondominiumId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

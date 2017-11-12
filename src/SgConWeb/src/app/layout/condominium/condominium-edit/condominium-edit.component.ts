@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+// Services
+import { CondominiumService } from '../../../shared/services/condominium.service';
+// Models
+import { CondominiumModel } from '../../../shared/entities/condominium.model';
 
 @Component({
   selector: 'app-condominium-edit',
@@ -12,8 +16,13 @@ import 'rxjs/add/operator/map';
 export class CondominiumEditComponent implements OnInit {
 
   public companyForm: FormGroup;
+  condominiumModel: CondominiumModel = new CondominiumModel();
+  condominiumId: number;
 
-  constructor(private form: FormBuilder, private http: Http) {}
+  constructor(
+      private form: FormBuilder, private http: Http,
+      private _condominiumService: CondominiumService
+    ) {}
 
   ngOnInit() {
     this.companyForm = this.form.group({
@@ -61,5 +70,48 @@ export class CondominiumEditComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.companyForm.value);
+  }
+
+  getCondominium(id) {
+
+    this._condominiumService.getCondominiumById(id)
+      .subscribe(response => {
+        this.condominiumModel = response;
+        console.log(response);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  updateCondomium() {
+
+    this._condominiumService.updateCondominium(this.condominiumModel, this.condominiumId)
+      .subscribe(response => {
+        this.condominiumModel = response;
+        console.log(response);
+      }, error => {
+        console.log(error);
+      });
+
+  }
+
+  deleteCondominium() {
+
+    this._condominiumService.deleteCondominium(this.condominiumId)
+      .subscribe(response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  postCondominium() {
+
+    this._condominiumService.postCondominium(this.condominiumModel)
+      .subscribe(response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      });
   }
 }

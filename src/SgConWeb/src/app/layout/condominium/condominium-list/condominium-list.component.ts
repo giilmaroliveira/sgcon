@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CondominiumService } from '../../../shared/services/condominium.service';
 
 @Component({
   selector: 'app-condominium-list',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CondominiumListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _condominiumService: CondominiumService
+  ) { }
 
   ngOnInit() {
+    
+    this.getAllCondominium();
+  }
+
+  getAllCondominium() {
+
+    this._condominiumService.getAllCondominium()
+      .subscribe(response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      });
   }
 
 }
