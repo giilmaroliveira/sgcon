@@ -15,17 +15,17 @@ import { CondominiumModel } from '../../../shared/entities/condominium.model';
 })
 export class CondominiumEditComponent implements OnInit {
 
-  public companyForm: FormGroup;
+  public condominiumForm: FormGroup;
   condominiumModel: CondominiumModel = new CondominiumModel();
   condominiumId: number;
 
   constructor(
-      private form: FormBuilder, private http: Http,
-      private _condominiumService: CondominiumService
-    ) {}
+    private form: FormBuilder,
+    private _condominiumService: CondominiumService
+  ) { }
 
   ngOnInit() {
-    this.companyForm = this.form.group({
+    this.condominiumForm = this.form.group({
       name: [null],
       email: [null],
       cnpj: [null],
@@ -42,34 +42,26 @@ export class CondominiumEditComponent implements OnInit {
       uf: [null]
     });
   }
-  consultaCep(cep, companyForm) {
-    // Nova variável cep somente com dígitos.
-    cep = cep.replace(/\D/g, '');
-    // Verifica se campo cep possui valor informado.
-    if (cep !== '') {
-      // Expressão regular para validar o CEP.
-      const validacep = /^[0-9]{8}$/;
-      // Valida o formato do CEP.
-      if (validacep.test(cep)) {
-        this.http
-          .get(`//viacep.com.br/ws/${cep}/json`)
-          .map(data => data.json())
-          .subscribe(data => this.populadataForm(data, companyForm));
-      }
-    }
+
+  consultingCep(cep) {
+
+    this._condominiumService.consultingCep(cep)
+      .map(data => data.json())
+      .subscribe(data => this.populadataForm(data, this.condominiumForm));
   }
-  populadataForm(data, companyForm) {
-    this.companyForm.patchValue({
-        cep: data.cep,
-        city: data.localidade,
-        complement: data.complemento,
-        neighborhood: data.bairro,
-        street: data.logradouro,
-        uf: data.uf
+
+  populadataForm(data, condominiumForm) {
+    this.condominiumForm.patchValue({
+      cep: data.cep,
+      city: data.localidade,
+      complement: data.complemento,
+      neighborhood: data.bairro,
+      street: data.logradouro,
+      uf: data.uf
     })
   }
   onSubmit() {
-    console.log(this.companyForm.value);
+    console.log(this.condominiumForm.value);
   }
 
   getCondominium(id) {
