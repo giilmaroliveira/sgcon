@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,8 +8,15 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
+import { ModalComponent } from './shared/components/modal/modal.component';
+import { AppErrorHandler } from './app.errorHandler';
+import { BlockUIModule } from 'ng-block-ui';
 // import { CondominioModule } from './condominio/condominio.module';
 // AoT requires an exported function for factories
+
+import { ApiRoutesService } from './shared/apiRoutes/apiRoutes.service';
+import { HttpBaseService } from './shared/services/http-base.service';
+import { DialogService } from 'ng2-bootstrap-modal';
 
 export function HttpLoaderFactory(http: Http) {
     // for development
@@ -18,7 +25,8 @@ export function HttpLoaderFactory(http: Http) {
 }
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        ModalComponent
     ],
     imports: [
         BrowserModule,
@@ -26,6 +34,7 @@ export function HttpLoaderFactory(http: Http) {
         FormsModule,
         HttpModule,
         AppRoutingModule,
+        BlockUIModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -34,7 +43,13 @@ export function HttpLoaderFactory(http: Http) {
             }
         })
     ],
-    providers: [AuthGuard],
+    providers: [
+        AuthGuard,
+        ApiRoutesService,
+        HttpBaseService,
+        { provide: ErrorHandler, useClass: AppErrorHandler },
+        DialogService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
