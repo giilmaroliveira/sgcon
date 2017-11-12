@@ -50,7 +50,6 @@ namespace SgConAPI.Repository.Base
         public virtual T Update(T entity)
         {
             this.context.Entry(entity).State = EntityState.Modified;
-            //this.context.Attach(entity);
             this.context.SaveChanges();
 
             return entity;
