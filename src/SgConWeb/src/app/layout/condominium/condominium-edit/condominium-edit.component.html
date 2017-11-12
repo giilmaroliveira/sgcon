@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form [formGroup]="companyForm">
+    <form [formGroup]="condominiumForm">
 
         <fieldset>
             <legend>Dados Condomínio</legend>
@@ -52,7 +52,7 @@
             <div class="form-group row">
                 <div class="col-sm-2">
                     <label class="control-label">Cep</label>
-                    <input type="text" class="form-control" formControlName="cep" id="cep" placeholder="" (blur)="consultaCep($event.target.value, companyForm)">
+                    <input type="text" class="form-control" formControlName="cep" id="cep" placeholder="" (blur)="consultingCep($event.target.value)">
                 </div>
 
                 <div class="col-sm-6">
