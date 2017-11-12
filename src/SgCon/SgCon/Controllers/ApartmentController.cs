@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SgConAPI.Controllers.Base;
+﻿using SgConAPI.Controllers.Base;
 using SgConAPI.Controllers.Contracts;
 using SgConAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using SgConAPI.Repository.Contracts;
 using SgConAPI.Business.Contracts;
@@ -18,8 +18,8 @@ namespace SgConAPI.Controllers
             IApartmentRepository apartmentRepository,
             IApartmentBusinessService apartmentBusinessService)
         {
-            _apartmentBusinessService = apartmentBusinessService;
             _apartmentRepository = apartmentRepository;
+            _apartmentBusinessService = apartmentBusinessService;
         }
 
         [HttpGet]
@@ -88,6 +88,5 @@ namespace SgConAPI.Controllers
 
             return Ok();
         }
-
     }
 }

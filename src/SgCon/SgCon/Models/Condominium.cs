@@ -13,8 +13,7 @@ namespace SgConAPI.Models
         public string Description { get; set; }
         [Required]
         public string Cnpj { get; set; }
-        public int ApartmentNumber { get; set; }
-        //public ICollection<House> House { get; set; }
-        public ICollection<Apartment> Apartment { get; set; }
+        public int TowerNumber { get; set; }
+        public ICollection<Tower> Tower { get; set; }
     }
 }

@@ -10,9 +10,10 @@ namespace SgConAPI.Models
     public class Apartment : BaseModel
     {
         [Required]
-        public string Block { get; set; }
-        public int CondominiumId { get; set; }
-        public Condominium Condominium { get; set; }
-        public ICollection<House> House { get; set; }
+        public int Number { get; set; }
+        [Required]
+        public string Floor { get; set; }
+        public int TowerId { get; set; }
+        public Tower Tower { get; set; }
     }
 }

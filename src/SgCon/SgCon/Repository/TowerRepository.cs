@@ -5,9 +5,9 @@ using SgConAPI.Repository.Contracts;
 
 namespace SgConAPI.Repository
 {
-    internal class HouseRepository : BaseDataService<House>, IHouseRepository
+    internal class TowerRepository : BaseDataService<Tower>, ITowerRepository
     {
-        public HouseRepository(SgConContext context) : base(context)
+        public TowerRepository(SgConContext context) : base(context)
         {
 
         }

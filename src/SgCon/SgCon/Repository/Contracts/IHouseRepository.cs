@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SgConAPI.Repository.Contracts
 {
-    public interface IHouseRepository : IBaseDataService<House>
+    public interface IApartmentRepository : IBaseDataService<Apartment>
     {
     }
 }

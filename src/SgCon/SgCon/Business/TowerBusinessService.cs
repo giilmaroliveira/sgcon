@@ -6,38 +6,38 @@ using System.Linq;
 
 namespace SgConAPI.Business
 {
-    internal class HouseBusinessService : BaseBusinessService<IHouseRepository, House>, IHouseBusinessService
+    internal class TowerBusinessService : BaseBusinessService<ITowerRepository, Tower>, ITowerBusinessService
     {
-        public HouseBusinessService(IHouseRepository repository) : base(repository)
+        public TowerBusinessService(ITowerRepository repository) : base(repository)
         {
 
         }
 
-        public House GetById(int id)
+        public Tower GetById(int id)
         {
             return Repository.Get(id);
         }
 
-        public House CreateHouse(House model)
+        public Tower CreateTower(Tower model)
         {
             var result = Repository.Post(model);
 
             return result;
         }
 
-        public House UpdateHouse(House model, int id)
+        public Tower UpdateTower(Tower model, int id)
         {
             var result = Repository.Update(model);
 
             return result;
         }
 
-        public void DeleteHouse(int id)
+        public void DeleteTower(int id)
         {
             Repository.Delete(id);
         }
 
-        public IQueryable<House> GetAll(string filters)
+        public IQueryable<Tower> GetAll(string filters)
         {
             var result = Repository.GetAll(issueFilterJson(filters));
 

@@ -21,14 +21,14 @@ namespace SgConAPI.EntityFramework
             }
 #endif
 
-        public DbSet<Condominium> Condominium { get; set; }
-        public DbSet<House> House { get; set; }
+        public DbSet<Condominium> Condominiums { get; set; }
+        public DbSet<Apartment> Apartments { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Policy> Policies { get; set; }
         public DbSet<ProfilePolicy> ProfilePolicies { get; set; }
-        public DbSet<Apartment> Apartments { get; set; }
+        public DbSet<Tower> Towers { get; set; }
 
 
         public SgConContext(DbContextOptions<SgConContext> options) : base(options)
@@ -91,13 +91,13 @@ namespace SgConAPI.EntityFramework
         {
             modelBuilder.Entity<Condominium>().ToTable("Condominium").Property(a => a.Active).HasDefaultValueSql("1");
 
-            modelBuilder.Entity<House>().ToTable("House")
+            modelBuilder.Entity<Apartment>().ToTable("Apartment")
                 .Property(a => a.Active).HasDefaultValueSql("1");
 
-            modelBuilder.Entity<House>()
-                .HasOne(h => h.Apartment)
-                .WithMany(h => h.House)
-                .HasForeignKey(h => h.ApartmentId);
+            modelBuilder.Entity<Apartment>()
+                .HasOne(h => h.Tower)
+                .WithMany(h => h.Apartment)
+                .HasForeignKey(h => h.TowerId);
 
             modelBuilder.Entity<Employee>().ToTable("Employee").Property(a => a.Active).HasDefaultValueSql("1");
             modelBuilder.Entity<Employee>().HasIndex(e => e.UserName).IsUnique();
@@ -119,11 +119,11 @@ namespace SgConAPI.EntityFramework
                 .WithMany(t => t.ProfilePolicies)
                 .HasForeignKey(pt => pt.PolicyId);
 
-            modelBuilder.Entity<Apartment>().ToTable("Apartment").Property(a => a.Active).HasDefaultValueSql("1");
+            modelBuilder.Entity<Tower>().ToTable("Tower").Property(a => a.Active).HasDefaultValueSql("1");
 
-            modelBuilder.Entity<Apartment>()
+            modelBuilder.Entity<Tower>()
                 .HasOne(a => a.Condominium)
-                .WithMany(a => a.Apartment)
+                .WithMany(a => a.Tower)
                 .HasForeignKey(a => a.CondominiumId);
 
         }

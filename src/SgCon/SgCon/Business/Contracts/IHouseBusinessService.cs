@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace SgConAPI.Business.Contracts
 {
-    public interface IHouseBusinessService : IBaseBusinessService<IHouseRepository, House>
+    public interface IApartmentBusinessService : IBaseBusinessService<IApartmentRepository, Apartment>
     {
-        House GetById(int id);
-        House CreateHouse(House model);
-        House UpdateHouse(House model, int id);
-        void DeleteHouse(int id);
-        IQueryable<House> GetAll(string filters);
+        Apartment GetById(int id);
+        Apartment CreateApartment(Apartment model);
+        Apartment UpdateApartment(Apartment model, int id);
+        void DeleteApartment(int id);
+        IQueryable<Apartment> GetAll(string filters);
     }
 }
