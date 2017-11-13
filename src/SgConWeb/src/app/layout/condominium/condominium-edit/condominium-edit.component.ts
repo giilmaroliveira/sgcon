@@ -120,13 +120,6 @@ export class CondominiumEditComponent implements OnInit {
           console.log(error);
         });
     }
-
-    this._condominiumService.postCondominium(this.condominiumModel)
-      .subscribe(response => {
-        this.condominiumModel = response;
-      }, error => {
-        console.log(error);
-      });
   }
 
   getCondominium(id) {
