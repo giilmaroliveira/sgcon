@@ -1,3 +1,36 @@
-<p>
-  condominium-list works!
-</p>
+<div class="col-sm-10 grid">
+    <div class="card mb-2">
+        <div class="card-header">
+            Condomínos
+        </div>
+        <div class="card-block table-responsive">
+            <div class="row">
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" placeholder="Search">
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>nome</th>
+                    </tr>
+                </thead>
+                <br>
+                <tbody *ngFor="let condominium of condominiumList">
+                    <tr>
+                        <th scope="row">{{condominium.id}}</th>
+                        <td class="col-sm-2">{{condominium.name}}</td>
+                        <td>
+                            <a class="btn btn-outline-warning my-2 my-sm-0" href="#" role="button" [routerLink]="['/condominium/condominiumEdit', condominium.id]">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
