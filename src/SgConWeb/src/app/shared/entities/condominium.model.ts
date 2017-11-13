@@ -1,5 +1,5 @@
 export class CondominiumModel {
-
+    id: number;
     name: string;
     cnpj: string;
     email: string;

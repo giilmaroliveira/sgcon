@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CondominiumService } from '../../../shared/services/condominium.service';
 
+import { CondominiumModel } from '../../../shared/entities/condominium.model';
+
 @Component({
   selector: 'app-condominium-list',
   templateUrl: './condominium-list.component.html',
   styleUrls: ['./condominium-list.component.scss']
 })
 export class CondominiumListComponent implements OnInit {
+    condominiumList: CondominiumModel[] = new Array<CondominiumModel>();
 
   constructor(
     private _condominiumService: CondominiumService
@@ -20,7 +23,8 @@ export class CondominiumListComponent implements OnInit {
 
     this._condominiumService.getAllCondominium()
       .subscribe(response => {
-        console.log(response);
+          this.condominiumList = response;
+          console.log(response);
       }, error => {
         console.log(error);
       });

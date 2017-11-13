@@ -1,16 +1,36 @@
-<div class="container" style=" padding: 20px; ">
-    <div class="row>
-        <div class="col-xl-6 text-xs-center">
-            <div class="card card-default">
-                <div class="card-block">
-                    .col-xl-8
+<div class="col-sm-10 grid">
+    <div class="card mb-2">
+        <div class="card-header">
+            Condomínos
+        </div>
+        <div class="card-block table-responsive">
+            <div class="row">
+                <div class="col-sm-8">
+                    <input class="form-control" type="text" placeholder="Search">
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-2 text-xs-center">
-            <div class="card card-default">
-                <button type="button" class=" card-block btn btn-info">Editar</button>
-            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>nome</th>
+                    </tr>
+                </thead>
+                <br>
+                <tbody *ngFor="let condominium of condominiumList">
+                    <tr>
+                        <th scope="row">{{condominium.id}}</th>
+                        <td class="col-sm-2">{{condominium.name}}</td>
+                        <td>
+                            <a class="btn btn-outline-warning my-2 my-sm-0" href="#" role="button" [routerLink]="['/condominium/condominiumEdit', condominium.id]">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
