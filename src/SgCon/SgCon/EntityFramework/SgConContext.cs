@@ -1,10 +1,12 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SgConAPI.Jwt;
 using SgConAPI.Models;
 using SgConAPI.Models.Base;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -131,7 +133,9 @@ namespace SgConAPI.EntityFramework
         public override int SaveChanges()
         {
             int result = 0;
+
             IssueTimestamps();
+            var entities = this.getChangedEntities();
             result = base.SaveChanges();
             return result;
         }
@@ -141,6 +145,16 @@ namespace SgConAPI.EntityFramework
             IssueTimestamps();
             var result = await base.SaveChangesAsync(cancellationToken);
             return result;
+        }
+
+        private IEnumerable<EntityEntry> getChangedEntities()
+        {
+            var entities = ChangeTracker.Entries().Where(
+                //r => !(r.Entity is Log)
+                //&& !(r.State == EntityState.Unchanged)
+                r => !(r.State == EntityState.Unchanged)
+            );
+            return entities;
         }
 
         public void IssueTimestamps()
