@@ -4,95 +4,122 @@
 
         <fieldset>
             <legend>Dados Condomínio</legend>
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <label class=" control-label ">Nome</label>
-                    <input type="text" class="form-control" formControlName="name" id="name" placeholder="">
+            <div>
+                <div class="col-sm-8" [ngClass]="AplicaCss('name')">
+                    <label class="form-control-label">Nome</label>
+                    <input type="text" id="name" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="name">
                 </div>
 
-                <div class="col-sm-8">
-                    <label class=" control-label ">Cnpj</label>
-                    <input type="text" class="form-control" formControlName="cnpj" id="cnpj" placeholder="">
+                <div class="col-sm-8" [ngClass]="AplicaCss('cnpj')">
+                    <label class=" form-control-label ">Cnpj</label>
+                    <input type="text" maxlength="14" id="cnpj" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="cnpj">
                 </div>
 
-                <div class="col-sm-10">
-                    <label class="control-label">Email</label>
-                    <input type="email" class="form-control" formControlName="email" id="email" placeholder="">
+                <div class="col-sm-8" [ngClass]="AplicaCss('email')">
+                    <label class="form-control-label">Email</label>
+                    <input type="email" id="email" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="email">
                 </div>
             </div>
         </fieldset>
 
         <fieldset>
             <legend>Telefone</legend>
-            <div class="form-group row">
-                <div class="col-sm-1">
-                    <label class="control-label">DDD</label>
-                    <input type="text" class="form-control" formControlName="DDDComercialPhone" id="DDDComercialPhone" placeholder="">
-                </div>
+            <div class="row">
+                    <div  class="col-sm-2" [ngClass]="AplicaCss('dddComercialPhone')">
+                        <label class="form-control-label">DDD</label>
+                        <input type="text" maxlength="2" id="dddComercialPhone" placeholder=""
+                        class="form-control form-control-success form-control-danger" 
+                        formControlName="dddComercialPhone">
+                    </div>
 
-                <div class="col-sm-4">
-                    <label class="control-label">Comercial</label>
-                    <input type="text" class="form-control" formControlName="comercialPhone" id="comercialPhone" placeholder="">
-                </div>
+                    <div class="col-sm-3" [ngClass]="AplicaCss('comercialPhone')">
+                        <label class="form-control-label">Comercial</label>
+                        <input type="text" maxlength="8" id="comercialPhone" placeholder="" 
+                        class="form-control form-control-success form-control-danger" 
+                        formControlName="comercialPhone">
+                    </div>               
 
-                <div class="col-sm-1">
-                    <label class="control-label">DDD</label>
-                    <input type="text" class="form-control" formControlName="DDDCellPhone" id="DDDCellPhone" placeholder="">
-                </div>
+                    <div class="col-sm-2" [ngClass]="AplicaCss('dddCellPhone')">
+                        <label class="form-control-label">DDD</label>
+                        <input type="text" maxlength="2" id="dddCellPhone" placeholder=""
+                        class="form-control form-control-success form-control-danger"
+                        formControlName="dddCellPhone">
+                    </div>                
 
-                <div class="col-sm-4">
-                    <label class="control-label">Celular</label>
-                    <input type="text" class="form-control" formControlName="cellPhone" id="cellPhone" placeholder="">
-                </div>
+                    <div class="col-sm-3" [ngClass]="AplicaCss('cellPhone')">
+                        <label class="form-control-label">Celular</label>
+                        <input type="text" maxlength="9" id="cellPhone" placeholder=""
+                        class="form-control form-control-success form-control-danger"
+                        formControlName="cellPhone">
+                    </div>
             </div>
         </fieldset>
 
         <fieldset>
             <legend>Endereço</legend>
-            <div class="form-group row">
-                <div class="col-sm-2">
-                    <label class="control-label">Cep</label>
-                    <input type="text" class="form-control" formControlName="cep" id="cep" placeholder="" (blur)="consultingCep($event.target.value)">
+            <div class="row">
+                <div class="col-sm-2" [ngClass]="AplicaCss('cep')">
+                    <label class="form-control-label">Cep</label>
+                    <input type="text" id="cep" placeholder="" (blur)="consultingCep($event.target.value)"
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="cep">
                 </div>
 
-                <div class="col-sm-6">
-                    <label class="control-label">Rua</label>
-                    <input type="text" class="form-control" formControlName="street" id="street" placeholder="">
+                <div class="col-sm-6" [ngClass]="AplicaCss('street')">
+                    <label class="form-control-label">Rua</label>
+                    <input type="text" class="form-control" formControlName="street" id="street" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="street">
                 </div>
 
-                <div class="col-sm-1">
-                    <label class="control-label">Número</label>
-                    <input type="text" class="form-control" formControlName="number" id="number" placeholder="">
+                <div class="col-sm-2" [ngClass]="AplicaCss('number')">
+                    <label class="form-control-label">Número</label>
+                    <input type="text" maxlength="4" id="number" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="number" >
                 </div>
 
-                <div class="col-sm-2">
-                    <label class="control-label">Complemento</label>
-                    <input type="text" class="form-control" formControlName="complement" id="complement" placeholder="">
+                <div class="col-sm-2" [ngClass]="AplicaCss('complement')">
+                    <label class="form-control-label">Complemento</label>
+                    <input type="text"  id="complement" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="complement">
                 </div>
             </div>
-            <div class="form-group row">
-                <div class="col-sm-6">
-                    <label class="control-label">Bairro</label>
-                    <input type="text" class="form-control" formControlName="neighborhood" id="neighborhood" placeholder="">
+            <div class="row">
+                <div class="col-sm-6" [ngClass]="AplicaCss('neighborhood')">
+                    <label class="form-control-label">Bairro</label>
+                    <input type="text" id="neighborhood" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="neighborhood">
                 </div>
 
-                <div class="col-sm-4">
-                    <label class="control-label">Cidade</label>
-                    <input type="text" class="form-control" formControlName="city" id="city" placeholder="">
+                <div class="col-sm-4" [ngClass]="AplicaCss('city')">
+                    <label class="form-control-label">Cidade</label>
+                    <input type="text" formControlName="city" id="city" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="city">
                 </div>
 
-                <div class="col-sm-1">
-                    <label class="control-label">UF</label>
-                    <input type="text" class="form-control" formControlName="uf" id="uf" placeholder="">
+                <div class="col-sm-2" [ngClass]="AplicaCss('uf')">
+                    <label class="form-control-label">UF</label>
+                    <input type="text" maxlength="2" formControlName="uf" id="uf" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="uf">
                 </div>
             </div>
         </fieldset>
 
-        <div class="col-sm-11">
-            <ul class="nav justify-content-end">
+        <div style=" margin-top: 10px; ">
                 <button type="submit" class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2"
+                [disabled]="!condominiumForm.valid"
                 (click)="onSubmit()">salvar</button>
-            </ul>
         </div>
 
     </form>

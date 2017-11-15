@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ActivatedRoute } from '@angular/router';
@@ -43,21 +43,37 @@ export class CondominiumEditComponent implements OnInit {
   setDefaultValuesForm() {
 
     this.condominiumForm = this.form.group({
-      name: [null],
-      email: [null],
-      cnpj: [null],
-      DDDComercialPhone: [null],
-      comercialPhone: [null],
-      DDDCellPhone: [null],
-      cellPhone: [null],
-      street: [null],
-      number: [null],
-      cep: [null],
+      name: [null, [Validators.required, Validators.minLength(3)]],
+      email: [null, [Validators.email, Validators.required]],
+      cnpj: [null, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+      dddComercialPhone: [null, [Validators.required, Validators.maxLength(2), Validators.minLength(2)]],
+      comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
+      dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],
+      cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
+      street: [null, [Validators.required, Validators.minLength(3)]],
+      number: [null, [Validators.required, Validators.minLength(1)]],
+      cep: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
       complement: [null],
-      neighborhood: [null],
-      city: [null],
-      uf: [null]
+      neighborhood: [null, [Validators.required, Validators.minLength(2)]],
+      city: [null, [Validators.required, Validators.minLength(2)]],
+      uf: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]]
     });
+  }
+  // check ngValidatos
+  AplicaCss(field: string) {
+    if (this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched ) {
+      return {
+        'has-success': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
+        'has-feedback': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
+        'form-control-success': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched
+      };
+    } else {
+        return {
+          'has-danger': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
+          'has-feedback': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
+          'form-control-danger': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched
+        };
+      }
   }
 
   consultingCep(cep) {
@@ -107,7 +123,10 @@ export class CondominiumEditComponent implements OnInit {
       this._condominiumService.postCondominium(this.condominiumModel)
         .subscribe(response => {
           this.condominiumModel = response;
-          console.log('salvo com sucesso');
+          // message success
+          alert('Dados salvos com sucesso!');
+          // reset dataForm
+          this.condominiumForm.reset();
         }, error => {
           console.log(error);
         });
@@ -115,18 +134,11 @@ export class CondominiumEditComponent implements OnInit {
       this._condominiumService.updateCondominium(this.condominiumModel, this.condominiumId)
         .subscribe(response => {
           this.condominiumModel = response;
-          console.log('atualizado com sucesso');
+          alert('Dados atualizados com sucesso');
         }, error => {
           console.log(error);
         });
     }
-
-    this._condominiumService.postCondominium(this.condominiumModel)
-      .subscribe(response => {
-        this.condominiumModel = response;
-      }, error => {
-        console.log(error);
-      });
   }
 
   getCondominium(id) {
