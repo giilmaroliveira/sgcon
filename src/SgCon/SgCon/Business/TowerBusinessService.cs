@@ -20,6 +20,8 @@ namespace SgConAPI.Business
 
         public Tower CreateTower(Tower model)
         {
+            model.CreatedBy = "Sistema";
+
             var result = Repository.Post(model);
 
             return result;
@@ -27,6 +29,8 @@ namespace SgConAPI.Business
 
         public Tower UpdateTower(Tower model, int id)
         {
+            model.UpdatedBy = "Sistema";
+
             var result = Repository.Update(model);
 
             return result;

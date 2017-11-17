@@ -6,9 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 
 // models
 import { TowerModel } from '../../../shared/entities/tower.model';
+import { CondominiumModel } from '../../../shared/entities/condominium.model';
 
 // services
 import { TowerService } from '../../../shared/services/tower.service';
+import { CondominiumService } from '../../../shared/services/condominium.service';
 
 @Component({
   selector: 'app-tower-edit',
@@ -18,13 +20,15 @@ import { TowerService } from '../../../shared/services/tower.service';
 export class TowerEditComponent implements OnInit {
   public towerForm: FormGroup;
   towerModel: TowerModel = new TowerModel();
+  listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
   towerId: number;
   // towerId: number;
 
   constructor(
     private form: FormBuilder,
     private _towerService: TowerService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _condominiumService: CondominiumService
   ) {}
 
   ngOnInit() {
@@ -36,6 +40,8 @@ export class TowerEditComponent implements OnInit {
         this.getTower(this.towerId);
       }
     });
+
+    this.getAllCondominium();
   }
 
     // check ngValidatos
@@ -144,5 +150,15 @@ export class TowerEditComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  getAllCondominium() {
+
+    this._condominiumService.getAllCondominium()
+      .subscribe(response => {
+        this.listOfCondominium = response;
+      }, error => {
+        console.log(error);
+      })
   }
 }

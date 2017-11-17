@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TowerComponent } from './tower.component';
+import { TowerListComponent } from '../../layout/tower/tower-list/tower-list.component';
+import { TowerEditComponent } from '../../layout/tower/tower-edit/tower-edit.component';
+
+import { TowerService } from '../../shared/services/tower.service';
+import { CondominiumService } from '../../shared/services/condominium.service';
+
 import { TowerRoutingModule } from 'app/layout/tower/tower.routing.module';
-import { TowerListComponent } from 'app/layout/tower/tower-list/tower-list.component';
-import { TowerEditComponent } from 'app/layout/tower/tower-edit/tower-edit.component';
-import { TowerService } from 'app/shared/services/tower.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
     imports: [
@@ -24,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ],
     providers: [
         TowerService,
+        CondominiumService
     ],
 })
 export class TowerModule { }

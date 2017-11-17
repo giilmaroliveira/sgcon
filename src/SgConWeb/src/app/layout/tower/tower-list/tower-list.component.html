@@ -30,10 +30,10 @@
               <br>
               <tbody *ngFor="let tower of towerList">
                   <tr>
-                      <th scope="row">{{condominium.id}}</th>
+                      <th scope="row">{{ condominium.id }}</th>
                       <td class="col-sm-1">comdominio nome</td>
-                      <th scope="row">{{torre.id}}</th>
-                      <td class="col-sm-1">{{torre.name}}</td>
+                      <th scope="row">{{ torre.id }}</th>
+                      <td class="col-sm-1">{{ torre.name }}</td>
                       <td>
                           <a class="btn btn-outline-warning my-2 my-sm-0" href="#" role="button" 
                           [routerLink]="['/tower/towerEdit', tower.id]">Editar</a>
