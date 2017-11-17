@@ -23,6 +23,7 @@ export class ApiRoutesService {
         { alias: 'postTower', verb: 'post', path: '/api/tower/' },
         { alias: 'updateTower', verb: 'put', path: '/api/tower/' },
         { alias: 'deleteTower', verb: 'delete', path: '/api/tower/' },
+        { alias: 'getTowerByCondominiumId', verb: 'get', path: '/api/tower/condominium/' },
 
       ];
   }

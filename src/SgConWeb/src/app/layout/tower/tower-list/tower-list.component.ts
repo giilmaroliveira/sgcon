@@ -26,26 +26,32 @@ export class TowerListComponent implements OnInit {
   ngOnInit() {
     this.getAllCondominium();
   }
+
   getAllTower() {
     this._towerService.getAllTower().subscribe(
       response => {
         this.towerList = response;
-        console.log(response);
-      },
-      error => {
+      }, error => {
         console.log(error);
-      }
-    );
+      });
   }
 
   getAllCondominium() {
     this._condominiumService.getAllCondominium().subscribe(
       response => {
         this.listOfCondominium = response;
-      },
-      error => {
+      }, error => {
         console.log(error);
-      }
-    );
+      });
+  }
+
+  getTowerByCondominiumId() {
+    
+    this._towerService.getTowerCondominiumId(this.condominiumId)
+      .subscribe(response => {
+        this.towerList = response;
+      }, error => {
+        console.log(error);
+      });
   }
 }

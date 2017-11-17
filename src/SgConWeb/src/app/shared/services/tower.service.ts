@@ -62,4 +62,11 @@ export class TowerService {
             }
         }
     }
+
+    getTowerCondominiumId(id: number): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('getTowerByCondominiumId') + id;
+
+        return this._httpBase.get(url, "Torre");
+    }
 }
