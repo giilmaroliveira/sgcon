@@ -39,7 +39,7 @@ export class CondominiumEditComponent implements OnInit {
     });
 
   }
-
+  // check ngValidatos
   applyCss(field: string) {
     if (this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched) {
       return {
@@ -75,8 +75,6 @@ export class CondominiumEditComponent implements OnInit {
       uf: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]]
     });
   }
-  // check ngValidatos
-
 
   consultingCep(cep) {
 

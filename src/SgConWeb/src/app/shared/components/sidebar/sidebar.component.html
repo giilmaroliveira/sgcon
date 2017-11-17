@@ -8,21 +8,54 @@
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Condomínio' | translate }}
         </a>
 
-        <a routerLink="/condominium" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'CondomíniosTeste' | translate }}
-        </a>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('comdominum')">
+                <span>
+                    <i class="fa fa-plus"></i>&nbsp; {{ 'Comdomínio Teste' | translate }}
+                </span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'comdominum'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/condominium" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Condomínios' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/tower" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Torres' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/dweller" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Moradores' | translate }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
 
-        <a routerLink="/dweller" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'MoradoresTeste' | translate }}
-        </a>
-
-        <a routerLink="/company" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'EmpresasTeste' | translate }}
-        </a>
-
-        <a routerLink="/employee" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'FuncionáriosTeste' | translate }}
-        </a>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('services')">
+                <span>
+                    <i class="fa fa-plus"></i>&nbsp; {{ 'Serviços' | translate }}
+                </span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'services'">
+                <ul class="submenu">
+                    <li>
+                        <a routerLink="/company" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Empresas' | translate }}
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/employee" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Funcionários' | translate }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
 
         <a routerLink="/notices" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'NotíciasTeste' | translate }}
@@ -55,28 +88,19 @@
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <span>
-                    <i class="fa fa-plus"></i>&nbsp; {{ 'Menu' | translate }}</span>
+                    <i class="fa fa-plus"></i>&nbsp; {{ 'Menu Teste' | translate }}</span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'pages'">
                 <ul class="submenu">
                     <li>
-                        <a href="javascript:void(0)">
-                            <span>{{ 'Submenu' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <span>{{ 'Submenu' | translate }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <span>{{ 'Submenu' | translate }}</span>
+                        <a routerLink="/company" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'EmpresasTeste' | translate }}
                         </a>
                     </li>
                 </ul>
             </li>
         </div>
+        
         <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-file-o"></i>&nbsp;{{ 'Blank Page' | translate }}
         </a>

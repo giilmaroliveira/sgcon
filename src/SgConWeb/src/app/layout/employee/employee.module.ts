@@ -12,6 +12,7 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
         EmployeeRoutingModule
     ],
     exports: [],
+
     declarations: [
         EmployeeComponent,
         EmployeeEditComponent,

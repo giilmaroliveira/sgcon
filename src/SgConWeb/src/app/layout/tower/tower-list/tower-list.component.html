@@ -1,0 +1,40 @@
+<div class="col-sm-10 grid">
+  <div class="card mb-2">
+      <div class="card-header">
+          Torres
+      </div>
+      <div class="card-block table-responsive">
+          <div class="row">
+              <div class="col-sm-8">
+                  <input class="form-control" type="text" placeholder="Search">
+              </div>
+              <div class="col-sm-4">
+                  <button class="btn btn-outline-success" type="submit">Buscar</button>
+              </div>
+          </div>
+
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>#</th>
+                      <th>condominio nome</th>
+                      <th> torre nome</th>
+                  </tr>
+              </thead>
+              <br>
+              <tbody *ngFor="let tower of towerList">
+                  <tr>
+                      <th scope="row">{{condominium.id}}</th>
+                      <td class="col-sm-1">comdominio nome</td>
+                      <th scope="row">{{torre.id}}</th>
+                      <td class="col-sm-1">{{torre.name}}</td>
+                      <td>
+                          <a class="btn btn-outline-warning my-2 my-sm-0" href="#" role="button" 
+                          [routerLink]="['/tower/towerEdit', tower.id]">Editar</a>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

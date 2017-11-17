@@ -1,0 +1,40 @@
+<div class="container">
+
+  <form [formGroup]="towerForm">
+
+    <fieldset>
+      <legend>Dados Torres</legend>
+      <div class="row" >
+        <div class="col-sm-8" [ngClass]="applyCss('block')">
+          <label class="form-control-label">Nome</label>
+          <input type="text" id="block" placeholder=""
+          class="form-control form-control-success form-control-danger"
+          formControlName="block">
+        </div>
+
+        <div class="col-sm-" [ngClass]="applyCss('apartmentNumber')">
+          <label class="form-control-label">Qtd Apartamentos</label>
+          <input type="text" id="apartmentNumber" placeholder=""
+          class="form-control form-control-success form-control-danger"
+          formControlName="apartmentNumber">
+        </div>
+      </div>
+
+        <div class="col-sm-3" [ngClass]="applyCss('condominiumId')">
+          <label class="form-control-label">Condominio</label>
+          <select class="form-control form-control-success form-control-danger"
+          formControlName="condominiumId">
+              <option value="1">condominium 1</option>
+              <option>condominium 2</option>
+          </select>
+        </div>
+    </fieldset>
+
+    <div style=" margin-top: 10px; ">
+        <button type="submit" class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2"
+        [disabled]="!towerForm.valid"
+        (click)="onSubmit()">salvar</button>
+    </div>
+
+  </form>
+</div>

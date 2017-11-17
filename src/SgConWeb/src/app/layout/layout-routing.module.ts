@@ -20,6 +20,7 @@ const routes: Routes = [
             { path: 'employee', loadChildren: './employee/employee.module#EmployeeModule' },
             { path: 'notices', loadChildren: './notices/notices.module#NoticesModule' },
             { path: 'company', loadChildren: './company/company.module#CompanyModule' },
+            { path: 'tower', loadChildren: './tower/tower.module#TowerModule' },
         ]
     }
 ];
