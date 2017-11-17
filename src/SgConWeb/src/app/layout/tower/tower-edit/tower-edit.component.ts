@@ -1,40 +1,46 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';import { Http } from "@angular/http";
-import "rxjs/add/operator/map";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import { ActivatedRoute } from '@angular/router';
 
 // models
-import { TowerModel } from "../../../shared/entities/tower.model";
+import { TowerModel } from '../../../shared/entities/tower.model';
+import { CondominiumModel } from '../../../shared/entities/condominium.model';
 
 // services
-import { TowerService } from "../../../shared/services/tower.service";
+import { TowerService } from '../../../shared/services/tower.service';
+import { CondominiumService } from '../../../shared/services/condominium.service';
 
 @Component({
-  selector: "app-tower-edit",
-  templateUrl: "./tower-edit.component.html",
-  styleUrls: ["./tower-edit.component.scss"]
+  selector: 'app-tower-edit',
+  templateUrl: './tower-edit.component.html',
+  styleUrls: ['./tower-edit.component.scss']
 })
 export class TowerEditComponent implements OnInit {
   public towerForm: FormGroup;
   towerModel: TowerModel = new TowerModel();
+  listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
   towerId: number;
   //towerId: number;
 
   constructor(
     private form: FormBuilder,
     private _towerService: TowerService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _condominiumService: CondominiumService
   ) {}
 
   ngOnInit() {
     this.setDefaultValuesForm();
 
     this._route.params.subscribe(params => {
-      if (params["id"]) {
-        this.towerId = +params["id"];
+      if (params['id']) {
+        this.towerId = +params['id'];
         this.getTower(this.towerId);
       }
     });
+
+    this.getAllCondominium();
   }
 
     // check ngValidatos
@@ -78,7 +84,7 @@ export class TowerEditComponent implements OnInit {
         response => {
           this.towerModel = response;
           // message success
-          alert("Dados salvos com sucesso!");
+          alert('Dados salvos com sucesso!');
           // reset dataForm
           this.towerForm.reset();
         },
@@ -90,7 +96,7 @@ export class TowerEditComponent implements OnInit {
       this._towerService.updateTower(this.towerModel, this.towerId).subscribe(
         response => {
           this.towerModel = response;
-          alert("Dados atualizados com sucesso");
+          alert('Dados atualizados com sucesso');
         },
         error => {
           console.log(error);
@@ -143,5 +149,15 @@ export class TowerEditComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  getAllCondominium() {
+
+    this._condominiumService.getAllCondominium()
+      .subscribe(response => {
+        this.listOfCondominium = response;
+      }, error => {
+        console.log(error);
+      })
   }
 }

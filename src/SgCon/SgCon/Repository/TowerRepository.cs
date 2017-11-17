@@ -1,7 +1,11 @@
-﻿using SgConAPI.EntityFramework;
+﻿using Microsoft.EntityFrameworkCore;
+using SgConAPI.EntityFramework;
+using SgConAPI.EntityFramework.QueryFilter;
 using SgConAPI.Models;
 using SgConAPI.Repository.Base;
 using SgConAPI.Repository.Contracts;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SgConAPI.Repository
 {
@@ -9,7 +13,7 @@ namespace SgConAPI.Repository
     {
         public TowerRepository(SgConContext context) : base(context)
         {
-
+            
         }
     }
 }
