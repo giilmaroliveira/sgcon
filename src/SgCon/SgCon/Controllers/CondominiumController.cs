@@ -15,7 +15,7 @@ namespace SgConAPI.Controllers
         private readonly ICondominiumRepository _condominiumRepository;
         private readonly ICondominiumBusinessService _condominiumBusinessService;
         public CondominiumController(
-            ICondominiumRepository repository, 
+            ICondominiumRepository repository,
             ICondominiumBusinessService condominiumBusinessService)
         {
             _condominiumRepository = repository;
@@ -66,9 +66,21 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Put([FromBody] Condominium condominium, [FromRoute] int id)
         {
-            var result = _condominiumBusinessService.UpdateCondominium(condominium, id);
+            if (condominium == null) { return BadRequest("Dados não encontrados"); }
 
-            return Ok(result);
+            ModelState.Clear();
+
+            TryValidateModel(condominium);
+
+            if (ModelState.IsValid)
+            {
+                var result = _condominiumBusinessService.UpdateCondominium(condominium, id);
+
+                return Ok(result);
+            } else {
+                return BadRequest(ModelState);
+            }
+
         }
 
         [HttpDelete]

@@ -59,6 +59,12 @@ export class CondominiumEditComponent implements OnInit {
   setDefaultValuesForm() {
 
     this.condominiumForm = this.form.group({
+      id: [null, [Validators.required]],
+      active: null,
+      createdAt: null,
+      updatedAt: null,
+      createdBy: null,
+      updatedBy: null,
       name: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.email, Validators.required]],
       cnpj: [null, [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
@@ -97,12 +103,18 @@ export class CondominiumEditComponent implements OnInit {
   populateForm(data: CondominiumModel) {
 
     this.condominiumForm.patchValue({
+      id: data.id,
+      active: data.active,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      createdBy: data.createdBy,
+      updatedBy: data.updatedBy,
       name: data.name,
       email: data.email,
       cnpj: data.cnpj,
-      DDDComercialPhone: data.dddComercialPhone,
+      dddComercialPhone: data.dddComercialPhone,
       comercialPhone: data.comercialPhone,
-      DDDCellPhone: data.dddCellPhone,
+      dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
       cep: data.cep,
       street: data.street,
@@ -118,6 +130,8 @@ export class CondominiumEditComponent implements OnInit {
   onSubmit() {
 
     this.condominiumModel = this.condominiumForm.value;
+
+    console.log(this.condominiumModel);
 
     if (!this.condominiumId) {
       this._condominiumService.postCondominium(this.condominiumModel)
@@ -146,6 +160,7 @@ export class CondominiumEditComponent implements OnInit {
     this._condominiumService.getCondominiumById(id)
       .subscribe(response => {
         this.condominiumModel = response;
+        console.log(response);
         this.populateForm(this.condominiumModel);
       }, error => {
         console.log(error);
