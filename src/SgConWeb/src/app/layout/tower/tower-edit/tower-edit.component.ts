@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';import { Http } from '@angular/http';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,7 +22,7 @@ export class TowerEditComponent implements OnInit {
   towerModel: TowerModel = new TowerModel();
   listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
   towerId: number;
-  //towerId: number;
+  // towerId: number;
 
   constructor(
     private form: FormBuilder,
@@ -62,9 +63,9 @@ export class TowerEditComponent implements OnInit {
 
   setDefaultValuesForm() {
     this.towerForm = this.form.group({
-      block: [null,[Validators.required,Validators.minLength(3)]],
+      block: [null, [Validators.required, Validators.minLength(3)]],
       apartmentNumber: [null, [Validators.required, Validators.minLength(1)]],
-      condominiumId: [null,[Validators.required]]
+      condominiumId: [null, [Validators.required]]
     });
   }
 
