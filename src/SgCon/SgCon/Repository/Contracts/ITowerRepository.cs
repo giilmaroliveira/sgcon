@@ -1,4 +1,5 @@
-﻿using SgConAPI.Models;
+﻿using SgConAPI.EntityFramework;
+using SgConAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,5 +9,6 @@ namespace SgConAPI.Repository.Contracts
 {
     public interface ITowerRepository : IBaseDataService<Tower>
     {
+        IQueryable<Tower> GetByCondominiumId(int id);
     }
 }

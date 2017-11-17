@@ -8,9 +8,10 @@ namespace SgConAPI.Business
 {
     internal class TowerBusinessService : BaseBusinessService<ITowerRepository, Tower>, ITowerBusinessService
     {
+        private ITowerRepository _towerRepository;
         public TowerBusinessService(ITowerRepository repository) : base(repository)
         {
-
+            _towerRepository = repository;
         }
 
         public Tower GetById(int id)
@@ -44,6 +45,13 @@ namespace SgConAPI.Business
         public IQueryable<Tower> GetAll(string filters)
         {
             var result = Repository.GetAll(issueFilterJson(filters));
+
+            return result;
+        }
+
+        public IQueryable<Tower> GetByCondominiumId(int id)
+        {
+            var result = _towerRepository.GetByCondominiumId(id);
 
             return result;
         }

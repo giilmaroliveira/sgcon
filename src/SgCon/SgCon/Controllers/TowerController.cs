@@ -51,6 +51,21 @@ namespace SgConAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet]
+        [Route("condominium/{id}")]
+        [ProducesResponseType(typeof(Tower), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult GetByCondominiumId([FromRoute] int id)
+        {
+            var result = _towerBusinessService.GetByCondominiumId(id);
+
+            if (result == null)
+                return BadRequest("Nenhuma torre encontrado");
+
+            return Ok(result);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(Tower), 200)]
         [ProducesResponseType(typeof(string), 420)]

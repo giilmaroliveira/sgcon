@@ -11,5 +11,6 @@ namespace SgConAPI.Business.Contracts
         Tower UpdateTower(Tower model, int id);
         void DeleteTower(int id);
         IQueryable<Tower> GetAll(string filters);
+        IQueryable<Tower> GetByCondominiumId(int id);
     }
 }

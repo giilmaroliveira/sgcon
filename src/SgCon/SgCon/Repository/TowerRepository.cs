@@ -15,5 +15,13 @@ namespace SgConAPI.Repository
         {
             
         }
+
+        public IQueryable<Tower> GetByCondominiumId(int id)
+        {
+            return (from t in base.Entities
+                    where t.DeletedAt == null
+                    && t.CondominiumId == id
+                    select t);
+        }
     }
 }
