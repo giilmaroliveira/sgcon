@@ -1,5 +1,6 @@
-export class CondominiumModel {
-    id: number;
+import { BaseModel } from './base.model';
+
+export class CondominiumModel extends BaseModel {
     name: string;
     cnpj: string;
     email: string;
@@ -7,7 +8,7 @@ export class CondominiumModel {
     comercialPhone: string;
     dddCellPhone: string;
     cellPhone: string;
-    towerNumber: number;
+    towerNumber: number
     cep: string;
     street: string;
     number: number;
