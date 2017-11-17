@@ -13,6 +13,7 @@ namespace SgConAPI.Models
         public string Block { get; set; }
         public int CondominiumId { get; set; }
         public Condominium Condominium { get; set; }
+        public int ApartmentNumber { get; set; }
         public ICollection<Apartment> Apartment { get; set; }
     }
 }

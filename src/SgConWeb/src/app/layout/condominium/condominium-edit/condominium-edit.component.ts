@@ -40,6 +40,22 @@ export class CondominiumEditComponent implements OnInit {
 
   }
 
+  applyCss(field: string) {
+    if (this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched) {
+      return {
+        'has-success': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
+        'has-feedback': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
+        'form-control-success': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched
+      };
+    } else {
+      return {
+        'has-danger': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
+        'has-feedback': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
+        'form-control-danger': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched
+      };
+    }
+  }
+
   setDefaultValuesForm() {
 
     this.condominiumForm = this.form.group({
@@ -60,21 +76,7 @@ export class CondominiumEditComponent implements OnInit {
     });
   }
   // check ngValidatos
-  AplicaCss(field: string) {
-    if (this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched ) {
-      return {
-        'has-success': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
-        'has-feedback': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
-        'form-control-success': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched
-      };
-    } else {
-        return {
-          'has-danger': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
-          'has-feedback': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
-          'form-control-danger': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched
-        };
-      }
-  }
+
 
   consultingCep(cep) {
 

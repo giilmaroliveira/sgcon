@@ -5,21 +5,21 @@
         <fieldset>
             <legend>Dados Condomínio</legend>
             <div>
-                <div class="col-sm-8" [ngClass]="AplicaCss('name')">
+                <div class="col-sm-8" [ngClass]="applyCss('name')">
                     <label class="form-control-label">Nome</label>
                     <input type="text" id="name" placeholder=""
                     class="form-control form-control-success form-control-danger"
                     formControlName="name">
                 </div>
 
-                <div class="col-sm-8" [ngClass]="AplicaCss('cnpj')">
+                <div class="col-sm-8" [ngClass]="applyCss('cnpj')">
                     <label class=" form-control-label ">Cnpj</label>
                     <input type="text" maxlength="14" id="cnpj" placeholder=""
                     class="form-control form-control-success form-control-danger"
                     formControlName="cnpj">
                 </div>
 
-                <div class="col-sm-8" [ngClass]="AplicaCss('email')">
+                <div class="col-sm-8" [ngClass]="applyCss('email')">
                     <label class="form-control-label">Email</label>
                     <input type="email" id="email" placeholder=""
                     class="form-control form-control-success form-control-danger"
@@ -31,28 +31,28 @@
         <fieldset>
             <legend>Telefone</legend>
             <div class="row">
-                    <div  class="col-sm-2" [ngClass]="AplicaCss('dddComercialPhone')">
+                    <div  class="col-sm-2" [ngClass]="applyCss('dddComercialPhone')">
                         <label class="form-control-label">DDD</label>
                         <input type="text" maxlength="2" id="dddComercialPhone" placeholder=""
                         class="form-control form-control-success form-control-danger" 
                         formControlName="dddComercialPhone">
                     </div>
 
-                    <div class="col-sm-3" [ngClass]="AplicaCss('comercialPhone')">
+                    <div class="col-sm-3" [ngClass]="applyCss('comercialPhone')">
                         <label class="form-control-label">Comercial</label>
                         <input type="text" maxlength="8" id="comercialPhone" placeholder="" 
                         class="form-control form-control-success form-control-danger" 
                         formControlName="comercialPhone">
                     </div>               
 
-                    <div class="col-sm-2" [ngClass]="AplicaCss('dddCellPhone')">
+                    <div class="col-sm-2" [ngClass]="applyCss('dddCellPhone')">
                         <label class="form-control-label">DDD</label>
                         <input type="text" maxlength="2" id="dddCellPhone" placeholder=""
                         class="form-control form-control-success form-control-danger"
                         formControlName="dddCellPhone">
                     </div>                
 
-                    <div class="col-sm-3" [ngClass]="AplicaCss('cellPhone')">
+                    <div class="col-sm-3" [ngClass]="applyCss('cellPhone')">
                         <label class="form-control-label">Celular</label>
                         <input type="text" maxlength="9" id="cellPhone" placeholder=""
                         class="form-control form-control-success form-control-danger"
@@ -64,28 +64,28 @@
         <fieldset>
             <legend>Endereço</legend>
             <div class="row">
-                <div class="col-sm-2" [ngClass]="AplicaCss('cep')">
+                <div class="col-sm-2" [ngClass]="applyCss('cep')">
                     <label class="form-control-label">Cep</label>
                     <input type="text" id="cep" placeholder="" (blur)="consultingCep($event.target.value)"
                     class="form-control form-control-success form-control-danger"
                     formControlName="cep">
                 </div>
 
-                <div class="col-sm-6" [ngClass]="AplicaCss('street')">
+                <div class="col-sm-6" [ngClass]="applyCss('street')">
                     <label class="form-control-label">Rua</label>
                     <input type="text" class="form-control" formControlName="street" id="street" placeholder=""
                     class="form-control form-control-success form-control-danger"
                     formControlName="street">
                 </div>
 
-                <div class="col-sm-2" [ngClass]="AplicaCss('number')">
+                <div class="col-sm-2" [ngClass]="applyCss('number')">
                     <label class="form-control-label">Número</label>
                     <input type="text" maxlength="4" id="number" placeholder=""
                     class="form-control form-control-success form-control-danger"
                     formControlName="number" >
                 </div>
 
-                <div class="col-sm-2" [ngClass]="AplicaCss('complement')">
+                <div class="col-sm-2" [ngClass]="applyCss('complement')">
                     <label class="form-control-label">Complemento</label>
                     <input type="text"  id="complement" placeholder=""
                     class="form-control form-control-success form-control-danger"
@@ -93,21 +93,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6" [ngClass]="AplicaCss('neighborhood')">
+                <div class="col-sm-6" [ngClass]="applyCss('neighborhood')">
                     <label class="form-control-label">Bairro</label>
                     <input type="text" id="neighborhood" placeholder=""
                     class="form-control form-control-success form-control-danger"
                     formControlName="neighborhood">
                 </div>
 
-                <div class="col-sm-4" [ngClass]="AplicaCss('city')">
+                <div class="col-sm-4" [ngClass]="applyCss('city')">
                     <label class="form-control-label">Cidade</label>
                     <input type="text" formControlName="city" id="city" placeholder=""
                     class="form-control form-control-success form-control-danger"
                     formControlName="city">
                 </div>
 
-                <div class="col-sm-2" [ngClass]="AplicaCss('uf')">
+                <div class="col-sm-2" [ngClass]="applyCss('uf')">
                     <label class="form-control-label">UF</label>
                     <input type="text" maxlength="2" formControlName="uf" id="uf" placeholder=""
                     class="form-control form-control-success form-control-danger"
