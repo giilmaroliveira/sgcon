@@ -1,24 +1,25 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';import { Http } from "@angular/http";
-import "rxjs/add/operator/map";
-import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import { ActivatedRoute } from '@angular/router';
 
 // models
-import { TowerModel } from "../../../shared/entities/tower.model";
+import { TowerModel } from '../../../shared/entities/tower.model';
 
 // services
-import { TowerService } from "../../../shared/services/tower.service";
+import { TowerService } from '../../../shared/services/tower.service';
 
 @Component({
-  selector: "app-tower-edit",
-  templateUrl: "./tower-edit.component.html",
-  styleUrls: ["./tower-edit.component.scss"]
+  selector: 'app-tower-edit',
+  templateUrl: './tower-edit.component.html',
+  styleUrls: ['./tower-edit.component.scss']
 })
 export class TowerEditComponent implements OnInit {
   public towerForm: FormGroup;
   towerModel: TowerModel = new TowerModel();
   towerId: number;
-  //towerId: number;
+  // towerId: number;
 
   constructor(
     private form: FormBuilder,
@@ -30,8 +31,8 @@ export class TowerEditComponent implements OnInit {
     this.setDefaultValuesForm();
 
     this._route.params.subscribe(params => {
-      if (params["id"]) {
-        this.towerId = +params["id"];
+      if (params['id']) {
+        this.towerId = +params['id'];
         this.getTower(this.towerId);
       }
     });
@@ -56,9 +57,9 @@ export class TowerEditComponent implements OnInit {
 
   setDefaultValuesForm() {
     this.towerForm = this.form.group({
-      block: [null,[Validators.required,Validators.minLength(3)]],
+      block: [null, [Validators.required, Validators.minLength(3)]],
       apartmentNumber: [null, [Validators.required, Validators.minLength(1)]],
-      condominiumId: [null,[Validators.required]]
+      condominiumId: [null, [Validators.required]]
     });
   }
 
@@ -78,7 +79,7 @@ export class TowerEditComponent implements OnInit {
         response => {
           this.towerModel = response;
           // message success
-          alert("Dados salvos com sucesso!");
+          alert('Dados salvos com sucesso!');
           // reset dataForm
           this.towerForm.reset();
         },
@@ -90,7 +91,7 @@ export class TowerEditComponent implements OnInit {
       this._towerService.updateTower(this.towerModel, this.towerId).subscribe(
         response => {
           this.towerModel = response;
-          alert("Dados atualizados com sucesso");
+          alert('Dados atualizados com sucesso');
         },
         error => {
           console.log(error);
