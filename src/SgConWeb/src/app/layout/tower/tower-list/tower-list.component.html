@@ -19,7 +19,8 @@
                       <th>
                             <div class="col-sm-4">
                                 <label class="form-control-label">Condominio</label>
-                                <select class="form-control form-control-success form-control-danger" (change)="getTowerByCondominiumId()" [(ngModel)]="condominiumId">
+                                <select class="form-control form-control-success form-control-danger" 
+                                (change)="getTowerByCondominiumId()" [(ngModel)]="condominiumId">
                                     <option *ngFor="let item of listOfCondominium" value="{{ item.id }}">{{ item.name }}</option>
                                 </select>
                             </div>

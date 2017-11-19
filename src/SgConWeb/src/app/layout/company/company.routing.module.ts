@@ -6,11 +6,12 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 
 const routes: Routes = [
-  { path: '', component: CompanyComponent, 
+  { path: '', component: CompanyComponent,
   children: [
       { path: 'companyList', component: CompanyListComponent },
-      { path: 'companyEdit', component: CompanyEditComponent }
-    ] },
+      { path: 'companyEdit', component: CompanyEditComponent },
+      { path: 'companyEdit/:id', component: CompanyEditComponent }
+    ]},
 ];
 
 @NgModule({

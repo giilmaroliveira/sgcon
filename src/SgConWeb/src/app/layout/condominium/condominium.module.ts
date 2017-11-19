@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { CondominiumComponent } from './condominium.component';
 import { CondominiumListComponent } from './condominium-list/condominium-list.component';
 import { CondominiumEditComponent } from './condominium-edit/condominium-edit.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Modules
 import { CondominioumRoutingModule } from './condominium.routing.module';
 
@@ -21,6 +21,7 @@ import { CondominiumService } from '../../shared/services/condominium.service';
         ReactiveFormsModule,
     ],
     exports: [],
+
     declarations: [
         CondominiumComponent,
         CondominiumEditComponent,
