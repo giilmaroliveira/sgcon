@@ -12,30 +12,106 @@ namespace SgConAPI.Controllers
     [Route("api/employee")]
     public class EmployeeController : BaseController, IController<Employee>
     {
+        private readonly IEmployeeBusinessService _employeeBusinessService;
 
+        public EmployeeController(IEmployeeBusinessService employeeBusinessService)
+        {
+            _employeeBusinessService = employeeBusinessService;
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
         public IActionResult Get([FromRoute] int id)
         {
-            throw new System.NotImplementedException();
+            var result = _employeeBusinessService.GetById(id);
+
+            if (result == null)
+                return StatusCode(400, "Nenhum funcionário encontrado");
+
+            return Ok(result);
         }
 
+        [HttpGet]
+        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
         public IActionResult GetAll([FromHeader] string filtersJson = null)
         {
-            throw new System.NotImplementedException();
+            var itens = _employeeBusinessService.GetAll(filtersJson);
+
+            if (itens == null)
+                return StatusCode(400, "Nenhum funcionário encontrado");
+
+            return Ok(itens);
         }
 
-        public IActionResult Post([FromBody, Required] Employee model)
+        [HttpPost]
+        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult Post([FromBody, Required] Employee employee)
         {
-            throw new System.NotImplementedException();
+            if (employee == null) { return StatusCode(400, "Dados não encontrados"); }
+
+            ModelState.Clear();
+
+            TryValidateModel(employee);
+
+            if (ModelState.IsValid)
+            {
+                var result = _employeeBusinessService.CreateEmployee(employee);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, ModelState);
+            }
         }
 
-        public IActionResult Put([FromBody] Employee model, [FromRoute] int id)
+        [HttpPut]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult Put([FromBody] Employee employee, [FromRoute] int id)
         {
-            throw new System.NotImplementedException();
+            if (employee == null) { return StatusCode(400, "Dados não encontrados"); }
+
+            ModelState.Clear();
+
+            TryValidateModel(employee);
+
+            if (ModelState.IsValid)
+            {
+                var result = _employeeBusinessService.UpdateEmployee(employee, id);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, ModelState);
+            }
         }
 
+        [HttpDelete]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
         public IActionResult Delete([FromRoute] int id)
         {
-            throw new System.NotImplementedException();
+            if (id == 0) { return StatusCode(400, "Dados não encontrados"); }
+
+            var result = _employeeBusinessService.GetById(id);
+
+            if (result != null)
+                _employeeBusinessService.DeleteEmployee(id);
+
+            return Ok();
         }
     }
 }

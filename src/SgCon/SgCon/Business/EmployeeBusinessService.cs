@@ -16,5 +16,40 @@ namespace SgConAPI.Business
         {
             _employeeRepository = repository;
         }
+
+        public Employee GetById(int id)
+        {
+            return Repository.Get(id);
+        }
+
+        public Employee CreateEmployee(Employee model)
+        {
+            model.CreatedBy = "Sistema";
+
+            var result = Repository.Post(model);
+
+            return result;
+        }
+
+        public Employee UpdateEmployee(Employee model, int id)
+        {
+            model.UpdatedBy = "Sistema";
+
+            var result = Repository.Update(model);
+
+            return result;
+        }
+
+        public void DeleteEmployee(int id)
+        {
+            Repository.Delete(id);
+        }
+
+        public IQueryable<Employee> GetAll(string filters)
+        {
+            var result = Repository.GetAll(issueFilterJson(filters));
+
+            return result;
+        }
     }
 }

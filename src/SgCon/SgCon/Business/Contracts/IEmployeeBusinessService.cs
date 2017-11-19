@@ -9,6 +9,10 @@ namespace SgConAPI.Business.Contracts
 {
     public interface IEmployeeBusinessService : IBaseBusinessService<IEmployeeRepository, Employee>
     {
-
+        Employee GetById(int id);
+        Employee CreateEmployee(Employee model);
+        Employee UpdateEmployee(Employee model, int id);
+        void DeleteEmployee(int id);
+        IQueryable<Employee> GetAll(string filters);
     }
 }

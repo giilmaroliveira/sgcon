@@ -86,7 +86,7 @@ namespace SgConAPI.Controllers
             }
             else
             {
-                return StatusCode(400, "Dados obrigários não preenchidos, verifique e tente novamente");
+                return StatusCode(400, ModelState);
             }
         }
 
@@ -111,7 +111,7 @@ namespace SgConAPI.Controllers
             }
             else
             {
-                return StatusCode(400, "Dados obrigários não preenchidos, verifique e tente novamente");
+                return StatusCode(400, ModelState);
             }
         }
 
