@@ -32,11 +32,16 @@ namespace SgConAPI.Controllers
             var result = _condominiumBusinessService.GetById(id);
 
             if (result == null)
-                return BadRequest("Nenhum condomínio encontrado");
+                return StatusCode(400, "Nenhum condomínio encontrado");
 
             return Ok(result);
         }
 
+        /// <summary>
+        /// Este método retorna todos registros da tabela condomínio
+        /// </summary>
+        /// <param name="filtersJson"></param>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
@@ -44,6 +49,9 @@ namespace SgConAPI.Controllers
         public IActionResult GetAll([FromHeader] string filtersJson = null)
         {
             var itens = _condominiumBusinessService.GetAll(filtersJson);
+
+            if (itens == null)
+                return StatusCode(400, "Nenhum condomínio encontrado");
 
             return Ok(itens);
         }
@@ -54,9 +62,22 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Post([FromBody, Required] Condominium condominium)
         {
-            var result = _condominiumBusinessService.CreateCondominium(condominium);
+            if (condominium == null) { return StatusCode(400, "Dados não encontrados"); }
 
-            return Ok(result);
+            ModelState.Clear();
+
+            TryValidateModel(condominium);
+
+            if (ModelState.IsValid)
+            {
+                var result = _condominiumBusinessService.CreateCondominium(condominium);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, "Dados obrigários não preenchidos, verifique e tente novamente");
+            }
         }
 
         [HttpPut]
@@ -66,7 +87,7 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Put([FromBody] Condominium condominium, [FromRoute] int id)
         {
-            if (condominium == null) { return BadRequest("Dados não encontrados"); }
+            if (condominium == null) { return StatusCode(400, "Dados não encontrados"); }
 
             ModelState.Clear();
 
@@ -77,8 +98,10 @@ namespace SgConAPI.Controllers
                 var result = _condominiumBusinessService.UpdateCondominium(condominium, id);
 
                 return Ok(result);
-            } else {
-                return BadRequest(ModelState);
+            }
+            else
+            {
+                return StatusCode(400, "Dados obrigários não preenchidos, verifique e tente novamente");
             }
 
         }
@@ -90,6 +113,8 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Delete([FromRoute] int id)
         {
+            if (id == 0) { return StatusCode(400, "Dados não encontrados"); }
+
             var result = _condominiumBusinessService.GetById(id);
 
             if (result != null)
