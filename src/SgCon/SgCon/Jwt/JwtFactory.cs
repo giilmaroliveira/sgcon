@@ -105,11 +105,11 @@ namespace SgConAPI.Jwt
         public async void JwtTokenLogFailed(IAuthenticable user, string message)
         {
             var usr = JsonConvert.SerializeObject(user);
-            Employee funcionario = null;
+            Employee employee = null;
             if (user is Employee)
             {
-                funcionario = (Employee)user;
-            }
+                employee = (Employee)user;
+            };
         }
 
         public async void JwtTokenLogSuccess(IAuthenticable user, string message)

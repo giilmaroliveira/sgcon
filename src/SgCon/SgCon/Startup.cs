@@ -43,7 +43,7 @@ namespace SgCon
             Configuration = builder.Build();
         }
 
-        private const string SecretKey = "sgcon";
+        private const string SecretKey = "unip-sgcon-development";
         private readonly SymmetricSecurityKey _signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
         public IConfigurationRoot Configuration { get; }
 
@@ -75,6 +75,15 @@ namespace SgCon
                         .Throw(RelationalEventId.QueryClientEvaluationWarning)
                 )
             );
+
+            // Use policy auth.
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Roles", policy => policy.RequireRole("administrator","employee", "resident"));
+                options.AddPolicy("EmployeeAdmin", policy => policy.RequireClaim("RoleId", "1"));
+                options.AddPolicy("EmployeeOnly", policy => policy.RequireClaim("RoleId", "2"));
+                options.AddPolicy("Resident", policy => policy.RequireClaim("RoleId", "3"));
+            });
 
             // Get options from app settings
             services.AddCors(options =>
@@ -112,6 +121,7 @@ namespace SgCon
             //    }
             //});
 
+            // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc(config =>

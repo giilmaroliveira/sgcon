@@ -25,6 +25,10 @@ export class ApiRoutesService {
         { alias: 'deleteTower', verb: 'delete', path: '/api/tower/' },
         { alias: 'getTowerByCondominiumId', verb: 'get', path: '/api/tower/condominium/' },
 
+        // login
+        { alias: 'loginEmployee', verb: 'post', path: '/api/token/employee/' },
+        { alias: 'loginResident', verb: 'post', path: '/api/token/resident/' },
+
       ];
   }
 
