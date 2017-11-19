@@ -17,6 +17,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
 
                 Role roleAdministrator = new Role
                 {
+                    Id = 1,
                     Description = "Administrador",
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
@@ -25,6 +26,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
 
                 Role roleEmployee = new Role
                 {
+                    Id = 2,
                     Description = "Funcionário",
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
@@ -33,6 +35,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
 
                 Role roleResident = new Role
                 {
+                    Id = 3,
                     Description = "Morador",
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now

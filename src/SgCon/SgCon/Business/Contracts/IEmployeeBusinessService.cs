@@ -14,5 +14,7 @@ namespace SgConAPI.Business.Contracts
         Employee UpdateEmployee(Employee model, int id);
         void DeleteEmployee(int id);
         IQueryable<Employee> GetAll(string filters);
+        Employee GetEmployeeByEmailOrUsername(ApplicationUser loginUser);
+
     }
 }

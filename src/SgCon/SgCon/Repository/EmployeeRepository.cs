@@ -12,6 +12,17 @@ namespace SgConAPI.Repository
         public EmployeeRepository(SgConContext context) : base(context)
         { }
 
+        public Employee GetEmployeeByEmailOrUsername(ApplicationUser loginUser)
+        {
+            return (from e in base.Entities
+                    .AsNoTracking()
+                    .Include(e => e.Profile)
+                    .Include(e => e.Profile.Role)
+                    where ((e.UserName == loginUser.UserName || e.Email == loginUser.UserName))
+                    //where e.UserName == loginUser.UserName
+                    select e).FirstOrDefault();
+        }
+
         public Employee GetEmployeeByUserName(string userName)
         {
             return base.Entities.AsNoTracking().Include(e => e.Profile)

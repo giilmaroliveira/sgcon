@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using SgConAPI.Business.Contracts;
 using SgConAPI.Jwt;
 using SgConAPI.Models;
 using SgConAPI.Models.Contracts;
@@ -25,15 +26,18 @@ namespace SgConAPI.Controllers
         private readonly JsonSerializerSettings _serializerSettings;
         private readonly JwtFactory _jwtFactory;
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IEmployeeBusinessService _employeeBusinessService;
         public AuthController(
-            IOptions<JwtIssuerOptions> jwtOptions, 
+            IOptions<JwtIssuerOptions> jwtOptions,
             JwtCurrentUserFactory jwtCurrentUserFactory,
             JwtFactory jwtFactory,
-            IEmployeeRepository employeeRepository)
+            IEmployeeRepository employeeRepository,
+            IEmployeeBusinessService employeeBusinessService)
         {
             _jwtOptions = jwtOptions.Value;
             _jwtFactory = jwtFactory;
             _employeeRepository = employeeRepository;
+            _employeeBusinessService = employeeBusinessService;
         }
 
         [HttpGet]
@@ -54,12 +58,16 @@ namespace SgConAPI.Controllers
         [ProducesResponseType(typeof(string), 400)]
         public IActionResult GetTokenForEmployee([FromBody] ApplicationUser loginUser)
         {
-            Employee user = (from e in _employeeRepository.Entities.Include(e => e.Profile).Include(e => e.Profile.Role)
-                             where ((e.UserName == loginUser.UserName || e.Email == loginUser.UserName))
-                             select e).FirstOrDefault();
+            Employee user = _employeeBusinessService.GetEmployeeByEmailOrUsername(loginUser);
 
             if (user == null)
-                return BadRequest("Usuário e/ou senha inválida");
+                return BadRequest("Usuário não encontrado");
+
+            if (user.PassWord != loginUser.PassWord)
+                return BadRequest("Senha inválida");
+
+            if (!user.Active)
+                return BadRequest("Usuário inativo, entre em contato com a administração");
 
             return this.GetClaimsIdentity(user).Result;
         }
@@ -91,8 +99,8 @@ namespace SgConAPI.Controllers
                               {
                                     new Claim("RoleId", user.Profile.Role.Id.ToString())
                               });
-            var role = "customer";
-            if (user.Profile.Role.Id == 3) { role = "administrator"; }
+            var role = "administrador";
+            if (user.Profile.Role.Id == 3) { role = "resident"; }
             if (user.Profile.Role.Id == 2) { role = "employee"; }
             var claims = new[]
             {

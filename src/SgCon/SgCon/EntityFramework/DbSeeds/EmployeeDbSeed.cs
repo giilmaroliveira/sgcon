@@ -21,11 +21,11 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     CPF = "65702551346",
                     Email = "gerente@sgcon.com",
                     JobRole = "Gerente",
-                    UserName = "gerente",
-                    PassWord = "gerente",
+                    UserName = "admin",
+                    PassWord = "admin",
                     Profile = context.Profiles.Find(1),
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Sistema"
+                    CreatedBy = "Sistema",
+                    CreatedAt = DateTime.Now
                 };
                 employees.Add(managerEmployee);
 
@@ -38,8 +38,8 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     UserName = "atendente",
                     PassWord = "atendente",
                     Profile = context.Profiles.Find(2),
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Sistema"
+                    CreatedBy = "Sistema",
+                    CreatedAt = DateTime.Now
                 };
                 employees.Add(managerAttendant);
 
@@ -52,8 +52,8 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     UserName = "atendente2",
                     PassWord = "atendente2",
                     Profile = context.Profiles.Find(2),
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Sistema"
+                    CreatedBy = "Sistema",
+                    CreatedAt = DateTime.Now
                 };
                 employees.Add(managerAttendantTwo);
 

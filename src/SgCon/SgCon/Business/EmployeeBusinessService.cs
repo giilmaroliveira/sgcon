@@ -51,5 +51,10 @@ namespace SgConAPI.Business
 
             return result;
         }
+
+        public Employee GetEmployeeByEmailOrUsername(ApplicationUser loginUser)
+        {
+            return _employeeRepository.GetEmployeeByEmailOrUsername(loginUser);
+        }
     }
 }

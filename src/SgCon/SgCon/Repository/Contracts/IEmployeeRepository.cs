@@ -9,5 +9,6 @@ namespace SgConAPI.Repository.Contracts
     public interface IEmployeeRepository : IBaseDataService<Employee>
     {
         Employee GetEmployeeByUserName(string userName);
+        Employee GetEmployeeByEmailOrUsername(ApplicationUser loginUser);
     }
 }
