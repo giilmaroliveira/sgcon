@@ -34,7 +34,9 @@ namespace SgConAPI.EntityFramework
 
 
         public SgConContext(DbContextOptions<SgConContext> options) : base(options)
-        { }
+        {
+            
+        }
 
         public void SetJwtCurrentUser(JwtCurrentUserFactory jwtCurrentUsertFactory) => this._jwtCurrentUsertFactory = jwtCurrentUsertFactory;
 

@@ -32,7 +32,7 @@ namespace SgConAPI.Controllers
             var result = _towerBusinessService.GetById(id);
 
             if (result == null)
-                return BadRequest("Nenhuma torre encontrado");
+                return StatusCode(400, "Nenhuma torre encontrada");
 
             return Ok(result);
         }
@@ -46,7 +46,7 @@ namespace SgConAPI.Controllers
             var result = _towerBusinessService.GetAll(filtersJson);
 
             if (result == null)
-                return BadRequest("Nenhuma torre encontrado");
+                return StatusCode(400, "Nenhuma torre encontrada");
 
             return Ok(result);
         }
@@ -61,7 +61,7 @@ namespace SgConAPI.Controllers
             var result = _towerBusinessService.GetByCondominiumId(id);
 
             if (result == null)
-                return BadRequest("Nenhuma torre encontrado");
+                return StatusCode(400, "Dados não encontrados");
 
             return Ok(result);
         }
@@ -72,9 +72,22 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Post([FromBody, Required] Tower tower)
         {
-            var result = _towerBusinessService.CreateTower(tower);
+            if (tower == null) { return StatusCode(400, "Dados não encontrados"); }
 
-            return Ok(result);
+            ModelState.Clear();
+
+            TryValidateModel(tower);
+
+            if (ModelState.IsValid)
+            {
+                var result = _towerBusinessService.CreateTower(tower);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, ModelState);
+            }
         }
 
         [HttpPut]
@@ -83,10 +96,23 @@ namespace SgConAPI.Controllers
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult Put([FromBody] Tower tower, [FromRoute] int id)
-        {
-            var result = _towerBusinessService.UpdateTower(tower, id);
+        { 
+            if (tower == null) { return StatusCode(400, "Dados não encontrados"); }
 
-            return Ok(result);
+            ModelState.Clear();
+
+            TryValidateModel(tower);
+
+            if (ModelState.IsValid)
+            {
+                var result = _towerBusinessService.UpdateTower(tower, id);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, ModelState);
+            }
         }
 
         [HttpDelete]
@@ -96,6 +122,8 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Delete([FromRoute] int id)
         {
+            if (id == 0) { return StatusCode(400, "Dados não encontrados"); }
+
             var result = _towerBusinessService.GetById(id);
 
             if (result != null)

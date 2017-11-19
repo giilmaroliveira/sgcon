@@ -1,25 +1,22 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SgConAPI.Controllers.Base;
 using SgConAPI.Controllers.Contracts;
 using SgConAPI.Models;
-using SgConAPI.Repository.Contracts;
 using System.ComponentModel.DataAnnotations;
+using SgConAPI.Repository.Contracts;
 using SgConAPI.Business.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SgConAPI.Controllers
 {
-    [Route("api/condominium")]
-    public class CondominiumController : BaseController
+    [Route("api/employee")]
+    public class EmployeeController : BaseController, IController<Employee>
     {
-        private readonly ICondominiumRepository _condominiumRepository;
-        private readonly ICondominiumBusinessService _condominiumBusinessService;
-        public CondominiumController(
-            ICondominiumRepository repository,
-            ICondominiumBusinessService condominiumBusinessService)
+        private readonly IEmployeeBusinessService _employeeBusinessService;
+
+        public EmployeeController(IEmployeeBusinessService employeeBusinessService)
         {
-            _condominiumRepository = repository;
-            _condominiumBusinessService = condominiumBusinessService;
+            _employeeBusinessService = employeeBusinessService;
         }
 
         [HttpGet]
@@ -29,29 +26,24 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Get([FromRoute] int id)
         {
-            var result = _condominiumBusinessService.GetById(id);
+            var result = _employeeBusinessService.GetById(id);
 
             if (result == null)
-                return StatusCode(400, "Nenhum condomínio encontrado");
+                return StatusCode(400, "Nenhum funcionário encontrado");
 
             return Ok(result);
         }
 
-        /// <summary>
-        /// Este método retorna todos registros da tabela condomínio
-        /// </summary>
-        /// <param name="filtersJson"></param>
-        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult GetAll([FromHeader] string filtersJson = null)
         {
-            var itens = _condominiumBusinessService.GetAll(filtersJson);
+            var itens = _employeeBusinessService.GetAll(filtersJson);
 
             if (itens == null)
-                return StatusCode(400, "Nenhum condomínio encontrado");
+                return StatusCode(400, "Nenhum funcionário encontrado");
 
             return Ok(itens);
         }
@@ -60,17 +52,17 @@ namespace SgConAPI.Controllers
         [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
-        public IActionResult Post([FromBody, Required] Condominium condominium)
+        public IActionResult Post([FromBody, Required] Employee employee)
         {
-            if (condominium == null) { return StatusCode(400, "Dados não encontrados"); }
+            if (employee == null) { return StatusCode(400, "Dados não encontrados"); }
 
             ModelState.Clear();
 
-            TryValidateModel(condominium);
+            TryValidateModel(employee);
 
             if (ModelState.IsValid)
             {
-                var result = _condominiumBusinessService.CreateCondominium(condominium);
+                var result = _employeeBusinessService.CreateEmployee(employee);
 
                 return Ok(result);
             }
@@ -85,17 +77,17 @@ namespace SgConAPI.Controllers
         [ProducesResponseType(typeof(Condominium), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
-        public IActionResult Put([FromBody] Condominium condominium, [FromRoute] int id)
+        public IActionResult Put([FromBody] Employee employee, [FromRoute] int id)
         {
-            if (condominium == null) { return StatusCode(400, "Dados não encontrados"); }
+            if (employee == null) { return StatusCode(400, "Dados não encontrados"); }
 
             ModelState.Clear();
 
-            TryValidateModel(condominium);
+            TryValidateModel(employee);
 
             if (ModelState.IsValid)
             {
-                var result = _condominiumBusinessService.UpdateCondominium(condominium, id);
+                var result = _employeeBusinessService.UpdateEmployee(employee, id);
 
                 return Ok(result);
             }
@@ -103,7 +95,6 @@ namespace SgConAPI.Controllers
             {
                 return StatusCode(400, ModelState);
             }
-
         }
 
         [HttpDelete]
@@ -115,10 +106,10 @@ namespace SgConAPI.Controllers
         {
             if (id == 0) { return StatusCode(400, "Dados não encontrados"); }
 
-            var result = _condominiumBusinessService.GetById(id);
+            var result = _employeeBusinessService.GetById(id);
 
             if (result != null)
-                _condominiumBusinessService.DeleteCondominium(id);
+                _employeeBusinessService.DeleteEmployee(id);
 
             return Ok();
         }

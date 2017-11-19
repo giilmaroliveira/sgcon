@@ -57,9 +57,22 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Post([FromBody, Required] Apartment apartment)
         {
-            var result = _apartmentBusinessService.CreateApartment(apartment);
+            if (apartment == null) { return StatusCode(400, "Dados não encontrados"); }
 
-            return Ok(result);
+            ModelState.Clear();
+
+            TryValidateModel(apartment);
+
+            if (ModelState.IsValid)
+            {
+                var result = _apartmentBusinessService.CreateApartment(apartment);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, ModelState);
+            }
         }
 
         [HttpPut]
@@ -69,9 +82,22 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Put([FromBody] Apartment apartment, [FromRoute] int id)
         {
-            var result = _apartmentBusinessService.UpdateApartment(apartment, id);
+            if (apartment == null) { return StatusCode(400, "Dados não encontrados"); }
 
-            return Ok(result);
+            ModelState.Clear();
+
+            TryValidateModel(apartment);
+
+            if (ModelState.IsValid)
+            {
+                var result = _apartmentBusinessService.UpdateApartment(apartment, id);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, ModelState);
+            }
         }
 
         [HttpDelete]
@@ -81,6 +107,8 @@ namespace SgConAPI.Controllers
         [AllowAnonymous]
         public IActionResult Delete([FromRoute] int id)
         {
+            if (id == 0) { return StatusCode(400, "Dados não encontrados"); }
+
             var result = _apartmentBusinessService.GetById(id);
 
             if (result != null)
