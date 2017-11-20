@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { routerTransition } from '../router.animations';
+import { routerTransition } from '../../router.animations';
 
-import { AuthService } from '../shared/services/auth.service';
-import { LoginService } from '../shared/services/login.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { LoginService } from '../../shared/services/login.service';
 
-import { User } from '../shared/entities/user.model';
+import { User } from '../../shared/entities/user.model';
 
 @Component({
     selector: 'app-login',
