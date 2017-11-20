@@ -16,7 +16,7 @@ const routes: Routes = [
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'condominio', loadChildren: './condominio/condominio.module#CondominioModule' },
             { path: 'condominium', loadChildren: './condominium/condominium.module#CondominiumModule' },
-            { path: 'dweller', loadChildren: './dweller/dweller.module#DwellerModule' },
+            { path: 'resident', loadChildren: './resident/resident.module#ResidentModule' },
             { path: 'employee', loadChildren: './employee/employee.module#EmployeeModule' },
             { path: 'notices', loadChildren: './notices/notices.module#NoticesModule' },
             { path: 'company', loadChildren: './company/company.module#CompanyModule' },
