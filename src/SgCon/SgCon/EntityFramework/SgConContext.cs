@@ -32,6 +32,7 @@ namespace SgConAPI.EntityFramework
         public DbSet<ProfilePolicy> ProfilePolicies { get; set; }
         public DbSet<Tower> Towers { get; set; }
         public DbSet <Resident> Residents { get; set; }
+        public DbSet <Company> Companies { get; set; }
 
 
         public SgConContext(DbContextOptions<SgConContext> options) : base(options)
@@ -132,6 +133,8 @@ namespace SgConAPI.EntityFramework
                 .HasForeignKey(a => a.CondominiumId);
 
             modelBuilder.Entity<Resident>().ToTable("Resident").Property(a => a.Active).HasDefaultValueSql("1");
+
+            modelBuilder.Entity<Company>().ToTable("Company").Property(a => a.Active).HasDefaultValueSql("1");
 
         }
 

@@ -25,6 +25,8 @@ namespace SgConAPI.EntityFramework
             EmployeeDbSeed employeeDbSeed = new EmployeeDbSeed(context);
 
             ResidentDbSeed residentDbSeed = new ResidentDbSeed(context);
+
+            CompanyDbSeed companyDbSeed = new CompanyDbSeed(context);
         }
     }
 }

@@ -6,7 +6,7 @@ using System;
 using System.Linq;
 namespace SgConAPI.Business
 {
-    public class ResidentBusinessService : BaseBusinessService<IResidentRepository, Resident>, IResidentBusinessService
+    internal class ResidentBusinessService : BaseBusinessService<IResidentRepository, Resident>, IResidentBusinessService
     {
         private readonly IResidentRepository _residentRepository;
         public ResidentBusinessService(IResidentRepository repository) : base(repository)
