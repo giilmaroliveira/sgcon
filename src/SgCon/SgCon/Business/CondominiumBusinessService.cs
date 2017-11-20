@@ -21,8 +21,6 @@ namespace SgConAPI.Business
 
         public Condominium CreateCondominium(Condominium model)
         {
-            model.CreatedBy = "Sistema";
-
             var result = Repository.Post(model);
 
             return result;
@@ -30,9 +28,6 @@ namespace SgConAPI.Business
 
         public Condominium UpdateCondominium(Condominium model, int id)
         {
-
-            model.UpdatedBy = "Sistema";
-
             var result = Repository.Update(model);
 
             return result;
