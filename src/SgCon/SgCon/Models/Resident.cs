@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SgConAPI.Models.Base;
+using SgConAPI.Models.Contracts;
 using SgConAPI.Utils;
 using SgConAPI.Utils.Validations;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SgConAPI.Models
 {
-    public class Resident : BaseModel
+    public class Resident : BaseModel, IAuthenticable
     {
         [Required]
         public string Name { get; set; }
@@ -50,5 +51,7 @@ namespace SgConAPI.Models
         public Profile Profile { get; set; }
 
         public int ProfileId { get; set; }
+
+        public DateTime? ExpiredAt { get; set; }
     }
 }

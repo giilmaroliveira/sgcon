@@ -8,9 +8,10 @@ namespace SgConAPI.Business
 {
     public class ResidentBusinessService : BaseBusinessService<IResidentRepository, Resident>, IResidentBusinessService
     {
+        private readonly IResidentRepository _residentRepository;
         public ResidentBusinessService(IResidentRepository repository) : base(repository)
         {
-
+            _residentRepository = repository;
         }
 
         public Resident GetById(int id)
@@ -42,6 +43,11 @@ namespace SgConAPI.Business
             var result = Repository.GetAll(issueFilterJson(filters));
 
             return result;
+        }
+
+        public Resident GetResidentByEmailOrUsername(ApplicationUser loginUser)
+        {
+            return _residentRepository.GetResidentByEmailOrUsername(loginUser);
         }
     }
 }

@@ -8,5 +8,7 @@ namespace SgConAPI.Repository.Contracts
 {
     public interface IResidentRepository : IBaseDataService<Resident>
     {
+        Resident GetResidentByUserName(string userName);
+        Resident GetResidentByEmailOrUsername(ApplicationUser loginUser);
     }
 }
