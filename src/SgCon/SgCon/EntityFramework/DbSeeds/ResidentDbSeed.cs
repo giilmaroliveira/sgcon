@@ -11,7 +11,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
     {
         public ResidentDbSeed(SgConContext context) : base(context)
         {
-            if (!context.Apartments.Any())
+            if (!context.Residents.Any())
             {
                 List<Resident> residents = new List<Resident>();
 
@@ -24,7 +24,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     UserName = "morador1",
                     PassWord = "morador1",
                     CreatedBy = "Sistema",
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
                     Profile = context.Profiles.Find(3)
                 };
                 residents.Add(residentOne);
@@ -38,10 +38,13 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     UserName = "morador2",
                     PassWord = "morador2",
                     CreatedBy = "Sistema",
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
                     Profile = context.Profiles.Find(4)
                 };
                 residents.Add(residentTwo);
+
+                context.Residents.AddRange(residents);
+                context.SaveChanges();
             }
         }
     }

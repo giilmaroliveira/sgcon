@@ -44,7 +44,7 @@ namespace SgConAPI.Models
         public string PassWord { get; set; }
 
         [NotMapped]
-        public string ClassType { get => "Funcionario"; }
+        public string ClassType { get => "Morador"; }
 
         [JsonIgnore]
         public Profile Profile { get; set; }
