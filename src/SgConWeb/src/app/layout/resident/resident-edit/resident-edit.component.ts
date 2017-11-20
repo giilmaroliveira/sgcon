@@ -68,13 +68,6 @@ export class ResidentEditComponent implements OnInit {
       comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
       dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],
       cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
-      street: [null, [Validators.required, Validators.minLength(3)]],
-      number: [null, [Validators.required, Validators.minLength(1)]],
-      cep: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
-      complement: [null],
-      neighborhood: [null, [Validators.required, Validators.minLength(2)]],
-      city: [null, [Validators.required, Validators.minLength(2)]],
-      uf: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]]
     });
   }
 
@@ -112,13 +105,6 @@ export class ResidentEditComponent implements OnInit {
       comercialPhone: data.comercialPhone,
       dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
-      cep: data.cep,
-      street: data.street,
-      number: data.number,
-      neighborhood: data.neighborhood,
-      city: data.city,
-      complement: data.complement,
-      uf: data.uf
     });
 
   }
