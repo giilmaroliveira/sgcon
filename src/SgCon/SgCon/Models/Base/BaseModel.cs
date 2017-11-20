@@ -14,7 +14,7 @@ namespace SgConAPI.Models.Base
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
+        // [Required]
         public DateTime CreatedAt { get; set; }
 
         public DateTime? UpdatedAt { get; set; }
@@ -25,7 +25,7 @@ namespace SgConAPI.Models.Base
         [JsonIgnore]
         public DateTime? DeletedAt { get; set; }
 
-        [Required]
+        // [Required]
         public string CreatedBy { get; set; }
 
         public string UpdatedBy { get; set; }

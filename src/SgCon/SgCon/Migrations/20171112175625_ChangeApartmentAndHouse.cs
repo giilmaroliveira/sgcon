@@ -69,7 +69,7 @@ namespace SgConAPI.Migrations
                     Block = table.Column<string>(type: "longtext", nullable: false),
                     CondominiumId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CreatedBy = table.Column<string>(type: "longtext", nullable: false),
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     UpdatedBy = table.Column<string>(type: "longtext", nullable: true)
@@ -160,7 +160,7 @@ namespace SgConAPI.Migrations
                     Active = table.Column<bool>(nullable: false, defaultValueSql: "1"),
                     ApartmentId = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: false),
+                    CreatedBy = table.Column<string>(nullable: true),
                     DeletedAt = table.Column<DateTime>(nullable: true),
                     Floor = table.Column<string>(nullable: false),
                     Number = table.Column<int>(nullable: false),

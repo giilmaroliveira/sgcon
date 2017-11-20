@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Services
 import { CondominiumService } from '../../../shared/services/condominium.service';
@@ -24,7 +24,8 @@ export class CondominiumEditComponent implements OnInit {
   constructor(
     private form: FormBuilder,
     private _condominiumService: CondominiumService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -59,10 +60,10 @@ export class CondominiumEditComponent implements OnInit {
   setDefaultValuesForm() {
 
     this.condominiumForm = this.form.group({
-      id: [null, [Validators.required]],
-      active: null,
-      createdAt: null,
-      updatedAt: null,
+      id: 0,
+      active: true,
+      createdAt: Date.now,
+      updatedAt: Date.now,
       createdBy: null,
       updatedBy: null,
       name: [null, [Validators.required, Validators.minLength(3)]],
@@ -78,7 +79,8 @@ export class CondominiumEditComponent implements OnInit {
       complement: [null],
       neighborhood: [null, [Validators.required, Validators.minLength(2)]],
       city: [null, [Validators.required, Validators.minLength(2)]],
-      uf: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]]
+      uf: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+      towerNumber: [null, [Validators.required]]
     });
   }
 
@@ -122,16 +124,17 @@ export class CondominiumEditComponent implements OnInit {
       neighborhood: data.neighborhood,
       city: data.city,
       complement: data.complement,
-      uf: data.uf
+      uf: data.uf,
+      towerNumber: data.towerNumber
     });
-
+    
   }
 
   onSubmit() {
 
     this.condominiumModel = this.condominiumForm.value;
-
-    console.log(this.condominiumModel);
+    console.log(this.condominiumForm.value);
+    // console.log(this.condominiumModel);
 
     if (!this.condominiumId) {
       this._condominiumService.postCondominium(this.condominiumModel)
@@ -141,6 +144,8 @@ export class CondominiumEditComponent implements OnInit {
           alert('Dados salvos com sucesso!');
           // reset dataForm
           this.condominiumForm.reset();
+          // Voltar para listagem
+          this._router.navigate(['condominium/condominiumList']);
         }, error => {
           console.log(error);
         });
@@ -149,6 +154,7 @@ export class CondominiumEditComponent implements OnInit {
         .subscribe(response => {
           this.condominiumModel = response;
           alert('Dados atualizados com sucesso');
+          this._router.navigate(['condominium/condominiumList']);
         }, error => {
           console.log(error);
         });
@@ -160,7 +166,6 @@ export class CondominiumEditComponent implements OnInit {
     this._condominiumService.getCondominiumById(id)
       .subscribe(response => {
         this.condominiumModel = response;
-        console.log(response);
         this.populateForm(this.condominiumModel);
       }, error => {
         console.log(error);

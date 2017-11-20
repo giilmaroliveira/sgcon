@@ -30,8 +30,7 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime?>("DeletedAt");
 
@@ -81,8 +80,7 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
+                    b.Property<string>("CreatedBy");
 
                     b.Property<string>("DDDCellPhone");
 
@@ -134,8 +132,7 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime?>("DeletedAt");
 
@@ -188,8 +185,7 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime?>("DeletedAt");
 
@@ -224,8 +220,7 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime?>("DeletedAt");
 
@@ -257,8 +252,7 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime?>("DeletedAt");
 
@@ -291,8 +285,7 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime?>("DeletedAt");
 
@@ -327,8 +320,7 @@ namespace SgConAPI.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired();
+                    b.Property<string>("CreatedBy");
 
                     b.Property<DateTime?>("DeletedAt");
 
