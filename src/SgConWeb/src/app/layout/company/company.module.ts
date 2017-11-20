@@ -9,7 +9,8 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 
 // service
-import { EmployeeService } from './../../shared/services/employee.service';
+import { CompanyService } from './../../shared/services/company.service';
+
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { EmployeeService } from './../../shared/services/employee.service';
         CompanyEditComponent,
     ],
     providers: [
-        EmployeeService
+        CompanyService
     ]
 })
 export class CompanyModule { }

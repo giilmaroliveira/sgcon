@@ -52,7 +52,7 @@ export class CondominiumEditComponent implements OnInit {
       return {
         'has-danger': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
         'has-feedback': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched,
-        'form-control-danger': this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched
+        'form-control-danger': !this.condominiumForm.get(field).valid && this.condominiumForm.get(field).touched
       };
     }
   }

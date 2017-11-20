@@ -59,12 +59,12 @@ export class EmployeeEditComponent implements OnInit {
   setDefaultValuesForm() {
 
     this.employeeForm = this.form.group({
-      /*id: [null, [Validators.required]],
-      active: null,
-      createdAt: null,
-      updatedAt: null,
+      id: 0,
+      active: true,
+      createdAt: Date.now,
+      updatedAt: Date.now,
       createdBy: null,
-      updatedBy: null,*/
+      updatedBy: null,
       name: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.email, Validators.required]],
       cpf: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
@@ -103,12 +103,12 @@ export class EmployeeEditComponent implements OnInit {
   populateForm(data: EmployeeModel) {
 
     this.employeeForm.patchValue({
-      /*id: data.id,
+      id: data.id,
       active: data.active,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
       createdBy: data.createdBy,
-      updatedBy: data.updatedBy,*/
+      updatedBy: data.updatedBy,
       name: data.name,
       email: data.email,
       cpf: data.cpf,

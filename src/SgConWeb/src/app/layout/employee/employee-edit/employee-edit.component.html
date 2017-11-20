@@ -3,19 +3,19 @@
       <fieldset>
           <legend>Dados Funcionário</legend>
           <div>
-              <div class="col-sm-8" [ngClass]="applyCss('name')">
+              <div class="row col-sm-8" [ngClass]="applyCss('name')">
                   <label class="form-control-label">Nome</label>
                   <input type="text" id="name" placeholder=""
                   class="form-control form-control-success form-control-danger"
                   formControlName="name">
               </div>
-              <div class="col-sm-8" [ngClass]="applyCss('cpf')">
+              <div class="row col-sm-6" [ngClass]="applyCss('cpf')">
                   <label class=" form-control-label ">Cpf</label>
-                  <input type="text" maxlength="14" id="cpf" placeholder=""
+                  <input type="text" maxlength="8" id="cpf" placeholder=""
                   class="form-control form-control-success form-control-danger"
                   formControlName="cpf">
               </div>
-              <div class="col-sm-8" [ngClass]="applyCss('email')">
+              <div class="row col-sm-8" [ngClass]="applyCss('email')">
                   <label class="form-control-label">Email</label>
                   <input type="email" id="email" placeholder=""
                   class="form-control form-control-success form-control-danger"

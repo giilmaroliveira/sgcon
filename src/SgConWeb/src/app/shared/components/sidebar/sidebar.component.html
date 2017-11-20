@@ -13,22 +13,22 @@
             <li class="nested" [class.expand]="showMenu === 'comdominum'">
                 <ul class="submenu">
                     <li>
-                        <a routerLink="/condominium" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <a routerLink="/condominium/condominiumList" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Condomínios' | translate }}
                         </a>
                     </li>
                     <li>
-                        <a routerLink="/tower" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <a routerLink="/tower/towerList" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Torres' | translate }}
                         </a>
                     </li>                    
                     <li>
-                        <a routerLink="/apartment" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <a routerLink="/apartment/apartmentList" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Apartamentos' | translate }}
                         </a>
                     </li>
                     <li>
-                        <a routerLink="/dweller" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <a routerLink="/resident/residentList" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Moradores' | translate }}
                         </a>
                     </li>
@@ -45,12 +45,12 @@
             <li class="nested" [class.expand]="showMenu === 'services'">
                 <ul class="submenu">
                     <li>
-                        <a routerLink="/company" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <a routerLink="/company/companyList" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Empresas' | translate }}
                         </a>
                     </li>
                     <li>
-                        <a routerLink="/employee" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <a routerLink="/employee/employeeList" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Funcionários' | translate }}
                         </a>
                     </li>

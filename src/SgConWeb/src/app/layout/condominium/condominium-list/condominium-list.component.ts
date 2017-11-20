@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // services
 import { CondominiumService } from '../../../shared/services/condominium.service';
-// moduls
+// models
 import { CondominiumModel } from '../../../shared/entities/condominium.model';
 
 @Component({
@@ -10,6 +10,7 @@ import { CondominiumModel } from '../../../shared/entities/condominium.model';
   styleUrls: ['./condominium-list.component.scss']
 })
 export class CondominiumListComponent implements OnInit {
+
   condominiumList: CondominiumModel[] = new Array<CondominiumModel>();
 
   constructor(private _condominiumService: CondominiumService) {}

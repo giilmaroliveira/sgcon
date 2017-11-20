@@ -1,8 +1,8 @@
 import { BaseModel } from './base.model';
 
-export class EmployeeModel extends BaseModel {
+export class CompanyModel extends BaseModel {
     name: string;
-    cpf: string;
+    cnpj: string;
     email: string;
     dddComercialPhone: string;
     comercialPhone: string;

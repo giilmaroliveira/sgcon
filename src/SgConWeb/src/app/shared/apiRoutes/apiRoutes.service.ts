@@ -31,6 +31,13 @@ export class ApiRoutesService {
         { alias: 'updateEmployee', verb: 'put', path: '/api/employee/' },
         { alias: 'deleteEmployee', verb: 'delete', path: '/api/employee/' },
 
+        // resident
+        { alias: 'getResidentById', verb: 'get', path: '/api/resident/' },
+        { alias: 'getAllResident', verb: 'get', path: '/api/resident/' },
+        { alias: 'postResident', verb: 'post', path: '/api/resident/' },
+        { alias: 'updateResident', verb: 'put', path: '/api/resident/' },
+        { alias: 'deleteResident', verb: 'delete', path: '/api/resident/' },
+
         // tower
         { alias: 'getTowerById', verb: 'get', path: '/api/tower/' },
         { alias: 'getAllTower', verb: 'get', path: '/api/tower/' },

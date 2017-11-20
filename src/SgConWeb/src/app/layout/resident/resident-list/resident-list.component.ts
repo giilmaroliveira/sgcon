@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+// service
+import { ResidentService } from './../../../shared/services/resident.service';
+// models
+import { ResidentModel } from './../../../shared/entities/resident.model';
 
 @Component({
   selector: 'app-resident-list',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResidentListComponent implements OnInit {
 
-  constructor() { }
+  residentList: ResidentModel[] = new Array<ResidentModel>();
 
-  ngOnInit() {
+    constructor(private _residentService: ResidentService) {}
+
+    ngOnInit() {
+      this.getAllResident();
+    }
+
+    getAllResident() {
+      this._residentService.getAllResident().subscribe(
+        response => {
+          this.residentList = response;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
-
-}
