@@ -23,9 +23,7 @@ namespace SgConAPI.Business
         }
 
         public Employee CreateEmployee(Employee model)
-        {
-            model.CreatedBy = "Sistema";
-
+        { 
             var result = Repository.Post(model);
 
             return result;
@@ -33,8 +31,6 @@ namespace SgConAPI.Business
 
         public Employee UpdateEmployee(Employee model, int id)
         {
-            model.UpdatedBy = "Sistema";
-
             var result = Repository.Update(model);
 
             return result;

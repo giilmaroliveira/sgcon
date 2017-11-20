@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
+import { LoginComponent } from './login-employee/login.component';
+import { LoginResidentComponent } from './login-resident/login-resident.component';
 
 import { AuthService } from '../shared/services/auth.service';
 import { LoginService } from '../shared/services/login.service';
@@ -12,12 +13,12 @@ import { LoginService } from '../shared/services/login.service';
     imports: [
         CommonModule,
         LoginRoutingModule,
-        // ActivatedRoute,
         FormsModule,
         ReactiveFormsModule
     ],
     declarations: [
-        LoginComponent
+        LoginComponent,
+        LoginResidentComponent
     ],
     providers: [
         AuthService,

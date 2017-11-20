@@ -4,41 +4,40 @@ using SgConAPI.Models;
 using SgConAPI.Repository.Contracts;
 using System;
 using System.Linq;
-
 namespace SgConAPI.Business
 {
-    internal class CondominiumBusinessService : BaseBusinessService<ICondominiumRepository, Condominium>, ICondominiumBusinessService
+    public class ResidentBusinessService : BaseBusinessService<IResidentRepository, Resident>, IResidentBusinessService
     {
-        public CondominiumBusinessService(ICondominiumRepository repository) : base(repository)
+        public ResidentBusinessService(IResidentRepository repository) : base(repository)
         {
 
         }
 
-        public Condominium GetById(int id)
+        public Resident GetById(int id)
         {
             return Repository.Get(id);
         }
 
-        public Condominium CreateCondominium(Condominium model)
+        public Resident CreateResident(Resident model)
         {
             var result = Repository.Post(model);
 
             return result;
         }
 
-        public Condominium UpdateCondominium(Condominium model, int id)
+        public Resident UpdateResident(Resident model, int id)
         {
             var result = Repository.Update(model);
 
             return result;
         }
 
-        public void DeleteCondominium(int id)
+        public void DeleteResident(int id)
         {
             Repository.Delete(id);
         }
 
-        public IQueryable<Condominium> GetAll (string filters)
+        public IQueryable<Resident> GetAll(string filters)
         {
             var result = Repository.GetAll(issueFilterJson(filters));
 

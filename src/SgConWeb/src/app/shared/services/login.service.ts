@@ -2,8 +2,6 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
-import { LoginComponent } from '../../login/login.component';
-
 // Models
 import { User } from '../entities/user.model';
 import { LoginResponse } from '../entities/loginResponse.model';
