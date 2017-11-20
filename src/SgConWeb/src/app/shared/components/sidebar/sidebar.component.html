@@ -4,10 +4,6 @@
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
         </a>
 
-        <a routerLink="/condominio" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Condomínio' | translate }}
-        </a>
-
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('comdominum')">
                 <span>
@@ -24,6 +20,11 @@
                     <li>
                         <a routerLink="/tower" [routerLinkActive]="['router-link-active']" class="list-group-item">
                             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Torres' | translate }}
+                        </a>
+                    </li>                    
+                    <li>
+                        <a routerLink="/apartment" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Apartamentos' | translate }}
                         </a>
                     </li>
                     <li>

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-// Rotas
+// components
 import { CompanyComponent } from './company.component';
 import { CompanyRoutingModule } from './company.routing.module';
 import { CompanyListComponent } from './company-list/company-list.component';
+// routs
 import { CompanyEditComponent } from './company-edit/company-edit.component';
 
 
@@ -13,8 +13,10 @@ import { CompanyEditComponent } from './company-edit/company-edit.component';
         CommonModule,
         CompanyRoutingModule,
     ],
-    
-    exports: [],
+
+    exports: [
+
+    ],
     declarations: [
         CompanyComponent,
         CompanyListComponent,

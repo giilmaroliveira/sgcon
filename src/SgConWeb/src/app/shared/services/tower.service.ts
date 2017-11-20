@@ -17,56 +17,41 @@ export class TowerService {
 
         let url = this._apiRoute.getApiRouteByAlias('getTowerById') + id;
 
-        return this._httpBase.get(url, "Torre");
+        return this._httpBase.get(url, 'Torre');
     }
 
     getAllTower(): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('getAllTower');
 
-        return this._httpBase.get(url, "Torre");
+        return this._httpBase.get(url, 'Torre');
     }
 
     postTower(tower): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('postTower');
 
-        return this._httpBase.post(url, tower, "Torre");
+        return this._httpBase.post(url, tower, 'Torre');
     }
 
     updateTower(tower, id): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('updateTower') + id;
 
-        return this._httpBase.put(url, tower, "Torre");
+        return this._httpBase.put(url, tower, 'Torre');
     }
 
     deleteTower(id): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('deleteTower') + id;
 
-        return this._httpBase.delete(url, "Torre");
-    }
-
-    consultingCep(cep) {
-
-        // Nova variável cep somente com dígitos.
-        cep = cep.replace(/\D/g, '');
-        // Verifica se campo cep possui valor informado.
-        if (cep !== '') {
-            // Expressão regular para validar o CEP.
-            const validacep = /^[0-9]{8}$/;
-            // Valida o formato do CEP.
-            if (validacep.test(cep)) {
-                return this._http.get(`//viacep.com.br/ws/${cep}/json`)
-            }
-        }
+        return this._httpBase.delete(url, 'Torre');
     }
 
     getTowerCondominiumId(id: number): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('getTowerByCondominiumId') + id;
 
-        return this._httpBase.get(url, "Torre");
+        return this._httpBase.get(url, 'Torre');
     }
 }

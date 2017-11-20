@@ -46,7 +46,7 @@ export class TowerListComponent implements OnInit {
   }
 
   getTowerByCondominiumId() {
-    
+
     this._towerService.getTowerCondominiumId(this.condominiumId)
       .subscribe(response => {
         this.towerList = response;

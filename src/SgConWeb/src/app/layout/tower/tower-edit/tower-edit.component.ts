@@ -18,11 +18,13 @@ import { CondominiumService } from '../../../shared/services/condominium.service
   styleUrls: ['./tower-edit.component.scss']
 })
 export class TowerEditComponent implements OnInit {
+
   public towerForm: FormGroup;
   towerModel: TowerModel = new TowerModel();
   listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
-  towerId: number;
+
   // towerId: number;
+  towerId: number;
 
   constructor(
     private form: FormBuilder,
@@ -118,7 +120,7 @@ export class TowerEditComponent implements OnInit {
     );
   }
 
-  updateCondomium() {
+  updateTower() {
     this._towerService.updateTower(this.towerModel, this.towerId).subscribe(
       response => {
         this.towerModel = response;
@@ -159,6 +161,6 @@ export class TowerEditComponent implements OnInit {
         this.listOfCondominium = response;
       }, error => {
         console.log(error);
-      })
+    })
   }
 }
