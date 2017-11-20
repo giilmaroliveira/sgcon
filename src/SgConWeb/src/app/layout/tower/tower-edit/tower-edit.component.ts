@@ -66,7 +66,7 @@ export class TowerEditComponent implements OnInit {
   setDefaultValuesForm() {
     this.towerForm = this.form.group({
       block: [null, [Validators.required, Validators.minLength(3)]],
-      apartmentNumber: [null, [Validators.required, Validators.minLength(1)]],
+      floorsNumber: [null, [Validators.required, Validators.minLength(1)]],
       condominiumId: [null, [Validators.required]]
     });
   }
@@ -74,7 +74,7 @@ export class TowerEditComponent implements OnInit {
   populateForm(data: TowerModel) {
     this.towerForm.patchValue({
       block: data.block,
-      apartmentNumber: data.apartmentNumber,
+      floorsNumber: data.floorsNumber,
       condominiumId: data.condominiumId
     });
   }
