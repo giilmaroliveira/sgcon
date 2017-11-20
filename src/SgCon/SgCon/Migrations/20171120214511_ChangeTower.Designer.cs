@@ -12,9 +12,10 @@ using System;
 namespace SgConAPI.Migrations
 {
     [DbContext(typeof(SgConContext))]
-    partial class SgConContextModelSnapshot : ModelSnapshot
+    [Migration("20171120214511_ChangeTower")]
+    partial class ChangeTower
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,8 +41,7 @@ namespace SgConAPI.Migrations
                     b.Property<string>("Floor")
                         .IsRequired();
 
-                    b.Property<string>("Number")
-                        .IsRequired();
+                    b.Property<int>("Number");
 
                     b.Property<int>("TowerId");
 

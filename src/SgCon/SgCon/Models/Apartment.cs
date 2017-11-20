@@ -10,7 +10,7 @@ namespace SgConAPI.Models
     public class Apartment : BaseModel
     {
         [Required]
-        public int Number { get; set; }
+        public string Number { get; set; }
         [Required]
         public string Floor { get; set; }
         public int TowerId { get; set; }

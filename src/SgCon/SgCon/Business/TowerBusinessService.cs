@@ -2,6 +2,8 @@
 using SgConAPI.Business.Contracts;
 using SgConAPI.Models;
 using SgConAPI.Repository.Contracts;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SgConAPI.Business
@@ -9,9 +11,13 @@ namespace SgConAPI.Business
     internal class TowerBusinessService : BaseBusinessService<ITowerRepository, Tower>, ITowerBusinessService
     {
         private ITowerRepository _towerRepository;
-        public TowerBusinessService(ITowerRepository repository) : base(repository)
+        private IApartmentRepository _apartmentRepository;
+        public TowerBusinessService(
+            ITowerRepository repository,
+            IApartmentRepository apartmentRepository) : base(repository)
         {
             _towerRepository = repository;
+            _apartmentRepository = apartmentRepository;
         }
 
         public Tower GetById(int id)
@@ -50,6 +56,28 @@ namespace SgConAPI.Business
             var result = _towerRepository.GetByCondominiumId(id);
 
             return result;
+        }
+
+        public List<Apartment> GenerateApartments(Tower tower)
+        {
+            List<Apartment> listApartments = new List<Apartment>();
+
+            for (var i = 1; i <= tower.QuantityByFloor; i++)
+            {
+                Apartment apartment = new Apartment
+                {
+                    Number = tower.Floor.ToString() + i.ToString(),
+                    Floor = tower.Floor.ToString(),
+                    Active = true,
+                    TowerId = tower.Id,
+                    CreatedAt = DateTime.Now
+                };
+                listApartments.Add(apartment);
+            }
+
+            _apartmentRepository.CreateRange(listApartments);
+
+            return listApartments;            
         }
     }
 }

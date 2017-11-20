@@ -132,5 +132,30 @@ namespace SgConAPI.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        [Route("generate")]
+        [ProducesResponseType(typeof(Tower), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult GenerateApartments([FromBody, Required] Tower tower)
+        {
+            if (tower == null) { return StatusCode(400, "Dados não encontrados"); }
+
+            ModelState.Clear();
+
+            TryValidateModel(tower);
+
+            if (ModelState.IsValid)
+            {
+                var result = _towerBusinessService.GenerateApartments(tower);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, ModelState);
+            }
+        }
+
     }
 }

@@ -1,6 +1,8 @@
 export class TowerModel {
     id: number;
     block: string;
-    apartmentNumber: number;
+    floorsNumber: number;
     condominiumId: number;
+    quantityByFloor: number;
+    floor: number;
 }

@@ -82,14 +82,12 @@ namespace SgConAPI.Repository.Base
             return this.Entities.Any(r => r.Id == id && r.DeletedAt == null);
         }
 
-        //protected Dictionary<string, object> issueFilterJson(string filtersJson)
-        //{
-        //    Dictionary<string, object> filters = null;
-        //    if (!string.IsNullOrEmpty(filtersJson))
-        //    {
-        //        filters = JsonConvert.DeserializeObject<Dictionary<string, object>>(filtersJson);
-        //    }
-        //    return filters;
-        //}
+        public virtual IEnumerable<T> CreateRange(IEnumerable<T> entities)
+        {
+            this.Entities.AddRange(entities);
+            this.context.SaveChanges();
+
+            return entities;
+        }
     }
 }

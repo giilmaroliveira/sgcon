@@ -15,5 +15,6 @@ namespace SgConAPI.Repository.Contracts
         IQueryable<T> GetAll(Dictionary<string, object> filters = null);
         DbSet<T> Entities { get; }
         bool Exists(int id);
+        IEnumerable<T> CreateRange(IEnumerable<T> entities);
     }
 }

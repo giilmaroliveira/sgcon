@@ -1,5 +1,6 @@
 ﻿using SgConAPI.Models;
 using SgConAPI.Repository.Contracts;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SgConAPI.Business.Contracts
@@ -12,5 +13,6 @@ namespace SgConAPI.Business.Contracts
         void DeleteTower(int id);
         IQueryable<Tower> GetAll(string filters);
         IQueryable<Tower> GetByCondominiumId(int id);
+        List<Apartment> GenerateApartments(Tower tower);
     }
 }
