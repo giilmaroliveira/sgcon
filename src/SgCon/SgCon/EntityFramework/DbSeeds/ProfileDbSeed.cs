@@ -37,9 +37,20 @@ namespace SgConAPI.EntityFramework.DbSeeds
                 };
                 profiles.Add(profileEmployee);
 
-                Profile profileResident = new Profile
+                Profile profileResidentContract = new Profile
                 {
                     Id = 3,
+                    Name = "Morador Contratante",
+                    Description = "Morador Contratante",
+                    Role = context.Roles.Find(3),
+                    CreatedBy = "Sistema",
+                    CreatedAt = DateTime.Now
+                };
+                profiles.Add(profileResidentContract);
+
+                Profile profileResident = new Profile
+                {
+                    Id = 4,
                     Name = "Morador",
                     Description = "Morador",
                     Role = context.Roles.Find(3),
