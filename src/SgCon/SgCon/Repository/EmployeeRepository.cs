@@ -19,7 +19,6 @@ namespace SgConAPI.Repository
                     .Include(e => e.Profile)
                     .Include(e => e.Profile.Role)
                     where ((e.UserName == loginUser.UserName || e.Email == loginUser.UserName))
-                    //where e.UserName == loginUser.UserName
                     select e).FirstOrDefault();
         }
 

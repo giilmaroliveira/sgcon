@@ -1,8 +1,6 @@
-import { BaseModel } from './base.model';
-
-export class ApartmentModel extends BaseModel {
-    number: number;
-    floor: number;
+export class ApartmentModel {
+    number: string;
+    floor: string;
     towerId: number;
     condominiumId: number;
 }

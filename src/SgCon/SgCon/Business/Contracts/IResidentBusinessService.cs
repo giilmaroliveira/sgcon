@@ -11,5 +11,6 @@ namespace SgConAPI.Business.Contracts
         Resident UpdateResident(Resident model, int id);
         void DeleteResident(int id);
         IQueryable<Resident> GetAll(string filters);
+        Resident GetResidentByEmailOrUsername(ApplicationUser loginUser);
     }
 }

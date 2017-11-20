@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +14,12 @@ namespace SgConAPI.Models
         public string Block { get; set; }
         public int CondominiumId { get; set; }
         public Condominium Condominium { get; set; }
-        public int ApartmentNumber { get; set; }
+        public int FloorsNumber { get; set; }
         public ICollection<Apartment> Apartment { get; set; }
+
+        [NotMapped]
+        public int QuantityByFloor { get; set; }
+        [NotMapped]
+        public int Floor { get; set; }
     }
 }

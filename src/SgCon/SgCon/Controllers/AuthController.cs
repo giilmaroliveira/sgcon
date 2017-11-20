@@ -27,17 +27,25 @@ namespace SgConAPI.Controllers
         private readonly JwtFactory _jwtFactory;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IEmployeeBusinessService _employeeBusinessService;
+        private readonly IResidentRepository _residentRepository;
+        private readonly IResidentBusinessService _residentBusinessService;
         public AuthController(
             IOptions<JwtIssuerOptions> jwtOptions,
             JwtCurrentUserFactory jwtCurrentUserFactory,
             JwtFactory jwtFactory,
             IEmployeeRepository employeeRepository,
-            IEmployeeBusinessService employeeBusinessService)
+            IEmployeeBusinessService employeeBusinessService,
+            IResidentRepository residentRepository,
+            IResidentBusinessService residentBusinessService)
         {
             _jwtOptions = jwtOptions.Value;
             _jwtFactory = jwtFactory;
+
             _employeeRepository = employeeRepository;
             _employeeBusinessService = employeeBusinessService;
+
+            _residentRepository = residentRepository;
+            _residentBusinessService = residentBusinessService;
         }
 
         [HttpGet]
@@ -51,6 +59,17 @@ namespace SgConAPI.Controllers
             return Ok(employee);
         }
 
+        [HttpGet]
+        [Route("/api/resident/me/")]
+        [ProducesResponseType(typeof(Employee), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        public IActionResult GetMeResident([FromHeader] string authorization)
+        {
+            var resident = _jwtFactory.GetCurrentResidentUser();
+            if (resident == null) { return BadRequest("Funcionário não encontrado"); }
+            return Ok(resident);
+        }
+
         [HttpPost]
         [Route("employee")]
         [AllowAnonymous]
@@ -59,6 +78,27 @@ namespace SgConAPI.Controllers
         public IActionResult GetTokenForEmployee([FromBody] ApplicationUser loginUser)
         {
             Employee user = _employeeBusinessService.GetEmployeeByEmailOrUsername(loginUser);
+
+            if (user == null)
+                return BadRequest("Usuário não encontrado");
+
+            if (user.PassWord != loginUser.PassWord)
+                return BadRequest("Senha inválida");
+
+            if (!user.Active)
+                return BadRequest("Usuário inativo, entre em contato com a administração");
+
+            return this.GetClaimsIdentity(user).Result;
+        }
+
+        [HttpPost]
+        [Route("resident")]
+        [AllowAnonymous]
+        [ProducesResponseType(typeof(Token), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        public IActionResult GetTokenForResident([FromBody] ApplicationUser loginUser)
+        {
+            Resident user = _residentBusinessService.GetResidentByEmailOrUsername(loginUser);
 
             if (user == null)
                 return BadRequest("Usuário não encontrado");

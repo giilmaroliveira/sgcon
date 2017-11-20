@@ -16,14 +16,17 @@ namespace SgConAPI.Jwt
         private readonly SgConContext _context;
         private readonly JwtCurrentUserFactory _jwCurrentUsertFactory;
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly IResidentRepository _residentRepository;
         public JwtFactory(
             JwtCurrentUserFactory jwtCurrentUserFactory,
             SgConContext context,
-            IEmployeeRepository employeeRepository)
+            IEmployeeRepository employeeRepository,
+            IResidentRepository residentRepository)
         {
             _jwCurrentUsertFactory = jwtCurrentUserFactory;
             _context = context;
             _employeeRepository = employeeRepository;
+            _residentRepository = residentRepository;
         }
 
         public Employee GetCurrentEmployeeUser()
@@ -32,6 +35,14 @@ namespace SgConAPI.Jwt
             Employee employee = JwtFactory.GetCurrentEmployeeUser(_employeeRepository, appUser);
 
             return employee;
+        }
+
+        public Resident GetCurrentResidentUser()
+        {
+            ApplicationUser appUser = _jwCurrentUsertFactory.getCurrentLoggedUser();
+            Resident resident = JwtFactory.GetCurrentResidentUser(_residentRepository, appUser);
+
+            return resident;
         }
 
         internal static Employee GetCurrentEmployeeUser(IEmployeeRepository repository, ApplicationUser appUser)
@@ -44,17 +55,25 @@ namespace SgConAPI.Jwt
             return employee;
         }
 
+        internal static Resident GetCurrentResidentUser(IResidentRepository repository, ApplicationUser appUser)
+        {
+            Resident resident = null;
+            if (appUser != null && !(string.IsNullOrEmpty(appUser.UserName)) && appUser.ClassType.Equals("SgConAPI.Models.Resident"))
+            {
+                resident = repository.GetResidentByUserName(appUser.UserName);
+            }
+            return resident;
+        }
 
-        //TODO
-        //Inserir métodos para busca de moradores, iguais ao employee
-        public Profile GetCurrentEmployeeProfile()
+        public Profile GetCurrentUserProfile()
         {
             Employee employee = GetCurrentEmployeeUser();
             if (employee != null)
                 return employee.Profile;
 
-            //TODO
-            //Morador
+            Resident resident = GetCurrentResidentUser();
+            if (resident != null)
+                return resident.Profile;
 
             return null;
         }
@@ -65,8 +84,9 @@ namespace SgConAPI.Jwt
             if (employee != null)
                 return employee;
 
-            //TODO
-            //Morador
+            Resident resident = GetCurrentResidentUser();
+            if (resident != null)
+                return resident;
 
             return null;
         }

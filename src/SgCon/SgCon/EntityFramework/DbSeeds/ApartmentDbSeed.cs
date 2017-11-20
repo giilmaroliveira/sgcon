@@ -17,7 +17,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
 
                 Apartment apartmentOne = new Apartment
                 {
-                    Number = 10,
+                    Number = "10",
                     Floor = "1",
                     TowerId = 1,
                     CreatedBy = "Sistema",
@@ -27,7 +27,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
 
                 Apartment apartmentTwo = new Apartment
                 {
-                    Number = 11,
+                    Number = "11",
                     Floor = "1",
                     TowerId = 1,
                     CreatedBy = "Sistema",
@@ -37,7 +37,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
 
                 Apartment apartmentThree = new Apartment
                 {
-                    Number = 20,
+                    Number = "20",
                     Floor = "2",
                     TowerId = 1,
                     CreatedBy = "Sistema",
@@ -47,7 +47,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
 
                 Apartment apartmentFour = new Apartment
                 {
-                    Number = 21,
+                    Number = "21",
                     Floor = "2",
                     TowerId = 1,
                     CreatedBy = "Sistema",

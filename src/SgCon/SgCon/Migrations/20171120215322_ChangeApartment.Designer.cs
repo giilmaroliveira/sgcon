@@ -12,9 +12,10 @@ using System;
 namespace SgConAPI.Migrations
 {
     [DbContext(typeof(SgConContext))]
-    partial class SgConContextModelSnapshot : ModelSnapshot
+    [Migration("20171120215322_ChangeApartment")]
+    partial class ChangeApartment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,8 +299,6 @@ namespace SgConAPI.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired();
-
-                    b.Property<DateTime?>("ExpiredAt");
 
                     b.Property<string>("Name")
                         .IsRequired();

@@ -20,7 +20,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Id = 1,
                     Block = "Bloco A",
                     CondominiumId = 1,
-                    ApartmentNumber = 20,
+                    FloorsNumber = 20,
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
@@ -31,7 +31,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Id = 2,
                     Block = "Bloco B",
                     CondominiumId = 1,
-                    ApartmentNumber = 20,
+                    FloorsNumber = 20,
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
@@ -42,7 +42,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Id = 3,
                     Block = "Bloco A",
                     CondominiumId = 2,
-                    ApartmentNumber = 20,
+                    FloorsNumber = 20,
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
@@ -53,7 +53,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Id = 4,
                     Block = "Bloco B",
                     CondominiumId = 2,
-                    ApartmentNumber = 20,
+                    FloorsNumber = 20,
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
