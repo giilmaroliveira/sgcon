@@ -22,7 +22,6 @@ export class CondominiumListComponent implements OnInit {
     this._condominiumService.getAllCondominium().subscribe(
       response => {
         this.condominiumList = response;
-        console.log(response);
       },
       error => {
         console.log(error);

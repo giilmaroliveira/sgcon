@@ -17,6 +17,20 @@ export class ApiRoutesService {
         { alias: 'updateCondominium', verb: 'put', path: '/api/condominium/' },
         { alias: 'deleteCondomium', verb: 'delete', path: '/api/condominium/' },
 
+        // company
+        { alias: 'getCompanyById', verb: 'get', path: '/api/company/' },
+        { alias: 'getAllCompany', verb: 'get', path: '/api/company/' },
+        { alias: 'postCompany', verb: 'post', path: '/api/company/' },
+        { alias: 'updateCompany', verb: 'put', path: '/api/company/' },
+        { alias: 'deleteCompany', verb: 'delete', path: '/api/company/' },
+
+        // employee
+        { alias: 'getEmployeeById', verb: 'get', path: '/api/employee/' },
+        { alias: 'getAllEmployee', verb: 'get', path: '/api/employee/' },
+        { alias: 'postEmployee', verb: 'post', path: '/api/employee/' },
+        { alias: 'updateEmployee', verb: 'put', path: '/api/employee/' },
+        { alias: 'deleteEmployee', verb: 'delete', path: '/api/employee/' },
+
         // tower
         { alias: 'getTowerById', verb: 'get', path: '/api/tower/' },
         { alias: 'getAllTower', verb: 'get', path: '/api/tower/' },

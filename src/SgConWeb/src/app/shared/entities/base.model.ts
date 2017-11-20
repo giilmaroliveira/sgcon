@@ -6,5 +6,4 @@ export class BaseModel {
     deletedAt: Date;
     createdBy: string;
     updatedBy: string;
-
 }

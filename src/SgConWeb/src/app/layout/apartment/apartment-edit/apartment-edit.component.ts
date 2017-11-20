@@ -52,13 +52,13 @@ export class ApartmentEditComponent implements OnInit {
       if (this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched) {
         return {
           'has-success': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
-          'has-feedback': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
+          // 'has-feedback': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
           'form-control-success': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched
         };
       } else {
         return {
           'has-danger': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
-          'has-feedback': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
+          // 'has-feedback': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
           'form-control-danger': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched
         };
       }

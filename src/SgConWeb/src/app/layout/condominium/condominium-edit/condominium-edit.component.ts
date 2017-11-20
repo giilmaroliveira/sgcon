@@ -1,8 +1,8 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { ActivatedRoute } from '@angular/router';
 
 // Services
 import { CondominiumService } from '../../../shared/services/condominium.service';

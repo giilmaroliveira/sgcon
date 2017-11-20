@@ -1,10 +1,7 @@
-<div class="container">
-  
-    <form class="col-sm-10" [formGroup]="apartmentForm">
-  
+<div class="container">  
+    <form [formGroup]="apartmentForm">  
       <fieldset>
         <legend>Dados Apartamento</legend>
-
         <div class="row">
           <div class="col-sm-4" [ngClass]="applyCss('condominiumId')">
             <label class="form-control-label">Condominio</label>
@@ -23,22 +20,17 @@
         <div class="row">
             <div class="col-sm-4" [ngClass]="applyCss('number')">
               <label class="form-control-label">Número</label>
-              <input type="text" id="number" placeholder="" 
-              class="form-control form-control-success form-control-danger" formControlName="number">
+              <input type="text" class="form-control form-control-success form-control-danger" formControlName="number">
             </div>
             <div class="col-sm-4" [ngClass]="applyCss('floor')">
               <label class="form-control-label">Andar</label>
-              <input type="text" id="floor" placeholder="" 
-              class="form-control form-control-success form-control-danger" formControlName="floor">
+              <input type="text" class="form-control form-control-success form-control-danger" formControlName="floor">
             </div>
-        </div>
-  
-      </fieldset>
-  
+        </div>  
+      </fieldset>  
       <div style=" margin-top: 10px; ">
         <button type="submit" class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2" 
         [disabled]="!apartmentForm.valid" (click)="onSubmit()">Salvar</button>
-      </div>
-  
+      </div>  
     </form>
   </div>

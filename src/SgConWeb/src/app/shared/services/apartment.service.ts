@@ -47,4 +47,11 @@ export class ApartmentService {
 
         return this._httpBase.delete(url, 'Apartamento');
     }
+
+    getApartmentTowerId(id: number): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('getApartmentByTowerId') + id;
+
+        return this._httpBase.get(url, 'Apartamento');
+    }
 }
