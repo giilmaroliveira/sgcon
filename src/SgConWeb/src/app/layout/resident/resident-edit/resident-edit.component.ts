@@ -40,13 +40,13 @@ export class ResidentEditComponent implements OnInit {
     if (this.residentForm.get(field).valid && this.residentForm.get(field).touched) {
       return {
         'has-success': this.residentForm.get(field).valid && this.residentForm.get(field).touched,
-        'has-feedback': this.residentForm.get(field).valid && this.residentForm.get(field).touched,
+        // 'has-feedback': this.residentForm.get(field).valid && this.residentForm.get(field).touched,
         'form-control-success': this.residentForm.get(field).valid && this.residentForm.get(field).touched
       };
     } else {
       return {
         'has-danger': !this.residentForm.get(field).valid && this.residentForm.get(field).touched,
-        'has-feedback': !this.residentForm.get(field).valid && this.residentForm.get(field).touched,
+        // 'has-feedback': !this.residentForm.get(field).valid && this.residentForm.get(field).touched,
         'form-control-danger': this.residentForm.get(field).valid && this.residentForm.get(field).touched
       };
     }
@@ -68,6 +68,8 @@ export class ResidentEditComponent implements OnInit {
       comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
       dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],
       cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
+      userName: [Validators.required, Validators.minLength(4)],
+      password: [Validators.required, Validators.minLength(4)]
     });
   }
 
@@ -105,6 +107,8 @@ export class ResidentEditComponent implements OnInit {
       comercialPhone: data.comercialPhone,
       dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
+      userName: data.userName,
+      password: data.password,
     });
 
   }

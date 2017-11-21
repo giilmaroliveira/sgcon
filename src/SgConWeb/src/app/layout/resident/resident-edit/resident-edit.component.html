@@ -51,6 +51,20 @@
                         formControlName="cellPhone">
                     </div>
             </div>
+            <div>
+                <div class="row col-sm-4" [ngClass]="applyCss('userName')">
+                    <label class="form-control-label">Login</label>
+                    <input type="text" id="userName" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="userName">
+                </div>
+                <div class="row col-sm-4" [ngClass]="applyCss('password')">
+                    <label class="form-control-label">Senha</label>
+                    <input type="password" id="password" placeholder=""
+                    class="form-control form-control-success form-control-danger"
+                    formControlName="password">
+                </div>
+            </div>
         </fieldset>        
         <div style=" margin-top: 10px; ">
             <button type="submit" class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2"

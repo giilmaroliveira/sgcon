@@ -8,4 +8,6 @@ export class ResidentModel extends BaseModel {
     comercialPhone: string;
     dddCellPhone: string;
     cellPhone: string;
+    userName: string;
+    password: string;
 }
