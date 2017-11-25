@@ -37,5 +37,7 @@ namespace SgConAPI.Models
         public string UF { get; set; }
 
         public ICollection<Tower> Tower { get; set; }
+
+        public ICollection<CommonArea> CommonArea { get; set; }
     }
 }

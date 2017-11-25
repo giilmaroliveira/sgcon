@@ -33,7 +33,7 @@ namespace SgConAPI.EntityFramework
         public DbSet<Tower> Towers { get; set; }
         public DbSet <Resident> Residents { get; set; }
         public DbSet <Company> Companies { get; set; }
-
+        public DbSet <CommonArea> CommonAreas { get; set; }
 
         public SgConContext(DbContextOptions<SgConContext> options) : base(options)
         {
@@ -135,6 +135,13 @@ namespace SgConAPI.EntityFramework
             modelBuilder.Entity<Resident>().ToTable("Resident").Property(a => a.Active).HasDefaultValueSql("1");
 
             modelBuilder.Entity<Company>().ToTable("Company").Property(a => a.Active).HasDefaultValueSql("1");
+
+            modelBuilder.Entity<CommonArea>().ToTable("CommonArea").Property(a => a.Active).HasDefaultValueSql("1");
+
+            modelBuilder.Entity<CommonArea>()
+                .HasOne(c => c.Condominium)
+                .WithMany(c => c.CommonArea)
+                .HasForeignKey(a => a.CondominiumId);
 
         }
 
