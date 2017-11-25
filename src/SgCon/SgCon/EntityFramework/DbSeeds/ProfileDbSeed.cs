@@ -15,7 +15,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
             {
                 List<Profile> profiles = new List<Profile>();
 
-                Profile profileAdmin = new Profile
+                Profile adminProfile = new Profile
                 {
                     Id = 1,
                     Name = "Administrador",
@@ -24,9 +24,9 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
-                profiles.Add(profileAdmin);
+                profiles.Add(adminProfile);
 
-                Profile profileEmployee = new Profile
+                Profile employeeProfile = new Profile
                 {
                     Id = 2,
                     Name = "Funcionário",
@@ -35,29 +35,29 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
-                profiles.Add(profileEmployee);
+                profiles.Add(employeeProfile);
 
-                Profile profileResidentContract = new Profile
+                Profile residentProfile = new Profile
                 {
                     Id = 3,
-                    Name = "Morador Contratante",
-                    Description = "Morador Contratante",
-                    Role = context.Roles.Find(3),
-                    CreatedBy = "Sistema",
-                    CreatedAt = DateTime.Now
-                };
-                profiles.Add(profileResidentContract);
-
-                Profile profileResident = new Profile
-                {
-                    Id = 4,
                     Name = "Morador",
                     Description = "Morador",
                     Role = context.Roles.Find(3),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
-                profiles.Add(profileResident);
+                profiles.Add(residentProfile);
+
+                //Profile profileResident = new Profile
+                //{
+                //    Id = 4,
+                //    Name = "Morador",
+                //    Description = "Morador",
+                //    Role = context.Roles.Find(3),
+                //    CreatedBy = "Sistema",
+                //    CreatedAt = DateTime.Now
+                //};
+                //profiles.Add(profileResident);
 
                 context.AddRange(profiles);
                 context.SaveChanges();
