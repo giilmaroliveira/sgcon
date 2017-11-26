@@ -22,6 +22,7 @@ namespace SgConAPI.Migrations
                     CreatedBy = table.Column<string>(type: "longtext", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Description = table.Column<string>(type: "longtext", nullable: true),
+                    IntervalTime = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "longtext", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     UpdatedBy = table.Column<string>(type: "longtext", nullable: true)

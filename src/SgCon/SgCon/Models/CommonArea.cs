@@ -19,7 +19,9 @@ namespace SgConAPI.Models
         public string Description { get; set; }
         public int Capacity { get; set; }
         public int CondominiumId { get; set; }
+        public int IntervalTime { get; set; }
         public Condominium Condominium { get; set; }
+        public IQueryable<CommonAreaSchedule> CommonAreaSchedule { get; set; }
 
     }
 }

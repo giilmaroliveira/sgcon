@@ -34,6 +34,7 @@ namespace SgConAPI.EntityFramework
         public DbSet <Resident> Residents { get; set; }
         public DbSet <Company> Companies { get; set; }
         public DbSet <CommonArea> CommonAreas { get; set; }
+        public DbSet <CommonAreaSchedule> Schedules { get; set; }
 
         public SgConContext(DbContextOptions<SgConContext> options) : base(options)
         {
@@ -142,6 +143,18 @@ namespace SgConAPI.EntityFramework
                 .HasOne(c => c.Condominium)
                 .WithMany(c => c.CommonArea)
                 .HasForeignKey(a => a.CondominiumId);
+
+            modelBuilder.Entity<CommonAreaSchedule>().ToTable("Schedule").Property(a => a.Active).HasDefaultValueSql("1");
+
+            modelBuilder.Entity<CommonAreaSchedule>()
+                .HasOne(c => c.Apartment)
+                .WithMany(c => c.CommonAreaSchedule)
+                .HasForeignKey(c => c.ApartmentId);
+
+            modelBuilder.Entity<CommonAreaSchedule>()
+                .HasOne(c => c.CommonArea)
+                .WithMany(c => c.CommonAreaSchedule)
+                .HasForeignKey(c => c.CommonAreaId);
 
         }
 

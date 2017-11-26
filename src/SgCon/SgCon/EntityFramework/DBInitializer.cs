@@ -27,6 +27,8 @@ namespace SgConAPI.EntityFramework
             ResidentDbSeed residentDbSeed = new ResidentDbSeed(context);
 
             CompanyDbSeed companyDbSeed = new CompanyDbSeed(context);
+
+            CommonAreaDbSeed commonAreaDbSeed = new CommonAreaDbSeed(context);
         }
     }
 }

@@ -16,7 +16,26 @@ namespace SgConAPI.EntityFramework.DbSeeds
             {
                 List<CommonArea> commonArea = new List<CommonArea>();
 
+                CommonArea commonAreaOne = new CommonArea{
+                    Id = 1,
+                    CondominiumId = 1,
+                    Name = "Área 1",
+                    Description = "Área de lazer 1",
+                    Capacity = 20,
+                    IntervalTime = 60
+                };
+                commonArea.Add(commonAreaOne);
 
+                CommonArea commonAreaTwo = new CommonArea
+                {
+                    Id = 2,
+                    CondominiumId = 1,
+                    Name = "Área 2",
+                    Description = "Área de lazer 2",
+                    Capacity = 20,
+                    IntervalTime = 30
+                };
+                commonArea.Add(commonAreaTwo);
 
                 context.AddRange(commonArea);
                 context.SaveChanges();

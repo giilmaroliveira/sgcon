@@ -12,7 +12,7 @@ using System;
 namespace SgConAPI.Migrations
 {
     [DbContext(typeof(SgConContext))]
-    [Migration("20171125201539_CommonArea")]
+    [Migration("20171126194423_CommonArea")]
     partial class CommonArea
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,6 +78,8 @@ namespace SgConAPI.Migrations
                     b.Property<DateTime?>("DeletedAt");
 
                     b.Property<string>("Description");
+
+                    b.Property<int>("IntervalTime");
 
                     b.Property<string>("Name")
                         .IsRequired();

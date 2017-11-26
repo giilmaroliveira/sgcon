@@ -13,9 +13,13 @@ namespace SgConAPI.Controllers
     public class CommonAreaController : BaseController, IController<CommonArea>
     {
         private readonly ICommonAreaBusinessService _commonAreaBusinessService;
-        public CommonAreaController(ICommonAreaBusinessService commonAreaBusinessService)
+        private readonly ICommonAreaScheduleBusinessService _scheduleBusinessService;
+        public CommonAreaController(
+            ICommonAreaBusinessService commonAreaBusinessService,
+            ICommonAreaScheduleBusinessService commonAreaScheduleBusinessService)
         {
             _commonAreaBusinessService = commonAreaBusinessService;
+            _scheduleBusinessService = commonAreaScheduleBusinessService;
         }
 
         [HttpGet]
@@ -126,6 +130,61 @@ namespace SgConAPI.Controllers
                 _commonAreaBusinessService.DeleteCommonArea(id);
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("schedule/{id}")]
+        [ProducesResponseType(typeof(CommonAreaSchedule), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult GetScheduleById([FromRoute] int id)
+        {
+            var result = _scheduleBusinessService.GetById(id);
+
+            if (result == null)
+                return StatusCode(400, "Nenhuma agendamento encontrado");
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("schedule")]
+        [ProducesResponseType(typeof(CommonAreaSchedule), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult GetAllSchedules([FromRoute] string filtersJson = null)
+        {
+            var result = _scheduleBusinessService.GetAll(filtersJson);
+
+            if (result == null)
+                return StatusCode(400, "Nenhum agendamento encontrado");
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("schedule")]
+        [ProducesResponseType(typeof(CommonAreaSchedule), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        [AllowAnonymous]
+        public IActionResult PostSchedule([FromBody, Required] CommonAreaSchedule schedule)
+        {
+            if (schedule == null) { return StatusCode(400, "Dados não encontrados"); }
+
+            ModelState.Clear();
+
+            TryValidateModel(schedule);
+
+            if (ModelState.IsValid)
+            {
+                var result = _scheduleBusinessService.CreateSchedule(schedule);
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, ModelState);
+            }
         }
     }
 }
