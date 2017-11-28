@@ -29,6 +29,10 @@ namespace SgConAPI.EntityFramework
             CompanyDbSeed companyDbSeed = new CompanyDbSeed(context);
 
             CommonAreaDbSeed commonAreaDbSeed = new CommonAreaDbSeed(context);
+
+            AddressTypeDbSeed addressTypeDbSeed = new AddressTypeDbSeed(context);
+
+            AddressDbSeed addressDbSeed = new AddressDbSeed(context);
         }
     }
 }
