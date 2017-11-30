@@ -1,38 +1,18 @@
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card mb-4">
-            <div class="card-header">Data</div>
-            <div class="card-block">
-                <form class="form-inline mb-4">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" placeholder=""
-                                name="dp" [(ngModel)]="date" ngbDatepicker #dt="ngbDatepicker">
-                            <div class="input-group-addon" (click)="dt.toggle()">
-                                <span class="fa fa-calendar"></span>
-                            </div>
+<div class="grid col-sm-12 height row">
+    <div class="card mb-4">
+        <div class="card-header">Data</div>
+        <div class="card-block">
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control " placeholder="data"
+                            name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+                        <div class="input-group-addon" (click)="d.toggle()" >
+                            <span class="fa fa-calendar "></span>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-</div>
-<div class="row">
-  <div class="col-sm-4">
-    <div class="card">
-        <div class="card-header">Horário inicial</div>
-        <div class="card-block">
-            <ngb-timepicker [(ngModel)]="startTime"></ngb-timepicker>
-        </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-        <div class="card-header">Horário Final</div>
-        <div class="card-block">
-            <ngb-timepicker [(ngModel)]="finishTime"></ngb-timepicker>
-        </div>
-    </div>
-  </div>
 </div>

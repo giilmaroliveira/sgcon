@@ -39,7 +39,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     PassWord = "morador2",
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now,
-                    Profile = context.Profiles.Find(4)
+                    Profile = context.Profiles.Find(3)
                 };
                 residents.Add(residentTwo);
 

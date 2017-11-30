@@ -10,8 +10,8 @@ import {NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 export class CommonareaEditComponent implements OnInit {
 
   date: Date;
-  startTime = {hour: 13, minute: 30};
-  finishTime = {hour: 13, minute: 30};
+  startTime = {hour: '', minute: ''};
+  finishTime = {hour: '', minute: ''};
 
   teste() {
     console.log(this.date);
