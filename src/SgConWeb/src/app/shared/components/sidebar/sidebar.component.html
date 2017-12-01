@@ -32,6 +32,11 @@
                             <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Moradores' | translate }}
                         </a>
                     </li>
+                    <li>
+                        <a routerLink="/commonarea/commonareaList" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Área Comum' | translate }}
+                        </a>
+                    </li>
                 </ul>
             </li>
         </div>
@@ -58,7 +63,7 @@
             </li>
         </div>
 
-        <a routerLink="/commonarea/commonareaList" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a routerLink="/schedule/scheduleList" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Reservas' | translate }}
         </a>
 

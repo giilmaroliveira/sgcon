@@ -1,18 +1,36 @@
-<div class="grid col-sm-12 height row">
-    <div class="card mb-4">
-        <div class="card-header">Data</div>
-        <div class="card-block">
-            <form class="form-inline">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input class="form-control " placeholder="data"
-                            name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
-                        <div class="input-group-addon" (click)="d.toggle()" >
-                            <span class="fa fa-calendar "></span>
-                        </div>
-                    </div>
+<div class="container">    
+      <form  class="col-sm-10" [formGroup]="commonAreaForm">    
+        <fieldset>
+          <legend>Dados Área Comum</legend>
+            <div class="row">
+                <div class="col-sm-4" [ngClass]="applyCss('condominiumId')">
+                        <label class="form-control-label">Condomínio</label>
+                        <select class="form-control form-control-success form-control-danger" formControlName="condominiumId">
+                            <option *ngFor="let item of listOfCondominium" value="{{ item.id }}">{{ item.name }}</option>
+                        </select>
                 </div>
-            </form>
-        </div>
+                <div class="col-sm-4" [ngClass]="applyCss('capacity')">
+                    <label class="form-control-label">Capacidade</label>
+                    <input type="number" id="capacity" placeholder="" 
+                    class="form-control form-control-success form-control-danger" formControlName="capacity">
+                </div>
+            </div>          
+            <div>
+                <div class=" row col-sm-8" [ngClass]="applyCss('name')">
+                    <label class="form-control-label">Nome</label>
+                    <input type="text" id="name" placeholder="" 
+                    class="form-control form-control-success form-control-danger" formControlName="name">
+                </div>
+                <div class="row col-sm-8" [ngClass]="applyCss('description')">
+                    <label class="form-control-label">Descrição</label>
+                    <input type="text" id="description" placeholder="" 
+                    class="form-control form-control-success form-control-danger" formControlName="description">
+                </div>
+            </div>    
+        </fieldset>    
+        <div class="row" style=" margin-top: 10px; ">
+          <button type="submit" class="btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2" 
+          [disabled]="!commonAreaForm.valid" (click)="onSubmit()">Salvar</button>
+        </div>    
+      </form>
     </div>
-</div>
