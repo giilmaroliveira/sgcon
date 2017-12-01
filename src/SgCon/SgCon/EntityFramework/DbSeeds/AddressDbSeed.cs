@@ -33,7 +33,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                 Address addressCompany = new Address
                 {
                     Id = 2,
-                    AddressType = context.AddressesTypes.Find(2),
+                    AddressType = context.AddressesTypes.Find(1),
                     CEP = "05140060",
                     Street = "Rua Genésio Arruda",
                     Number = 900,

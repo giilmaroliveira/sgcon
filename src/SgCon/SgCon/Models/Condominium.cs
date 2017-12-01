@@ -23,21 +23,11 @@ namespace SgConAPI.Models
         public string CellPhone { get; set; }
         [Required]
         public int TowerNumber { get; set; }
-        [Required]
-        public string CEP { get; set; }
-        [Required]
-        public string Street { get; set; }
-        public int Number { get; set; }
-        public string Complement { get; set; }
-        [Required]
-        public string Neighborhood { get; set; }
-        [Required]
-        public string City { get; set; }
-        [Required]
-        public string UF { get; set; }
 
         public ICollection<Tower> Tower { get; set; }
 
         public ICollection<CommonArea> CommonArea { get; set; }
+        public Address Address { get; set; }
+        public int AddressId { get; set; }
     }
 }

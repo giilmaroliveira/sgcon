@@ -12,6 +12,10 @@ namespace SgConAPI.EntityFramework
         {
             context.Database.EnsureCreated();
 
+            AddressTypeDbSeed addressTypeDbSeed = new AddressTypeDbSeed(context);
+
+            AddressDbSeed addressDbSeed = new AddressDbSeed(context);
+
             CondominiumDbSeed condominiumDbSeed = new CondominiumDbSeed(context);
 
             TowerDbSeed towerDbSeed = new TowerDbSeed(context);
@@ -29,10 +33,6 @@ namespace SgConAPI.EntityFramework
             CompanyDbSeed companyDbSeed = new CompanyDbSeed(context);
 
             CommonAreaDbSeed commonAreaDbSeed = new CommonAreaDbSeed(context);
-
-            AddressTypeDbSeed addressTypeDbSeed = new AddressTypeDbSeed(context);
-
-            AddressDbSeed addressDbSeed = new AddressDbSeed(context);
         }
     }
 }
