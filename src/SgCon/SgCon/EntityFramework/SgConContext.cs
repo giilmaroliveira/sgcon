@@ -167,6 +167,13 @@ namespace SgConAPI.EntityFramework
                 .WithMany(a => a.Address)
                 .HasForeignKey(a => a.AddressTypeId);
 
+            modelBuilder.Entity<Condominium>()
+                .HasOne(a => a.Address)
+                .WithMany(a => a.Condominium)
+                .HasForeignKey(a => a.AddressId);
+                
+
+
         }
 
         public override int SaveChanges()

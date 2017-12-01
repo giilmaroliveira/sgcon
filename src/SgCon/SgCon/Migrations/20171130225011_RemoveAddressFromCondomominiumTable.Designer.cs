@@ -12,9 +12,10 @@ using System;
 namespace SgConAPI.Migrations
 {
     [DbContext(typeof(SgConContext))]
-    partial class SgConContextModelSnapshot : ModelSnapshot
+    [Migration("20171130225011_RemoveAddressFromCondomominiumTable")]
+    partial class RemoveAddressFromCondomominiumTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,8 +270,6 @@ namespace SgConAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("1");
 
-                    b.Property<int>("AddressId");
-
                     b.Property<string>("CellPhone");
 
                     b.Property<string>("Cnpj")
@@ -303,8 +302,6 @@ namespace SgConAPI.Migrations
                     b.Property<string>("UpdatedBy");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("Condominium");
                 });
@@ -607,14 +604,6 @@ namespace SgConAPI.Migrations
                     b.HasOne("SgConAPI.Models.CommonArea", "CommonArea")
                         .WithMany("CommonAreaSchedule")
                         .HasForeignKey("CommonAreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("SgConAPI.Models.Condominium", b =>
-                {
-                    b.HasOne("SgConAPI.Models.Address", "Address")
-                        .WithMany("Condominium")
-                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

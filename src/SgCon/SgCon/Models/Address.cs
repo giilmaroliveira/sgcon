@@ -23,5 +23,6 @@ namespace SgConAPI.Models
         public string City { get; set; }
         [Required]
         public string UF { get; set; }
+        public ICollection<Condominium> Condominium { get; set; }
     }
 }
