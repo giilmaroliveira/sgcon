@@ -56,5 +56,7 @@ namespace SgConAPI.Models
 
         [NotMapped]
         public string ClassType { get => "Funcionario"; }
+        public Address Address { get; set; }
+        public int AddressId { get; set; }
     }
 }

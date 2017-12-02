@@ -75,6 +75,51 @@ namespace SgConAPI.EntityFramework.DbSeeds
                 };
                 listAddresses.Add(addressCompanyTwo);
 
+                Address addressEmployeeOne = new Address
+                {
+                    Id = 5,
+                    AddressType = context.AddressesTypes.Find(3),
+                    CEP = "04003000",
+                    Street = "Rua Coronel Oscar Porto",
+                    Number = 70,
+                    Neighborhood = "Paraíso",
+                    City = "São Paulo",
+                    UF = "SP",
+                    CreatedBy = "Sistema",
+                    CreatedAt = DateTime.Now
+                };
+                listAddresses.Add(addressEmployeeOne);
+
+                Address addressEmployeeTwo = new Address
+                {
+                    Id = 6,
+                    AddressType = context.AddressesTypes.Find(3),
+                    CEP = "04003000",
+                    Street = "Rua Coronel Oscar Porto",
+                    Number = 170,
+                    Neighborhood = "Paraíso",
+                    City = "São Paulo",
+                    UF = "SP",
+                    CreatedBy = "Sistema",
+                    CreatedAt = DateTime.Now
+                };
+                listAddresses.Add(addressEmployeeTwo);
+
+                Address addressEmployeeThree = new Address
+                {
+                    Id = 7,
+                    AddressType = context.AddressesTypes.Find(3),
+                    CEP = "04003000",
+                    Street = "Rua Coronel Oscar Porto",
+                    Number = 270,
+                    Neighborhood = "Paraíso",
+                    City = "São Paulo",
+                    UF = "SP",
+                    CreatedBy = "Sistema",
+                    CreatedAt = DateTime.Now
+                };
+                listAddresses.Add(addressEmployeeThree);
+
 
                 context.AddRange(listAddresses);
                 context.SaveChanges();

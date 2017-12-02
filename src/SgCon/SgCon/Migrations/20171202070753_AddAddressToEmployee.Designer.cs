@@ -12,9 +12,10 @@ using System;
 namespace SgConAPI.Migrations
 {
     [DbContext(typeof(SgConContext))]
-    partial class SgConContextModelSnapshot : ModelSnapshot
+    [Migration("20171202070753_AddAddressToEmployee")]
+    partial class AddAddressToEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

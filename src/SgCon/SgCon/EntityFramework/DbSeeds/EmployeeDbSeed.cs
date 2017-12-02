@@ -25,7 +25,8 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     PassWord = "admin",
                     Profile = context.Profiles.Find(1),
                     CreatedBy = "Sistema",
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    Address = context.Addresses.Find(5)
                 };
                 employees.Add(managerEmployee);
 
@@ -39,7 +40,8 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     PassWord = "atendente",
                     Profile = context.Profiles.Find(2),
                     CreatedBy = "Sistema",
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    Address = context.Addresses.Find(6)
                 };
                 employees.Add(managerAttendant);
 
@@ -53,7 +55,8 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     PassWord = "atendente2",
                     Profile = context.Profiles.Find(2),
                     CreatedBy = "Sistema",
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    Address = context.Addresses.Find(7)
                 };
                 employees.Add(managerAttendantTwo);
 

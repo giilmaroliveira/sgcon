@@ -36,5 +36,9 @@ namespace SgConAPI.Models
         [NotMapped]
         [JsonIgnore]
         public ICollection<Company> Company { get; set; }
+
+        [NotMapped]
+        [JsonIgnore]
+        public ICollection<Employee> Employee { get; set; }
     }
 }
