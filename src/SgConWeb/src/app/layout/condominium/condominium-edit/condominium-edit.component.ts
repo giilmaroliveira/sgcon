@@ -9,6 +9,7 @@ import { CondominiumService } from '../../../shared/services/condominium.service
 
 // Models
 import { CondominiumModel } from '../../../shared/entities/condominium.model';
+import { Address } from '../../../shared/entities/address.model';
 
 @Component({
   selector: 'app-condominium-edit',
@@ -19,6 +20,7 @@ export class CondominiumEditComponent implements OnInit {
 
   public condominiumForm: FormGroup;
   condominiumModel: CondominiumModel = new CondominiumModel();
+  address: Address = new Address();
   condominiumId: number;
 
   constructor(
@@ -73,6 +75,8 @@ export class CondominiumEditComponent implements OnInit {
       comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
       dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],
       cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
+      addressId: 0,
+      address: null,
       street: [null, [Validators.required, Validators.minLength(3)]],
       number: [null, [Validators.required, Validators.minLength(1)]],
       cep: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
@@ -118,13 +122,15 @@ export class CondominiumEditComponent implements OnInit {
       comercialPhone: data.comercialPhone,
       dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
-      cep: data.cep,
-      street: data.street,
-      number: data.number,
-      neighborhood: data.neighborhood,
-      city: data.city,
-      complement: data.complement,
-      uf: data.uf,
+      addressId: data.addressId,
+      //address: data.address,
+      cep: data.address.cep,
+      street: data.address.street,
+      number: data.address.number,
+      neighborhood: data.address.neighborhood,
+      city: data.address.city,
+      complement: data.address.complement,
+      uf: data.address.uf,
       towerNumber: data.towerNumber
     });
 
@@ -132,10 +138,27 @@ export class CondominiumEditComponent implements OnInit {
 
   onSubmit() {
 
-    this.condominiumModel = this.condominiumForm.value;
-    console.log(this.condominiumForm.value);
-    // console.log(this.condominiumModel);
+    this.condominiumModel.name = this.condominiumForm.value.name;
+    this.condominiumModel.cnpj = this.condominiumForm.value.cnpj;
+    this.condominiumModel.email = this.condominiumForm.value.email;
+    this.condominiumModel.dddComercialPhone = this.condominiumForm.value.dddComercialPhone;
+    this.condominiumModel.comercialPhone = this.condominiumForm.value.comercialPhone;
+    this.condominiumModel.dddCellPhone = this.condominiumForm.value.dddCellPhone;
+    this.condominiumModel.cellPhone = this.condominiumForm.value.cellPhone;
+    this.condominiumModel.towerNumber = this.condominiumForm.value.towerNumber;
 
+    //Default value for condominium address
+    this.address.addressTypeId = 1
+    this.address.cep = this.condominiumForm.value.cep;
+    this.address.street = this.condominiumForm.value.street;
+    this.address.number = this.condominiumForm.value.number;
+    this.address.neighborhood = this.condominiumForm.value.neighborhood;
+    this.address.city = this.condominiumForm.value.city;
+    this.address.complement = this.condominiumForm.value.complement;
+    this.address.uf = this.condominiumForm.value.uf;
+
+    this.condominiumModel.address = this.address;
+    
     if (!this.condominiumId) {
       this._condominiumService.postCondominium(this.condominiumModel)
         .subscribe(response => {
@@ -159,29 +182,20 @@ export class CondominiumEditComponent implements OnInit {
           console.log(error);
         });
     }
+    
   }
 
   getCondominium(id) {
 
     this._condominiumService.getCondominiumById(id)
       .subscribe(response => {
+        console.log(response);
         this.condominiumModel = response;
+        this.address = response.address;
         this.populateForm(this.condominiumModel);
       }, error => {
         console.log(error);
       });
-  }
-
-  updateCondomium() {
-
-    this._condominiumService.updateCondominium(this.condominiumModel, this.condominiumId)
-      .subscribe(response => {
-        this.condominiumModel = response;
-        console.log(response);
-      }, error => {
-        console.log(error);
-      });
-
   }
 
   deleteCondominium() {
@@ -194,13 +208,4 @@ export class CondominiumEditComponent implements OnInit {
       });
   }
 
-  postCondominium() {
-
-    this._condominiumService.postCondominium(this.condominiumModel)
-      .subscribe(response => {
-        console.log(response);
-      }, error => {
-        console.log(error);
-      });
-  }
 }

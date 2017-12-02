@@ -11,15 +11,19 @@ namespace SgConAPI.Repository
 {
     internal class CondominiumRepository : BaseDataService<Condominium>, ICondominiumRepository
     {
-        public CondominiumRepository(SgConContext context) : base(context)
+        private readonly IAddressRepository _addressRepository;
+        public CondominiumRepository(
+            SgConContext context,
+            IAddressRepository addressRepository) : base(context)
         {
-
+            _addressRepository = addressRepository;
         }
 
         public override Condominium Get(int id)
         {
             return (from c in base.Entities
                         .Include(c => c.Address)
+                        .Include(c => c.Address.AddressType)
                         where c.Id == id
                         select c).FirstOrDefault();   
         }
@@ -39,6 +43,13 @@ namespace SgConAPI.Repository
             }
 
             return condominius;
+        }
+
+        public override Condominium Update(Condominium entity)
+        {
+            var address = _addressRepository.Update(entity.Address);
+            entity.Address = address;
+            return base.Update(entity);
             
         }
     }

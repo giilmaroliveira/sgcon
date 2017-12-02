@@ -1,4 +1,5 @@
-﻿using SgConAPI.Models.Base;
+﻿using Newtonsoft.Json;
+using SgConAPI.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,9 +25,11 @@ namespace SgConAPI.Models
         [Required]
         public int TowerNumber { get; set; }
 
+        [JsonIgnore]
         public ICollection<Tower> Tower { get; set; }
-
+        [JsonIgnore]
         public ICollection<CommonArea> CommonArea { get; set; }
+
         public Address Address { get; set; }
         public int AddressId { get; set; }
     }

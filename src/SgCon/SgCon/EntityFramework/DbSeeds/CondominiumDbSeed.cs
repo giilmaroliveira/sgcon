@@ -30,7 +30,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     //Neighborhood = "Chácara Inglesa",
                     //City = "São Paulo",
                     //UF = "SP",
-                    Address = context.Addresses.Find(1),
+                    //Address = context.Addresses.Find(1),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
@@ -51,7 +51,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     //Neighborhood = "Chácara Inglesa",
                     //City = "São Paulo",
                     //UF = "SP",
-                    Address = context.Addresses.Find(2),
+                    //Address = context.Addresses.Find(2),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };

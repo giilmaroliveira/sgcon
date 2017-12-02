@@ -1,6 +1,8 @@
 import { BaseModel } from './base.model';
+import { Address } from './address.model';
 
 export class CondominiumModel extends BaseModel {
+
     name: string;
     cnpj: string;
     email: string;
@@ -8,12 +10,7 @@ export class CondominiumModel extends BaseModel {
     comercialPhone: string;
     dddCellPhone: string;
     cellPhone: string;
-    towerNumber: number
-    cep: string;
-    street: string;
-    number: number;
-    complement: string;
-    neighborhood: string;
-    city: string;
-    uf: string;
+    towerNumber: number;
+    addressId: number;
+    address: Address;
 }
