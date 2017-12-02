@@ -10,6 +10,9 @@ import { CommonareaListComponent } from './commonarea-list/commonarea-list.compo
 // routs
 import { CommonareaRoutingModule } from './commonarea.routing.module';
 
+// services
+import { CondominiumService } from './../../shared/services/condominium.service';
+import { CommonareaService } from './../../shared/services/commonarea.service';
 
 @NgModule({
     imports: [
@@ -27,6 +30,9 @@ import { CommonareaRoutingModule } from './commonarea.routing.module';
         CommonareaEditComponent,
         CommonareaListComponent
     ],
-    providers: [],
+    providers: [
+        CommonareaService,
+        CondominiumService
+    ],
 })
 export class CommonareaModule { }

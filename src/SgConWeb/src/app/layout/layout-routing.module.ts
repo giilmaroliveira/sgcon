@@ -23,6 +23,7 @@ const routes: Routes = [
             { path: 'tower', loadChildren: './tower/tower.module#TowerModule' },
             { path: 'apartment', loadChildren: './apartment/apartment.module#ApartmentModule' },
             { path: 'commonarea', loadChildren: './commonarea/commonarea.module#CommonareaModule' },
+            { path: 'schedule', loadChildren: './schedule/schedule.module#ScheduleModule' },
         ]
     }
 ];

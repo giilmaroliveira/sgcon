@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+// components
 import { ResidentComponent } from './resident.component';
 import { ResidentEditComponent } from './resident-edit/resident-edit.component';
 import { ResidentListComponent } from './resident-list/resident-list.component';
