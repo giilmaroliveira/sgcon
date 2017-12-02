@@ -171,7 +171,12 @@ namespace SgConAPI.EntityFramework
                 .HasOne(a => a.Address)
                 .WithMany(a => a.Condominium)
                 .HasForeignKey(a => a.AddressId);
-                
+
+            modelBuilder.Entity<Company>()
+                .HasOne(a => a.Address)
+                .WithMany(a => a.Company)
+                .HasForeignKey(a => a.AddressId);
+
 
 
         }

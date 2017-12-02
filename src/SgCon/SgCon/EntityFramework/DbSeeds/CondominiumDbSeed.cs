@@ -24,13 +24,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     DDDComercialPhone = "11",
                     ComercialPhone = "12345678",
                     TowerNumber = 2,
-                    //CEP = "05140060",
-                    //Street = "Rua Genésio Arruda",
-                    //Number = 500,
-                    //Neighborhood = "Chácara Inglesa",
-                    //City = "São Paulo",
-                    //UF = "SP",
-                    //Address = context.Addresses.Find(1),
+                    Address = context.Addresses.Find(1),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
@@ -45,13 +39,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     DDDComercialPhone = "11",
                     ComercialPhone = "12345678",
                     TowerNumber = 2,
-                    //CEP = "05140060",
-                    //Street = "Rua Genésio Arruda",
-                    //Number = 900,
-                    //Neighborhood = "Chácara Inglesa",
-                    //City = "São Paulo",
-                    //UF = "SP",
-                    //Address = context.Addresses.Find(2),
+                    Address = context.Addresses.Find(2),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };

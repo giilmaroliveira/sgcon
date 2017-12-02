@@ -30,7 +30,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                 };
                 listAddresses.Add(addressCondominium);
 
-                Address addressCompany = new Address
+                Address addressCondominiumTwo = new Address
                 {
                     Id = 2,
                     AddressType = context.AddressesTypes.Find(1),
@@ -43,12 +43,12 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
-                listAddresses.Add(addressCompany);
+                listAddresses.Add(addressCondominiumTwo);
 
-                Address addressEmployee = new Address
+                Address addressCompany = new Address
                 {
                     Id = 3,
-                    AddressType = context.AddressesTypes.Find(3),
+                    AddressType = context.AddressesTypes.Find(2),
                     CEP = "05440000",
                     Street = "Rua Paulistânia",
                     Number = 500,
@@ -58,7 +58,22 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
-                listAddresses.Add(addressEmployee);
+                listAddresses.Add(addressCompany);
+
+                Address addressCompanyTwo = new Address
+                {
+                    Id = 4,
+                    AddressType = context.AddressesTypes.Find(2),
+                    CEP = "05440000",
+                    Street = "Rua Paulistânia",
+                    Number = 700,
+                    Neighborhood = "Sumarezinho",
+                    City = "São Paulo",
+                    UF = "SP",
+                    CreatedBy = "Sistema",
+                    CreatedAt = DateTime.Now
+                };
+                listAddresses.Add(addressCompanyTwo);
 
 
                 context.AddRange(listAddresses);

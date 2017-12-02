@@ -23,12 +23,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Email = "empresa1@sgcon.com",
                     DDDComercialPhone = "11",
                     ComercialPhone = "12345678",
-                    CEP = "05140060",
-                    Street = "Rua Genésio Arruda",
-                    Number = 500,
-                    Neighborhood = "Chácara Inglesa",
-                    City = "São Paulo",
-                    UF = "SP",
+                    Address = context.Addresses.Find(3),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
@@ -42,12 +37,7 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Email = "empresa2@sgcon.com",
                     DDDComercialPhone = "11",
                     ComercialPhone = "12345678",
-                    CEP = "05140060",
-                    Street = "Rua Genésio Arruda",
-                    Number = 900,
-                    Neighborhood = "Chácara Inglesa",
-                    City = "São Paulo",
-                    UF = "SP",
+                    Address = context.Addresses.Find(4),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now
                 };
