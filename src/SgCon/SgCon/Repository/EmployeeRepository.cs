@@ -43,6 +43,8 @@ namespace SgConAPI.Repository
             return (from c in base.Entities
                         .Include(c => c.Address)
                         .Include(c => c.Address.AddressType)
+                        .Include(e => e.Profile)
+                        .Include(e => e.Profile.Role)
                     where c.Id == id
                     select c).FirstOrDefault();
         }

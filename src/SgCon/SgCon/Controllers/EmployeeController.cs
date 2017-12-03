@@ -21,7 +21,7 @@ namespace SgConAPI.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(Employee), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult Get([FromRoute] int id)
@@ -35,7 +35,7 @@ namespace SgConAPI.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(Employee), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult GetAll([FromHeader] string filtersJson = null)
@@ -49,7 +49,7 @@ namespace SgConAPI.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(Employee), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult Post([FromBody, Required] Employee employee)
@@ -74,7 +74,7 @@ namespace SgConAPI.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(Employee), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult Put([FromBody] Employee employee, [FromRoute] int id)
@@ -99,7 +99,7 @@ namespace SgConAPI.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        [ProducesResponseType(typeof(Condominium), 200)]
+        [ProducesResponseType(typeof(Employee), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
         public IActionResult Delete([FromRoute] int id)
