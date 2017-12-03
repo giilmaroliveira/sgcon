@@ -160,27 +160,9 @@ export class CondominiumEditComponent implements OnInit {
     this.condominiumModel.address = this.address;
 
     if (!this.condominiumId) {
-      this._condominiumService.postCondominium(this.condominiumModel)
-        .subscribe(response => {
-          this.condominiumModel = response;
-          // message success
-          alert('Dados salvos com sucesso!');
-          // reset dataForm
-          this.condominiumForm.reset();
-          // Voltar para listagem
-          this._router.navigate(['condominium/condominiumList']);
-        }, error => {
-          console.log(error);
-        });
+      this.postCondominium();
     } else {
-      this._condominiumService.updateCondominium(this.condominiumModel, this.condominiumId)
-        .subscribe(response => {
-          this.condominiumModel = response;
-          alert('Dados atualizados com sucesso');
-          this._router.navigate(['condominium/condominiumList']);
-        }, error => {
-          console.log(error);
-        });
+      this.updateCondominium();
     }
 
   }
@@ -203,6 +185,32 @@ export class CondominiumEditComponent implements OnInit {
     this._condominiumService.deleteCondominium(this.condominiumId)
       .subscribe(response => {
         console.log(response);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  postCondominium() {
+    this._condominiumService.postCondominium(this.condominiumModel)
+      .subscribe(response => {
+        this.condominiumModel = response;
+        // message success
+        alert('Dados salvos com sucesso!');
+        // reset dataForm
+        this.condominiumForm.reset();
+        // Voltar para listagem
+        this._router.navigate(['condominium/condominiumList']);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  updateCondominium() {
+    this._condominiumService.updateCondominium(this.condominiumModel, this.condominiumId)
+      .subscribe(response => {
+        this.condominiumModel = response;
+        alert('Dados atualizados com sucesso');
+        this._router.navigate(['condominium/condominiumList']);
       }, error => {
         console.log(error);
       });
