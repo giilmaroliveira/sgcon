@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // models
 import { TowerModel } from '../../../shared/entities/tower.model';
@@ -30,8 +30,9 @@ export class TowerEditComponent implements OnInit {
     private form: FormBuilder,
     private _towerService: TowerService,
     private _route: ActivatedRoute,
-    private _condominiumService: CondominiumService
-  ) {}
+    private _condominiumService: CondominiumService,
+    private _router: Router
+  ) { }
 
   ngOnInit() {
     this.setDefaultValuesForm();
@@ -65,6 +66,12 @@ export class TowerEditComponent implements OnInit {
 
   setDefaultValuesForm() {
     this.towerForm = this.form.group({
+      id: 0,
+      active: true,
+      createdAt: Date.now,
+      updatedAt: Date.now,
+      createdBy: null,
+      updatedBy: null,
       block: [null, [Validators.required, Validators.minLength(3)]],
       floorsNumber: [null, [Validators.required, Validators.minLength(1)]],
       condominiumId: [null, [Validators.required]]
@@ -73,6 +80,12 @@ export class TowerEditComponent implements OnInit {
 
   populateForm(data: TowerModel) {
     this.towerForm.patchValue({
+      id: data.id,
+      active: data.active,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      createdBy: data.createdBy,
+      updatedBy: data.updatedBy,
       block: data.block,
       floorsNumber: data.floorsNumber,
       condominiumId: data.condominiumId
@@ -83,28 +96,9 @@ export class TowerEditComponent implements OnInit {
     this.towerModel = this.towerForm.value;
 
     if (!this.towerId) {
-      this._towerService.postTower(this.towerModel).subscribe(
-        response => {
-          this.towerModel = response;
-          // message success
-          alert('Dados salvos com sucesso!');
-          // reset dataForm
-          this.towerForm.reset();
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.postTower();
     } else {
-      this._towerService.updateTower(this.towerModel, this.towerId).subscribe(
-        response => {
-          this.towerModel = response;
-          alert('Dados atualizados com sucesso');
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.updateTower();
     }
   }
 
@@ -124,7 +118,8 @@ export class TowerEditComponent implements OnInit {
     this._towerService.updateTower(this.towerModel, this.towerId).subscribe(
       response => {
         this.towerModel = response;
-        console.log(response);
+        alert('Dados atualizados com sucesso');
+        this._router.navigate(['tower/towerList']);
       },
       error => {
         console.log(error);
@@ -146,7 +141,11 @@ export class TowerEditComponent implements OnInit {
   postTower() {
     this._towerService.postTower(this.towerModel).subscribe(
       response => {
-        console.log(response);
+        this.towerModel = response;
+        // message success
+        alert('Dados salvos com sucesso!');
+
+        this._router.navigate(['tower/towerList']);
       },
       error => {
         console.log(error);
@@ -161,6 +160,6 @@ export class TowerEditComponent implements OnInit {
         this.listOfCondominium = response;
       }, error => {
         console.log(error);
-    })
+      })
   }
 }

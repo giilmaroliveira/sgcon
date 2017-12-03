@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
         }, {
             imagePath: 'assets/images/salaoDeFestas.jpg',
             label: 'Salão de Festas',
-            text: 'Para comemorar as suas datas epeciais.'
+            text: 'Para comemorar as suas datas especiais.'
         }, {
             imagePath: 'assets/images/churrasqueira.jpg',
             label: 'Churrasqueiras',
