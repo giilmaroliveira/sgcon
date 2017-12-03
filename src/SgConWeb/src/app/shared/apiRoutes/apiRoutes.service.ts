@@ -24,6 +24,7 @@ export class ApiRoutesService {
         { alias: 'updateCommonarea', verb: 'put', path: '/api/commonarea/' },
         { alias: 'deleteCommonarea', verb: 'delete', path: '/api/commonarea/' },
         { alias: 'getCommonareaByCondominiumId', verb: 'get', path: '/api/commonarea/condominium/' },
+        { alias: 'postCommonAreaSchedule', verb: 'post', path: '/api/commonarea/schedule' },
 
         // company
         { alias: 'getCompanyById', verb: 'get', path: '/api/company/' },
@@ -61,6 +62,7 @@ export class ApiRoutesService {
         { alias: 'updateApartment', verb: 'put', path: '/api/apartment/' },
         { alias: 'deleteApartment', verb: 'delete', path: '/api/Apartment/' },
         { alias: 'getApartmentByTowerId', verb: 'get', path: '/api/apartment/tower/' },
+
         // login
         { alias: 'loginEmployee', verb: 'post', path: '/api/token/employee/' },
         { alias: 'loginResident', verb: 'post', path: '/api/token/resident/' },

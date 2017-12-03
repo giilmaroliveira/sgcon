@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import { HttpBaseService } from './http-base.service';
-import { ApiRoutesService } from '../apiRoutes/apiRoutes.service'
+import { ApiRoutesService } from '../apiRoutes/apiRoutes.service';
+
+//Models
+import { ScheduleModel } from '../entities/schedule.model';
 
 @Injectable()
-export class CommonareaService {
+export class CommonAreaService {
 
     constructor(
         private _http: Http,
@@ -53,5 +56,13 @@ export class CommonareaService {
         let url = this._apiRoute.getApiRouteByAlias('getCommonareaByCondominiumId') + id;
 
         return this._httpBase.get(url, 'Areas Comuns');
+    }
+
+    postCommonAreaSchedule(schedule: ScheduleModel) {
+
+        let url = this._apiRoute.getApiRouteByAlias('postCommonAreaSchedule');
+        let body = JSON.stringify(schedule)
+
+        return this._httpBase.post(url, body, 'Reserva de Horário');
     }
 }

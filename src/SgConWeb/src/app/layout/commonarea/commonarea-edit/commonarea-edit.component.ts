@@ -5,12 +5,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/add/operator/map';
 
 // models
-import { CommonareaModel } from '../../../shared/entities/commonarea.model';
+import { CommonAreaModel } from '../../../shared/entities/commonarea.model';
 import { CondominiumModel } from '../../../shared/entities/condominium.model';
 
 // services
 import { CondominiumService } from '../../../shared/services/condominium.service';
-import { CommonareaService } from '../../../shared/services/commonarea.service';
+import { CommonAreaService } from '../../../shared/services/commonarea.service';
 
 @Component({
   selector: 'app-commonarea-edit',
@@ -20,7 +20,7 @@ import { CommonareaService } from '../../../shared/services/commonarea.service';
 export class CommonareaEditComponent implements OnInit {
 
   public commonAreaForm: FormGroup;
-  commonareaModel: CommonareaModel = new CommonareaModel();
+  commonareaModel: CommonAreaModel = new CommonAreaModel();
   listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
 
   commonareaId
@@ -29,7 +29,7 @@ export class CommonareaEditComponent implements OnInit {
     private form: FormBuilder,
     private _route: ActivatedRoute,
     private _condominiumService: CondominiumService,
-    private _commonareaService: CommonareaService,
+    private _commonareaService: CommonAreaService,
   ) { }
 
   ngOnInit() {
@@ -71,7 +71,7 @@ export class CommonareaEditComponent implements OnInit {
     });
   }
 
-  populateForm(data: CommonareaModel) {
+  populateForm(data: CommonAreaModel) {
     this.commonAreaForm.patchValue({
 
       name: data.name,
