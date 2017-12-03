@@ -40,6 +40,12 @@ namespace SgCon
         public static void Main(string[] args)
         {
             BuildWebHost(args).Run();
+
+            CultureInfo currentCulture = new CultureInfo("pt-BR");
+            CultureInfo.CurrentCulture = currentCulture;
+            CultureInfo.CurrentUICulture = currentCulture;
+            CultureInfo.DefaultThreadCurrentCulture = currentCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = currentCulture;
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

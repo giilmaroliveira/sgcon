@@ -33,7 +33,7 @@
         <div>
             <div class="row col-sm-4">
                 <div class="input-group">
-                    <input class="form-control " placeholder="Data" name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+                    <input class="form-control " placeholder="Data" name="dp" [ngModel]="{{ scheduleModel.date | date:'dd/MM/yyyy' }}" ngbDatepicker #d="ngbDatepicker">
                     <div class="input-group-addon" (click)="d.toggle()">
                         <span class="fa fa-calendar "></span>
                     </div>
@@ -42,20 +42,20 @@
             <br>
             <div class="row col-sm-6">
                 <label class="form-control-label">Área Comum</label>
-                <select class="form-control form-control-success form-control-danger">
+                <select class="form-control form-control-success form-control-danger" [(ngModel)]="scheduleModel.condominiumId" >
                     <option value="0">Selecione</option>
-                    <!-- <option *ngFor="let time of listOfTimes" value="{{ time.key }}">{{ time.value }}</option> -->
+                    <option *ngFor="let area of listOfCommonArea" value="{{ area.id }}">{{ area.name }}</option>
                 </select>
             </div>
             <br>
             <div class="row col-sm-6">
                 <label class="form-control-label">Horário</label>
-                <select class="form-control form-control-success form-control-danger">
+                <select class="form-control form-control-success form-control-danger" [(ngModel)]="scheduleModel.scheduleId" >
                     <option value="0">Selecione</option>
                     <option *ngFor="let time of listOfTimes" value="{{ time.key }}">{{ time.value }}</option>
                 </select>
             </div>
         </div>
     </fieldset>
-
+    <button (click)="onSumit()">Cadastrar</button>
 </div>

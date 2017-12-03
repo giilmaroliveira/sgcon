@@ -1,7 +1,7 @@
 import { CondominiumService } from './../../../shared/services/condominium.service';
-import { CommonareaService } from './../../../shared/services/commonarea.service';
+import { CommonAreaService } from './../../../shared/services/commonarea.service';
 import { CondominiumModel } from './../../../shared/entities/condominium.model';
-import { CommonareaModel } from './../../../shared/entities/commonarea.model';
+import { CommonAreaModel } from './../../../shared/entities/commonarea.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,12 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommonareaListComponent implements OnInit {
 
-  commonAreaList: CommonareaModel[] = new Array<CommonareaModel>();
+  commonAreaList: CommonAreaModel[] = new Array<CommonAreaModel>();
   listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
   condominiumId: number;
 
   constructor(
-    private _commonareaService: CommonareaService,
+    private _commonareaService: CommonAreaService,
     private _condominiumService: CondominiumService
   ) {}
 

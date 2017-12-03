@@ -2,9 +2,10 @@ import { BaseModel } from './base.model';
 
 export class ScheduleModel  extends BaseModel {
     apartmentId: number;
-    commonareaId: number;
+    commonAreaId: number;
     date: Date;
-    time: number;
     // startTime: number;
     // endTime: number;
+    scheduleId: number;
+    used: boolean;
 }
