@@ -68,8 +68,8 @@ export class ResidentEditComponent implements OnInit {
       comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
       dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],
       cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
-      userName: [Validators.required, Validators.minLength(4)],
-      password: [Validators.required, Validators.minLength(4)]
+      userName: [null, [Validators.required, Validators.minLength(4)]],
+      password: [null, [Validators.required, Validators.minLength(4)]]
     });
   }
 

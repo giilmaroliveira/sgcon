@@ -27,18 +27,18 @@ export class CommonareaService {
         return this._httpBase.get(url, 'Areas Comuns');
     }
 
-    postCommonarea(tower): Observable<any> {
+    postCommonarea(commonarea): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('postCommonarea');
 
-        return this._httpBase.post(url, tower, 'Areas Comuns');
+        return this._httpBase.post(url, commonarea, 'Areas Comuns');
     }
 
-    updateCommonarea(tower, id): Observable<any> {
+    updateCommonarea(commonarea, id): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('updateCommonarea') + id;
 
-        return this._httpBase.put(url, tower, 'Areas Comuns');
+        return this._httpBase.put(url, commonarea, 'Areas Comuns');
     }
 
     deleteCommonarea(id): Observable<any> {

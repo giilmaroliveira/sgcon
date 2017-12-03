@@ -67,7 +67,7 @@ export class EmployeeEditComponent implements OnInit {
       updatedBy: null,
       name: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.email, Validators.required]],
-      cpf: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+      cpf: [null, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       dddComercialPhone: [null, [Validators.required, Validators.maxLength(2), Validators.minLength(2)]],
       comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
       dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],

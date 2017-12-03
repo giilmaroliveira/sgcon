@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
-// tslint:disable-next-line:import-blacklist
 import { Observable } from 'rxjs';
 import { HttpBaseService } from './http-base.service';
 import { ApiRoutesService } from '../apiRoutes/apiRoutes.service'
@@ -28,18 +27,18 @@ export class CompanyService {
         return this._httpBase.get(url, 'Empresa');
     }
 
-    postCompany(condominium): Observable<any> {
+    postCompany(company): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('postCompany');
 
-        return this._httpBase.post(url, condominium, 'Empresa');
+        return this._httpBase.post(url, company, 'Empresa');
     }
 
-    updateCompany(condominium, id): Observable<any> {
+    updateCompany(company, id): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('updateCompany') + id;
 
-        return this._httpBase.put(url, condominium, 'Empresa');
+        return this._httpBase.put(url, company, 'Empresa');
     }
 
     deleteCompany(id): Observable<any> {

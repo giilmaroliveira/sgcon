@@ -28,18 +28,18 @@ export class EmployeeService {
         return this._httpBase.get(url, 'Empresa');
     }
 
-    postEmployee(condominium): Observable<any> {
+    postEmployee(employee): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('postEmployee');
 
-        return this._httpBase.post(url, condominium, 'Empresa');
+        return this._httpBase.post(url, employee, 'Empresa');
     }
 
-    updateEmployee(condominium, id): Observable<any> {
+    updateEmployee(employee, id): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('updateEmployee') + id;
 
-        return this._httpBase.put(url, condominium, 'Empresa');
+        return this._httpBase.put(url, employee, 'Empresa');
     }
 
     deleteEmployee(id): Observable<any> {
