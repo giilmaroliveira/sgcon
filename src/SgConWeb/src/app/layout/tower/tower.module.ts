@@ -4,8 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // components
 import { TowerComponent } from './tower.component';
-import { TowerListComponent } from '../../layout/tower/tower-list/tower-list.component';
-import { TowerEditComponent } from '../../layout/tower/tower-edit/tower-edit.component';
+import { TowerListComponent } from './tower-list/tower-list.component';
+import { TowerEditComponent } from './tower-edit/tower-edit.component';
+import { GenerateApartmentComponent } from './generate-apartment/generate-apartment.component';
 
 // services
 import { TowerService } from '../../shared/services/tower.service';
@@ -27,7 +28,8 @@ import { TowerRoutingModule } from 'app/layout/tower/tower.routing.module';
     declarations: [
         TowerComponent,
         TowerListComponent,
-        TowerEditComponent
+        TowerEditComponent,
+        GenerateApartmentComponent
     ],
     providers: [
         TowerService,

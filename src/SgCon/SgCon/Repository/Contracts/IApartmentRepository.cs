@@ -8,5 +8,6 @@ namespace SgConAPI.Repository.Contracts
 {
     public interface IApartmentRepository : IBaseDataService<Apartment>
     {
+        IQueryable<Apartment> GetByTowerId(int id);
     }
 }

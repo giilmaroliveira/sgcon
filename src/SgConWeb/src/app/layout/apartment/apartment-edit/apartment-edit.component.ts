@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import 'rxjs/add/operator/map';
@@ -31,8 +31,9 @@ export class ApartmentEditComponent implements OnInit {
     private _apartmentService: ApartmentService,
     private _route: ActivatedRoute,
     private _condominiumService: CondominiumService,
-    private _towerService: TowerService
-  ) {}
+    private _towerService: TowerService,
+    private _router: Router
+  ) { }
 
   ngOnInit() {
     this.setDefaultValuesForm();
@@ -47,22 +48,22 @@ export class ApartmentEditComponent implements OnInit {
     this.getAllCondominium();
 
   }
-    // check ngValidatos
-    applyCss(field: string) {
-      if (this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched) {
-        return {
-          'has-success': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
-          // 'has-feedback': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
-          'form-control-success': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched
-        };
-      } else {
-        return {
-          'has-danger': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
-          // 'has-feedback': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
-          'form-control-danger': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched
-        };
-      }
+  // check ngValidatos
+  applyCss(field: string) {
+    if (this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched) {
+      return {
+        'has-success': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
+        // 'has-feedback': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
+        'form-control-success': this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched
+      };
+    } else {
+      return {
+        'has-danger': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
+        // 'has-feedback': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched,
+        'form-control-danger': !this.apartmentForm.get(field).valid && this.apartmentForm.get(field).touched
+      };
     }
+  }
 
   setDefaultValuesForm() {
     this.apartmentForm = this.form.group({
@@ -86,28 +87,9 @@ export class ApartmentEditComponent implements OnInit {
     this.apartmentModel = this.apartmentForm.value;
 
     if (!this.apartmentId) {
-      this._apartmentService.postApartment(this.apartmentModel).subscribe(
-        response => {
-          this.apartmentModel = response;
-          // message success
-          alert('Dados salvos com sucesso!');
-          // reset dataForm
-          this.apartmentForm.reset();
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.postApartment();
     } else {
-      this._apartmentService.updateApartment(this.apartmentModel, this.apartmentId).subscribe(
-        response => {
-          this.apartmentModel = response;
-          alert('Dados atualizados com sucesso');
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.updateApartment();
     }
   }
 
@@ -127,7 +109,9 @@ export class ApartmentEditComponent implements OnInit {
     this._apartmentService.updateApartment(this.apartmentModel, this.apartmentId).subscribe(
       response => {
         this.apartmentModel = response;
-        console.log(response);
+        alert('Dados atualizados com sucesso');
+        // Voltar página
+        this._router.navigate(['apartment/apartmentList']);
       },
       error => {
         console.log(error);
@@ -149,7 +133,12 @@ export class ApartmentEditComponent implements OnInit {
   postApartment() {
     this._apartmentService.postApartment(this.apartmentModel).subscribe(
       response => {
-        console.log(response);
+        this.apartmentModel = response;
+        // message success
+        alert('Dados salvos com sucesso!');
+
+        // Voltar página
+        this._router.navigate(['apartment/apartmentList']);
       },
       error => {
         console.log(error);
@@ -164,17 +153,19 @@ export class ApartmentEditComponent implements OnInit {
         this.listOfCondominium = response;
       }, error => {
         console.log(error);
-    })
+      })
   }
 
   getTowerByCondominiumId() {
 
-    this._towerService.getTowerCondominiumId(this.apartmentForm.value.condominiumId)
+    let condominiumId = this.apartmentForm.value.condominiumId;
+
+    this._towerService.getTowerCondominiumId(condominiumId)
       .subscribe(response => {
         this.listOfTower = response;
       }, error => {
         console.log(error);
-    });
+      });
   }
 
 }

@@ -1,5 +1,6 @@
 ﻿using SgConAPI.Models;
 using SgConAPI.Repository.Contracts;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SgConAPI.Business.Contracts
@@ -11,5 +12,6 @@ namespace SgConAPI.Business.Contracts
         Apartment UpdateApartment(Apartment model, int id);
         void DeleteApartment(int id);
         IQueryable<Apartment> GetAll(string filters);
+        IQueryable<Apartment> GetByTowerId(int id);
     }
 }
