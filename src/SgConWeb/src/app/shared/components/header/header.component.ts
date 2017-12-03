@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { error } from 'selenium-webdriver';
+
+import { ShareObjectsService } from '../../services/share-objects.service';
+
+import { User } from '../../entities/user.model';
 
 @Component({
     selector: 'app-header',
@@ -10,8 +15,12 @@ import { TranslateService } from '@ngx-translate/core';
 export class HeaderComponent implements OnInit {
 
     pushRightClass: string = 'push-right';
-    
-    constructor(private translate: TranslateService, public router: Router) {
+    user: User = new User();
+
+    constructor(
+        private _translate: TranslateService, 
+        public router: Router,
+        private _shareObjectsService: ShareObjectsService) {
         this.router.events.subscribe((val) => {
             if (val instanceof NavigationEnd && window.innerWidth <= 992 && this.isToggled()) {
                 this.toggleSidebar();
@@ -19,7 +28,13 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+
+        this._shareObjectsService.getUser()
+            .subscribe(response => {
+                this.user = response;
+            }, error => console.log(error));
+    }
 
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');
@@ -41,6 +56,6 @@ export class HeaderComponent implements OnInit {
     }
 
     changeLang(language: string) {
-        this.translate.use(language);
+        this._translate.use(language);
     }
 }

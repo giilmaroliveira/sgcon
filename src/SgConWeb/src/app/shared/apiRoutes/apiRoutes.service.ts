@@ -66,6 +66,8 @@ export class ApiRoutesService {
         // login
         { alias: 'loginEmployee', verb: 'post', path: '/api/token/employee/' },
         { alias: 'loginResident', verb: 'post', path: '/api/token/resident/' },
+        { alias: 'getEmployeeMe', verb: 'post', path: '/api/employee/me/' },
+        { alias: 'getResidentMe', verb: 'post', path: '/api/resident/me/' },
 
       ];
   }

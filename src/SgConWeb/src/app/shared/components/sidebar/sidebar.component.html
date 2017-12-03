@@ -5,7 +5,7 @@
         </a>
 
         <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('comdominum')">
+            <a class="list-group-item" *ngIf="typeUser == 'Employee'" (click)="addExpandClass('comdominum')">
                 <span>
                     <i class="fa fa-plus"></i>&nbsp; {{ 'Condomínio' | translate }}
                 </span>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('services')">
+            <a class="list-group-item" *ngIf="typeUser == 'Employee'" (click)="addExpandClass('services')">
                 <span>
                     <i class="fa fa-plus"></i>&nbsp; {{ 'Serviços' | translate }}
                 </span>
@@ -71,52 +71,52 @@
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Avisos' | translate }}
         </a>
         <!--
-        <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
-        </a>
-
-        <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Tables' | translate }}
-        </a>
-
-        <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Forms' | translate }}
-        </a>
-
-        <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'Boostrap Element' | translate }}
-        </a>
-
-        <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-wrench"></i>&nbsp;{{ 'Boostrap Grid' | translate }}
-        </a>
-
-        <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;{{ 'Component' | translate }}
-        </a>
-
-        <div class="nested-menu">
-            <a class="list-group-item" (click)="addExpandClass('pages')">
-                <span>
-                    <i class="fa fa-plus"></i>&nbsp; {{ 'Menu Teste' | translate }}</span>
+            <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
             </a>
-            <li class="nested" [class.expand]="showMenu === 'pages'">
-                <ul class="submenu">
-                    <li>
-                        <a routerLink="/company" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'EmpresasTeste' | translate }}
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </div>
-        
-        <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-file-o"></i>&nbsp;{{ 'Blank Page' | translate }}
-        </a>
-        <a class="list-group-item more-themes" href="http://www.strapui.com/">
-            {{ 'More Theme' | translate }}
-        </a>
+
+            <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Tables' | translate }}
+            </a>
+
+            <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Forms' | translate }}
+            </a>
+
+            <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'Boostrap Element' | translate }}
+            </a>
+
+            <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-fw fa-wrench"></i>&nbsp;{{ 'Boostrap Grid' | translate }}
+            </a>
+
+            <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-th-list"></i>&nbsp;{{ 'Component' | translate }}
+            </a>
+
+            <div class="nested-menu">
+                <a class="list-group-item" (click)="addExpandClass('pages')">
+                    <span>
+                        <i class="fa fa-plus"></i>&nbsp; {{ 'Menu Teste' | translate }}</span>
+                </a>
+                <li class="nested" [class.expand]="showMenu === 'pages'">
+                    <ul class="submenu">
+                        <li>
+                            <a routerLink="/company" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                                <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'EmpresasTeste' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+            
+            <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-file-o"></i>&nbsp;{{ 'Blank Page' | translate }}
+            </a>
+            <a class="list-group-item more-themes" href="http://www.strapui.com/">
+                {{ 'More Theme' | translate }}
+            </a>
         -->
     </ul>
 </nav>

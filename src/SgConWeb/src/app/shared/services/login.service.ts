@@ -29,18 +29,14 @@ export class LoginService {
         return this._httpBase.post(url, body, "Login de Usuário");
     }
 
-    // logout() {
-
-    // }
-
-    // getUserMe(userType: string): Observable<User> {
-    //     let url;
+    getUserMe(userType: string): Observable<User> {
+        let url;
         
-    //     if (userType === 'Internal')
-    //         url = this._apiRoute.getApiRouteByAlias('getEmployeeMe');
-    //     else if(userType === 'External')
-    //         url = this._apiRoute.getApiRouteByAlias('getCustomerMe');
+        if (userType === 'Employee')
+            url = this._apiRoute.getApiRouteByAlias('getEmployeeMe');
+        else if(userType === 'Resident')
+            url = this._apiRoute.getApiRouteByAlias('getResidentMe');
 
-    //     return this._httpBase.get(url, "Me");
-    // }
+        return this._httpBase.get(url, "Me");
+    }
 }

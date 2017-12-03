@@ -36,7 +36,7 @@ export class LoginResidentComponent implements OnInit {
       this._loginService.login(this.user, this.routeStr)
           .subscribe(response => {
               this.user.token = response.access_token;
-              this._authService.employeeLogin(this.user);
+              this._authService.residentLogin(this.user);
           }, error => {
               console.log(error);
           });

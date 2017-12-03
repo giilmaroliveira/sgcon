@@ -99,8 +99,8 @@ export class HttpBaseService {
 
     let options: RequestOptions = new RequestOptions();
 
-    // if (useHeaders)
-    // 	options = this.headersWithToken(localStorage.getItem('token'), filters, headers);
+    if (useHeaders)
+    	options = this.headersWithToken(localStorage.getItem('token'), filters, headers);
 
     return this.stopBlockUi(
       this._http

@@ -66,7 +66,7 @@ namespace SgConAPI.Controllers
         public IActionResult GetMeResident([FromHeader] string authorization)
         {
             var resident = _jwtFactory.GetCurrentResidentUser();
-            if (resident == null) { return BadRequest("Funcionário não encontrado"); }
+            if (resident == null) { return BadRequest("Morador não encontrado"); }
             return Ok(resident);
         }
 
