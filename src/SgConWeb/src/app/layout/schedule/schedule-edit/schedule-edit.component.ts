@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-//Models
+// Models
 import { ScheduleModel } from '../../../shared/entities/schedule.model';
 import { CondominiumModel } from '../../../shared/entities/condominium.model';
 import { CommonAreaModel } from '../../../shared/entities/commonarea.model';
 
-//Services
+// Services
 import { CommonAreaService } from '../../../shared/services/commonarea.service';
 
 @Component({
@@ -20,9 +20,10 @@ export class ScheduleEditComponent implements OnInit {
   scheduleModel: ScheduleModel = new ScheduleModel();
 
   listOfTimes = [
-    {key: 1, value: "08:00 11:00"},
-    {key: 2, value: "13:00 16:00"},
-    {key: 3, value: "17:00 18:00"},
+    {key: 1, value: '08:00 11:00'},
+    {key: 2, value: '13:00 16:00'},
+    {key: 3, value: '17:00 18:00'},
+    {key: 4, value: '18:00 22:00'},
   ];
 
   constructor(private _commonAreaService: CommonAreaService) { }

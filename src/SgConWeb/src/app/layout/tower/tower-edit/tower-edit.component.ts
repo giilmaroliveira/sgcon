@@ -46,22 +46,22 @@ export class TowerEditComponent implements OnInit {
     this.getAllCondominium();
   }
 
-    // check ngValidatos
-    applyCss(field: string) {
-      if (this.towerForm.get(field).valid && this.towerForm.get(field).touched) {
-        return {
-          'has-success': this.towerForm.get(field).valid && this.towerForm.get(field).touched,
-          'has-feedback': this.towerForm.get(field).valid && this.towerForm.get(field).touched,
-          'form-control-success': this.towerForm.get(field).valid && this.towerForm.get(field).touched
-        };
-      } else {
-        return {
-          'has-danger': !this.towerForm.get(field).valid && this.towerForm.get(field).touched,
-          'has-feedback': !this.towerForm.get(field).valid && this.towerForm.get(field).touched,
-          'form-control-danger': this.towerForm.get(field).valid && this.towerForm.get(field).touched
-        };
-      }
+  // check ngValidatos
+  applyCss(field: string) {
+    if (this.towerForm.get(field).valid && this.towerForm.get(field).touched) {
+      return {
+        'has-success': this.towerForm.get(field).valid && this.towerForm.get(field).touched,
+        'has-feedback': this.towerForm.get(field).valid && this.towerForm.get(field).touched,
+        'form-control-success': this.towerForm.get(field).valid && this.towerForm.get(field).touched
+      };
+    } else {
+      return {
+        'has-danger': !this.towerForm.get(field).valid && this.towerForm.get(field).touched,
+        'has-feedback': !this.towerForm.get(field).valid && this.towerForm.get(field).touched,
+        'form-control-danger': !this.towerForm.get(field).valid && this.towerForm.get(field).touched
+      };
     }
+  }
 
   setDefaultValuesForm() {
     this.towerForm = this.form.group({

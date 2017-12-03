@@ -123,7 +123,7 @@ export class CondominiumEditComponent implements OnInit {
       dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
       addressId: data.addressId,
-      //address: data.address,
+      // address: data.address,
       cep: data.address.cep,
       street: data.address.street,
       number: data.address.number,
