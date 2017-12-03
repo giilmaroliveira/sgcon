@@ -26,7 +26,9 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Profile = context.Profiles.Find(1),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now,
-                    Address = context.Addresses.Find(5)
+                    Address = context.Addresses.Find(5),
+                    DDDComercialPhone = "11",
+                    ComercialPhone = "12345678"
                 };
                 employees.Add(managerEmployee);
 
@@ -41,7 +43,9 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Profile = context.Profiles.Find(2),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now,
-                    Address = context.Addresses.Find(6)
+                    Address = context.Addresses.Find(6),
+                    DDDComercialPhone = "11",
+                    ComercialPhone = "12346789"
                 };
                 employees.Add(managerAttendant);
 
@@ -56,7 +60,9 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     Profile = context.Profiles.Find(2),
                     CreatedBy = "Sistema",
                     CreatedAt = DateTime.Now,
-                    Address = context.Addresses.Find(7)
+                    Address = context.Addresses.Find(7),
+                    DDDComercialPhone = "11",
+                    ComercialPhone = "12347890"
                 };
                 employees.Add(managerAttendantTwo);
 

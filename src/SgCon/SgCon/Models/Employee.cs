@@ -58,5 +58,11 @@ namespace SgConAPI.Models
         public string ClassType { get => "Funcionario"; }
         public Address Address { get; set; }
         public int AddressId { get; set; }
+        [Required]
+        public string DDDComercialPhone { get; set; }
+        [Required]
+        public string ComercialPhone { get; set; }
+        public string DDDCellPhone { get; set; }
+        public string CellPhone { get; set; }
     }
 }
