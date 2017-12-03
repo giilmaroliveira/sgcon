@@ -1,8 +1,13 @@
-import { CompanyService } from './../../../shared/services/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CompanyModel } from './../../../shared/entities/company.model';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+
+// Services
+import { CompanyService } from './../../../shared/services/company.service';
+
+// Models
+import { CompanyModel } from './../../../shared/entities/company.model';
+import { Address } from '../../../shared/entities/address.model';
 
 @Component({
   selector: 'app-company-edit',
@@ -13,6 +18,7 @@ export class CompanyEditComponent implements OnInit {
 
   public companyForm: FormGroup;
   companyModel: CompanyModel = new CompanyModel();
+  address: Address = new Address();
   companyId: number;
 
   constructor(
@@ -67,6 +73,8 @@ export class CompanyEditComponent implements OnInit {
       comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
       dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],
       cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
+      addressId: 0,
+      address: null,
       street: [null, [Validators.required, Validators.minLength(3)]],
       number: [null, [Validators.required, Validators.minLength(1)]],
       cep: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(9)]],
@@ -126,32 +134,30 @@ export class CompanyEditComponent implements OnInit {
 
   onSubmit() {
 
-    this.companyForm = this.companyForm.value;
-    console.log(this.companyForm.value);
-    // console.log(this.companyModel);
+    this.companyModel.name = this.companyForm.value.name;
+    this.companyModel.cnpj = this.companyForm.value.cnpj;
+    this.companyModel.email = this.companyForm.value.email;
+    this.companyModel.dddComercialPhone = this.companyForm.value.dddComercialPhone;
+    this.companyModel.comercialPhone = this.companyForm.value.comercialPhone;
+    this.companyModel.dddCellPhone = this.companyForm.value.dddCellPhone;
+    this.companyModel.cellPhone = this.companyForm.value.cellPhone;
+
+    // Default value for company address
+    this.address.addressTypeId = 2
+    this.address.cep = this.companyForm.value.cep;
+    this.address.street = this.companyForm.value.street;
+    this.address.number = this.companyForm.value.number;
+    this.address.neighborhood = this.companyForm.value.neighborhood;
+    this.address.city = this.companyForm.value.city;
+    this.address.complement = this.companyForm.value.complement;
+    this.address.uf = this.companyForm.value.uf;
+
+    this.companyModel.address = this.address;
 
     if (!this.companyId) {
-      this._companyService.postCompany(this.companyModel)
-        .subscribe(response => {
-          this.companyModel = response;
-          // message success
-          alert('Dados salvos com sucesso!');
-          // reset dataForm
-          this.companyForm.reset();
-          // Voltar para listagem
-          this._router.navigate(['condominium/condominiumList']);
-        }, error => {
-          console.log(error);
-        });
+      this.postCompany();
     } else {
-      this._companyService.updateCompany(this.companyModel, this.companyId)
-        .subscribe(response => {
-          this.companyModel = response;
-          alert('Dados atualizados com sucesso');
-          this._router.navigate(['condominium/condominiumList']);
-        }, error => {
-          console.log(error);
-        });
+      this.updateCompany();
     }
   }
 
@@ -160,6 +166,7 @@ export class CompanyEditComponent implements OnInit {
     this._companyService.getCompanyById(id)
       .subscribe(response => {
         this.companyModel = response;
+        this.address = response.address;
         this.populateForm(this.companyModel);
       }, error => {
         console.log(error);
@@ -171,7 +178,8 @@ export class CompanyEditComponent implements OnInit {
     this._companyService.updateCompany(this.companyModel, this.companyId)
       .subscribe(response => {
         this.companyModel = response;
-        console.log(response);
+        alert('Dados atualizados com sucesso');
+        this._router.navigate(['company/companyList']);
       }, error => {
         console.log(error);
       });
@@ -192,7 +200,13 @@ export class CompanyEditComponent implements OnInit {
 
     this._companyService.postCompany(this.companyModel)
       .subscribe(response => {
-        console.log(response);
+        this.companyModel = response;
+        // message success
+        alert('Dados salvos com sucesso!');
+        // reset dataForm
+        this.companyForm.reset();
+        // Voltar para listagem
+        this._router.navigate(['company/companyList']);
       }, error => {
         console.log(error);
       });

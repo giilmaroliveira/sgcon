@@ -3,6 +3,7 @@ import { BaseModel } from './base.model';
 export class Address extends BaseModel {
 
     addressTypeId: number;
+    id: number;
     cep: string;
     street: string;
     number: number;

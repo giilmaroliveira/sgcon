@@ -14,7 +14,9 @@ namespace SgConAPI.Repository
     internal class CompanyRepository : BaseDataService<Company>, ICompanyRepository
     {
         private readonly IAddressRepository _addressRepository;
-        public CompanyRepository(SgConContext context, IAddressRepository addressRepository) : base(context)
+        public CompanyRepository(
+            SgConContext context, 
+            IAddressRepository addressRepository) : base(context)
         {
             _addressRepository = addressRepository;
         }
