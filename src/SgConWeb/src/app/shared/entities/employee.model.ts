@@ -1,5 +1,6 @@
 import { BaseModel } from './base.model';
 import { Address } from './address.model';
+import { Profile } from './profile.model';
 
 export class EmployeeModel extends BaseModel {
     name: string;
@@ -18,4 +19,11 @@ export class EmployeeModel extends BaseModel {
     uf: string;
     addressId: number;
     address: Address;
+
+    profile: Profile;
+    profileId: number;
+    userName: string;
+    passWord: string;
+    jobRole: string;
+    
 }

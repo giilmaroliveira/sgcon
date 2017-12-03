@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Http } from '@angular/http';
@@ -9,6 +9,8 @@ import { EmployeeService } from '../../../shared/services/employee.service';
 
 // models
 import { EmployeeModel } from '../../../shared/entities/employee.model';
+import { Profile } from '../../../shared/entities/profile.model';
+import { Address } from '../../../shared/entities/address.model';
 
 @Component({
   selector: 'app-employee-edit',
@@ -20,11 +22,14 @@ export class EmployeeEditComponent implements OnInit {
   public employeeForm: FormGroup;
   employeeModel: EmployeeModel = new EmployeeModel();
   employeeId: number;
+  address: Address = new Address();
+  profile: Profile = new Profile();
 
   constructor(
     private form: FormBuilder,
     private _employeeService: EmployeeService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -78,7 +83,11 @@ export class EmployeeEditComponent implements OnInit {
       complement: [null],
       neighborhood: [null, [Validators.required, Validators.minLength(2)]],
       city: [null, [Validators.required, Validators.minLength(2)]],
-      uf: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]]
+      uf: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+      userName: [null, [Validators.required, Validators.minLength(3)]],
+      passWord: [null, [Validators.required, Validators.minLength(3)]],
+      jobRole: [null, [Validators.required, Validators.minLength(3)]],
+      profileId: 2
     });
   }
 
@@ -116,7 +125,6 @@ export class EmployeeEditComponent implements OnInit {
       comercialPhone: data.comercialPhone,
       dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
-      // address: data.address,
       addressId: data.addressId,
       cep: data.address.cep,
       street: data.address.street,
@@ -125,35 +133,40 @@ export class EmployeeEditComponent implements OnInit {
       city: data.address.city,
       complement: data.address.complement,
       uf: data.address.uf,
+      userName: data.userName,
+      passWord: data.passWord,
+      jobRole: data.jobRole,
+      profileId: data.profileId
     });
 
   }
 
   onSubmit() {
 
-    this.employeeModel = this.employeeForm.value;
+    this.employeeModel.name = this.employeeForm.value.name;
+    this.employeeModel.email = this.employeeForm.value.email;
+    this.employeeModel.dddComercialPhone = this.employeeForm.value.dddComercialPhone;
+    this.employeeModel.comercialPhone = this.employeeForm.value.comercialPhone;
+    this.employeeModel.dddCellPhone = this.employeeForm.value.dddCellPhone;
+    this.employeeModel.cellPhone = this.employeeForm.value.cellPhone;
 
-    console.log(this.employeeModel);
+    // Default value for condominium address
+    this.address.addressTypeId = 3;
+    this.address.cep = this.employeeForm.value.cep;
+    this.address.street = this.employeeForm.value.street;
+    this.address.number = this.employeeForm.value.number;
+    this.address.neighborhood = this.employeeForm.value.neighborhood;
+    this.address.city = this.employeeForm.value.city;
+    this.address.complement = this.employeeForm.value.complement;
+    this.address.uf = this.employeeForm.value.uf;
+
+    this.employeeModel.address = this.address;
+    this.profile = this.profile;
 
     if (!this.employeeId) {
-      this._employeeService.postEmployee(this.employeeModel)
-        .subscribe(response => {
-          this.employeeModel = response;
-          // message success
-          alert('Dados salvos com sucesso!');
-          // reset dataForm
-          this.employeeForm.reset();
-        }, error => {
-          console.log(error);
-        });
+      this.postEmployee();
     } else {
-      this._employeeService.updateEmployee(this.employeeModel, this.employeeId)
-        .subscribe(response => {
-          this.employeeModel = response;
-          alert('Dados atualizados com sucesso');
-        }, error => {
-          console.log(error);
-        });
+      this.updateEmployee();
     }
   }
 
@@ -162,8 +175,24 @@ export class EmployeeEditComponent implements OnInit {
     this._employeeService.getEmployeeById(id)
       .subscribe(response => {
         this.employeeModel = response;
-        console.log(response);
+        this.address = response.address;
+        this.profile = response.profile;
         this.populateForm(this.employeeModel);
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  postEmployee() {
+
+    this._employeeService.postEmployee(this.employeeModel)
+      .subscribe(response => {
+        this.employeeModel = response;
+        // message success
+        alert('Dados salvos com sucesso!');
+
+        // Voltar para a listagem
+        this._router.navigate(['employee/employeeList']);
       }, error => {
         console.log(error);
       });
@@ -174,7 +203,10 @@ export class EmployeeEditComponent implements OnInit {
     this._employeeService.updateEmployee(this.employeeModel, this.employeeId)
       .subscribe(response => {
         this.employeeModel = response;
-        console.log(response);
+        alert('Dados atualizados com sucesso');
+
+        // Voltar para a listagem
+        this._router.navigate(['employee/employeeList']);
       }, error => {
         console.log(error);
       });
@@ -184,16 +216,6 @@ export class EmployeeEditComponent implements OnInit {
   deleteEmployee() {
 
     this._employeeService.deleteEmployee(this.employeeId)
-      .subscribe(response => {
-        console.log(response);
-      }, error => {
-        console.log(error);
-      });
-  }
-
-  postEmployee() {
-
-    this._employeeService.postEmployee(this.employeeModel)
       .subscribe(response => {
         console.log(response);
       }, error => {

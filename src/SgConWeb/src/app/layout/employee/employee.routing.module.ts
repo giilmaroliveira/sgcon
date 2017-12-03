@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: '', component: EmployeeComponent,
   children: [
     { path: 'employeeList', component: EmployeeListComponent },
-    { path: 'employeeEdit', component: EmployeeEditComponent }
+    { path: 'employeeEdit', component: EmployeeEditComponent },
+    { path: 'employeeEdit/:id', component: EmployeeEditComponent },
   ]},
 ];
 
