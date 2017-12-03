@@ -12,7 +12,7 @@ import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
 import { ScheduleComponent } from './schedule.component';
 
-//services
+// services
 import { CommonAreaService } from '../../shared/services/commonarea.service';
 
 @NgModule({

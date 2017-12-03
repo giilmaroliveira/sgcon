@@ -1,4 +1,5 @@
 import { BaseModel } from './base.model';
+import { Address } from './address.model';
 
 export class EmployeeModel extends BaseModel {
     name: string;
@@ -15,4 +16,6 @@ export class EmployeeModel extends BaseModel {
     neighborhood: string;
     city: string;
     uf: string;
+    addressId: number;
+    address: Address;
 }

@@ -27,8 +27,7 @@
 </div> -->
 
 <div class="container">
-
-    <fieldset>
+    <fieldset style="margin-top: 10px" >
         <legend>Reserva</legend>
         <div class="col-sm-12" >
             <div class="row col-sm-4">
@@ -57,10 +56,8 @@
                     <option *ngFor="let time of listOfTimes" value="{{ time.key }}">{{ time.value }}</option>
                 </select>
             </div>
+            <br>
+            <button class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2" (click)="onSumit()">Cadastrar</button>
         </div>
     </fieldset>
-    <br>
-    <div>
-        <button class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2" (click)="onSumit()">Cadastrar</button>
-    </div>
 </div>

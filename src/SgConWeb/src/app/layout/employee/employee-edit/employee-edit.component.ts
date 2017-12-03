@@ -116,13 +116,15 @@ export class EmployeeEditComponent implements OnInit {
       comercialPhone: data.comercialPhone,
       dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
-      cep: data.cep,
-      street: data.street,
-      number: data.number,
-      neighborhood: data.neighborhood,
-      city: data.city,
-      complement: data.complement,
-      uf: data.uf
+      // address: data.address,
+      addressId: data.addressId,
+      cep: data.address.cep,
+      street: data.address.street,
+      number: data.address.number,
+      neighborhood: data.address.neighborhood,
+      city: data.address.city,
+      complement: data.address.complement,
+      uf: data.address.uf,
     });
 
   }

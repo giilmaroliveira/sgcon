@@ -75,6 +75,7 @@ export class CondominiumEditComponent implements OnInit {
       comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
       dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],
       cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
+      towerNumber: [null, [Validators.required]],
       addressId: 0,
       address: null,
       street: [null, [Validators.required, Validators.minLength(3)]],
@@ -84,7 +85,6 @@ export class CondominiumEditComponent implements OnInit {
       neighborhood: [null, [Validators.required, Validators.minLength(2)]],
       city: [null, [Validators.required, Validators.minLength(2)]],
       uf: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-      towerNumber: [null, [Validators.required]]
     });
   }
 
@@ -122,8 +122,9 @@ export class CondominiumEditComponent implements OnInit {
       comercialPhone: data.comercialPhone,
       dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
-      addressId: data.addressId,
+      towerNumber: data.towerNumber,
       // address: data.address,
+      addressId: data.addressId,
       cep: data.address.cep,
       street: data.address.street,
       number: data.address.number,
@@ -131,7 +132,6 @@ export class CondominiumEditComponent implements OnInit {
       city: data.address.city,
       complement: data.address.complement,
       uf: data.address.uf,
-      towerNumber: data.towerNumber
     });
 
   }
@@ -147,7 +147,7 @@ export class CondominiumEditComponent implements OnInit {
     this.condominiumModel.cellPhone = this.condominiumForm.value.cellPhone;
     this.condominiumModel.towerNumber = this.condominiumForm.value.towerNumber;
 
-    //Default value for condominium address
+    // Default value for condominium address
     this.address.addressTypeId = 1
     this.address.cep = this.condominiumForm.value.cep;
     this.address.street = this.condominiumForm.value.street;
@@ -158,7 +158,7 @@ export class CondominiumEditComponent implements OnInit {
     this.address.uf = this.condominiumForm.value.uf;
 
     this.condominiumModel.address = this.address;
-    
+
     if (!this.condominiumId) {
       this._condominiumService.postCondominium(this.condominiumModel)
         .subscribe(response => {
@@ -182,7 +182,7 @@ export class CondominiumEditComponent implements OnInit {
           console.log(error);
         });
     }
-    
+
   }
 
   getCondominium(id) {
