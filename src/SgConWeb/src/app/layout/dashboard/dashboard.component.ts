@@ -13,17 +13,21 @@ export class DashboardComponent implements OnInit {
 
     constructor() {
         this.sliders.push({
-            imagePath: 'assets/images/slider1.jpg',
-            label: 'First slide label',
-            text: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+            imagePath: 'assets/images/areasComuns.jpg',
+            label: 'Áreas de Lazer',
+            text: 'Lazer completo para toda a família.'
         }, {
-            imagePath: 'assets/images/slider2.jpg',
-            label: 'Second slide label',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            imagePath: 'assets/images/salaoDeFestas.jpg',
+            label: 'Salão de Festas',
+            text: 'Para comemorar as suas datas epeciais.'
         }, {
-            imagePath: 'assets/images/slider3.jpg',
-            label: 'Third slide label',
-            text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+            imagePath: 'assets/images/churrasqueira.jpg',
+            label: 'Churrasqueiras',
+            text: 'Um lugar para chamar os amigos.'
+        }, {
+            imagePath: 'assets/images/piscina.jpg',
+            label: 'Piscina',
+            text: 'Para curtir o melhor que o verão tem.'
         });
 
         this.alerts.push({
