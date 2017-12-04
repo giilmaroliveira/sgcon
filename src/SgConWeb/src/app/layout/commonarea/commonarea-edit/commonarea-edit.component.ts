@@ -64,6 +64,12 @@ export class CommonareaEditComponent implements OnInit {
 
   setDefaultValuesForm() {
     this.commonAreaForm = this.form.group({
+      id: 0,
+      active: true,
+      createdAt: Date.now,
+      updatedAt: Date.now,
+      createdBy: null,
+      updatedBy: null,
       name: [null, [Validators.required, Validators.minLength(3)]],
       description: [null, [Validators.required, Validators.minLength(1)]],
       condominiumId: [null, [Validators.required]],
@@ -73,7 +79,12 @@ export class CommonareaEditComponent implements OnInit {
 
   populateForm(data: CommonAreaModel) {
     this.commonAreaForm.patchValue({
-
+      id: data.id,
+      active: data.active,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      createdBy: data.createdBy,
+      updatedBy: data.updatedBy,
       name: data.name,
       description: data.description,
       condominiumId: data.condominiumId,
@@ -84,30 +95,10 @@ export class CommonareaEditComponent implements OnInit {
 
   onSubmit() {
     this.commonareaModel = this.commonAreaForm.value;
-
     if (!this.commonareaId) {
-      this._commonareaService.postCommonarea(this.commonareaModel).subscribe(
-        response => {
-          this.commonareaModel = response;
-          // message success
-          alert('Dados salvos com sucesso!');
-          // reset dataForm
-          this.commonAreaForm.reset();
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.postCommonarea();
     } else {
-      this._commonareaService.updateCommonarea(this.commonareaModel, this.commonareaId).subscribe(
-        response => {
-          this.commonareaModel = response;
-          alert('Dados atualizados com sucesso');
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      this.updateCommonarea();
     }
   }
 

@@ -54,4 +54,11 @@ export class ApartmentService {
 
         return this._httpBase.get(url, 'Apartamento');
     }
+
+    getCondominiumById(id: number): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('getCondomiumById') + id;
+
+        return this._httpBase.get(url, 'Condomínio');
+    }
 }

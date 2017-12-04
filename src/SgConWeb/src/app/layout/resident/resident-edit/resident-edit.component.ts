@@ -216,7 +216,7 @@ export class ResidentEditComponent implements OnInit {
   }
 
   getApartmentsByTowerId() {
-    
+
     this._apartmentService.getApartmentTowerId(this.residentForm.value.towerId)
       .subscribe(response => {
         this.listOfApartment = response;

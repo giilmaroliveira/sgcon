@@ -1,6 +1,7 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 // modules
@@ -19,12 +20,13 @@ import { TowerService } from '../../../shared/services/tower.service';
   styleUrls: ['./apartment-edit.component.scss']
 })
 export class ApartmentEditComponent implements OnInit {
-  [x: string]: any;
 
   public apartmentForm: FormGroup;
   apartmentModel: ApartmentModel = new ApartmentModel();
   listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
   listOfTower: TowerModel[] = new Array<TowerModel>();
+
+  apartmentId: number;
 
   constructor(
     private form: FormBuilder,
@@ -67,6 +69,12 @@ export class ApartmentEditComponent implements OnInit {
 
   setDefaultValuesForm() {
     this.apartmentForm = this.form.group({
+      id: 0,
+      active: true,
+      createdAt: Date.now,
+      updatedAt: Date.now,
+      createdBy: null,
+      updatedBy: null,
       number: [null, [Validators.required, Validators.minLength(1)]],
       floor: [null, [Validators.required, Validators.minLength(1)]],
       towerId: [null, [Validators.required]],
@@ -76,6 +84,12 @@ export class ApartmentEditComponent implements OnInit {
 
   populateForm(data: ApartmentModel) {
     this.apartmentForm.patchValue({
+      id: data.id,
+      active: data.active,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      createdBy: data.createdBy,
+      updatedBy: data.updatedBy,
       number: data.number,
       floor: data.floor,
       towerId: data.towerId,
@@ -147,7 +161,6 @@ export class ApartmentEditComponent implements OnInit {
   }
 
   getAllCondominium() {
-
     this._condominiumService.getAllCondominium()
       .subscribe(response => {
         this.listOfCondominium = response;
@@ -157,15 +170,23 @@ export class ApartmentEditComponent implements OnInit {
   }
 
   getTowerByCondominiumId() {
-
-    let condominiumId = this.apartmentForm.value.condominiumId;
-
-    this._towerService.getTowerCondominiumId(condominiumId)
+    const towerId = this.apartmentForm.value.towerId;
+    this._towerService.getTowerCondominiumId(towerId)
       .subscribe(response => {
         this.listOfTower = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
-
+  /*
+  getCondominiumById() {
+    const condominiumId = this.apartmentForm.value.condominiumId;
+    this._condominiumService.getCondominiumById(condominiumId)
+      .subscribe(response => {
+        this.listOfCondominium = response;
+      }, error => {
+        console.log(error);
+    });
+  }
+  */
 }

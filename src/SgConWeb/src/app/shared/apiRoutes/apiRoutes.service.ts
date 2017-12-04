@@ -62,6 +62,7 @@ export class ApiRoutesService {
         { alias: 'postApartment', verb: 'post', path: '/api/apartment/' },
         { alias: 'updateApartment', verb: 'put', path: '/api/apartment/' },
         { alias: 'deleteApartment', verb: 'delete', path: '/api/Apartment/' },
+        { alias: 'getApartmentByCondominiumId', verb: 'get', path: '/api/apartment/condominium/' },
         { alias: 'getApartmentByTowerId', verb: 'get', path: '/api/apartment/tower/' },
 
         // login

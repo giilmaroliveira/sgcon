@@ -32,7 +32,6 @@
               <thead>
                   <tr>
                       <th class="col-sm-1">Número</th>
-                      <th class="col-sm-4">Prédio</th>
                       <th class="col-sm-1">Andar</th>
                       <th></th>
                   </tr>
@@ -41,7 +40,6 @@
               <tbody>
                   <tr  *ngFor="let apartment of listOfApartment">
                       <td>{{ apartment.number }}</td>
-                      <td>{{ apartment.tower.block }}</td>
                       <td>{{ apartment.floor }}</td>
                       <td>
                           <a class="btn btn-outline-warning my-2 my-sm-0" href="#" role="button" 

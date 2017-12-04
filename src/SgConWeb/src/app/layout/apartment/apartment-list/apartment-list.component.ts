@@ -33,6 +33,15 @@ export class ApartmentListComponent implements OnInit {
     this.getAllCondominium();
   }
 
+  getAllApartment() {
+    this._apartmentService.getAllApartment().subscribe(
+      response => {
+        this.listOfApartment = response;
+      }, error => {
+        console.log(error);
+      });
+  }
+
   getAllCondominium() {
     this._condominiumService.getAllCondominium().subscribe(
       response => {
@@ -42,6 +51,25 @@ export class ApartmentListComponent implements OnInit {
       });
   }
 
+  getAllTower() {
+    this._towerService.getAllTower().subscribe(
+      response => {
+        this.listOfTower = response;
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  getCondominiumById() {
+
+    this._condominiumService.getCondominiumById(this.condominiumId)
+      .subscribe(response => {
+        this.listOfCondominium = response;
+      }, error => {
+        console.log(error);
+    });
+  }
+
   getTowerByCondominiumId() {
 
     this._towerService.getTowerCondominiumId(this.condominiumId)
@@ -49,7 +77,7 @@ export class ApartmentListComponent implements OnInit {
         this.listOfTower = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   getApartmentByTowerId() {

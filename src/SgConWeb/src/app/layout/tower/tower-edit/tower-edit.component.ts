@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { ActivatedRoute, Router } from '@angular/router';
 
 // models
 import { TowerModel } from '../../../shared/entities/tower.model';
@@ -23,7 +23,6 @@ export class TowerEditComponent implements OnInit {
   towerModel: TowerModel = new TowerModel();
   listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
 
-  // towerId: number;
   towerId: number;
 
   constructor(
