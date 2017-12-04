@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler, Input, LOCALE_ID } from '@angular/core';
+import { NgModule, ErrorHandler, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,7 +46,6 @@ export function HttpLoaderFactory(http: Http) {
         ApiRoutesService,
         HttpBaseService,
         { provide: ErrorHandler, useClass: AppErrorHandler },
-        { provide: LOCALE_ID, useValue: 'pt-Br' },
         DialogService
     ],
     bootstrap: [AppComponent]

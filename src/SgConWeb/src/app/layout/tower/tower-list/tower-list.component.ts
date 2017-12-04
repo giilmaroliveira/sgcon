@@ -28,30 +28,30 @@ export class TowerListComponent implements OnInit {
   }
 
   getAllTower() {
-    this._towerService.getAllTower().subscribe(
-      response => {
+    this._towerService.getAllTower()
+      .subscribe( response => {
         this.towerList = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   getAllCondominium() {
-    this._condominiumService.getAllCondominium().subscribe(
-      response => {
+    this._condominiumService.getAllCondominium()
+      .subscribe( response => {
         this.listOfCondominium = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   getTowerByCondominiumId() {
 
-    this._towerService.getTowerCondominiumId(this.condominiumId)
+    this._towerService.getTowerByCondominiumId(this.condominiumId)
       .subscribe(response => {
         this.towerList = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 }

@@ -10,4 +10,7 @@ export class ResidentModel extends BaseModel {
     cellPhone: string;
     userName: string;
     passWord: string;
+    condominiumId: number;
+    towerId: number;
+    apartmentId: number;
 }

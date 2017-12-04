@@ -27,6 +27,7 @@
     "@ngx-translate/http-loader": "^0.1.0",
     "core-js": "^2.5.1",
     "font-awesome": "^4.7.0",
+    "intl": "^1.2.5",
     "ng-block-ui": "^1.0.0-beta.15",
     "ng2-bootstrap-modal": "^1.0.1",
     "ng2-charts": "^1.6.0",

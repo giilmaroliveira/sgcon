@@ -1,3 +1,5 @@
+import { DatePipe } from '@angular/common';
+import { NgbDatepicker, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 
 // Models
@@ -14,8 +16,6 @@ import { CommonAreaService } from '../../../shared/services/commonarea.service';
   styleUrls: ['./schedule-edit.component.scss']
 })
 export class ScheduleEditComponent implements OnInit {
-
-  date: Date;
   listOfCommonArea: CommonAreaModel[] = new Array<CommonAreaModel>();
   scheduleModel: ScheduleModel = new ScheduleModel();
 
@@ -28,16 +28,12 @@ export class ScheduleEditComponent implements OnInit {
 
   constructor(private _commonAreaService: CommonAreaService) { }
 
-  teste() {
-    console.log(this.date);
-  }
-
   ngOnInit() {
     this.getCommonAreaByCondominiumId();
   }
 
   getCommonAreaByCondominiumId() {
-    let id: number = 1;
+    const id: number = 1;
 
     this._commonAreaService.getCommonareaCondominiumId(id)
       .subscribe(response => {

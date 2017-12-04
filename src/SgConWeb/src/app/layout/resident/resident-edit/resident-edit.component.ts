@@ -42,7 +42,6 @@ export class ResidentEditComponent implements OnInit {
   ngOnInit() {
     this.setDefaultValuesForm();
 
-    this.getAllCondominium();
     this._route.params.subscribe(params => {
 
       if (params['id']) {
@@ -51,6 +50,7 @@ export class ResidentEditComponent implements OnInit {
       }
     });
 
+    this.getAllCondominium();
   }
   // check ngValidatos
   applyCss(field: string) {
@@ -87,9 +87,9 @@ export class ResidentEditComponent implements OnInit {
       cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
       userName: [null, [Validators.required, Validators.minLength(4)]],
       password: [null, [Validators.required, Validators.minLength(4)]],
-      condominiumId: null,
-      towerId: null,
-      apartmentId: null
+      condominiumId: [null, [Validators.required]],
+      towerId: [null, [Validators.required]],
+      apartmentId: [null, [Validators.required]],
     });
   }
 
@@ -129,6 +129,10 @@ export class ResidentEditComponent implements OnInit {
       cellPhone: data.cellPhone,
       userName: data.userName,
       password: data.passWord,
+      condominiumId: data.condominiumId,
+      towerId: data.towerId,
+      apartmentId: data.apartmentId,
+
     });
 
   }
@@ -153,7 +157,7 @@ export class ResidentEditComponent implements OnInit {
         this.populateForm(this.residentModel);
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   updateResident() {
@@ -165,7 +169,7 @@ export class ResidentEditComponent implements OnInit {
         this._router.navigate(['resident/residentList']);
       }, error => {
         console.log(error);
-      });
+    });
 
   }
 
@@ -176,7 +180,7 @@ export class ResidentEditComponent implements OnInit {
         console.log(response);
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   postResident() {
@@ -192,7 +196,7 @@ export class ResidentEditComponent implements OnInit {
         this._router.navigate(['resident/residentList']);
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   getAllCondominium() {
@@ -202,17 +206,17 @@ export class ResidentEditComponent implements OnInit {
         this.listOfCondominium = response;
       }, error => {
         console.log(error);
-      })
+    })
   }
 
   getTowerByCondominiumId() {
 
-    this._towerService.getTowerCondominiumId(this.residentForm.value.condominiumId)
+    this._towerService.getTowerByCondominiumId(this.residentForm.value.condominiumId)
       .subscribe(response => {
         this.listOfTower = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   getApartmentsByTowerId() {
@@ -220,6 +224,6 @@ export class ResidentEditComponent implements OnInit {
     this._apartmentService.getApartmentTowerId(this.residentForm.value.towerId)
       .subscribe(response => {
         this.listOfApartment = response;
-      }, error => console.log(error));
+    }, error => console.log(error));
   }
 }

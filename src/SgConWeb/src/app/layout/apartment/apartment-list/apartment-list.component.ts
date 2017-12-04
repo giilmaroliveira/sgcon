@@ -34,30 +34,30 @@ export class ApartmentListComponent implements OnInit {
   }
 
   getAllApartment() {
-    this._apartmentService.getAllApartment().subscribe(
-      response => {
+    this._apartmentService.getAllApartment()
+      .subscribe( response => {
         this.listOfApartment = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   getAllCondominium() {
-    this._condominiumService.getAllCondominium().subscribe(
-      response => {
+    this._condominiumService.getAllCondominium()
+      .subscribe( response => {
         this.listOfCondominium = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   getAllTower() {
-    this._towerService.getAllTower().subscribe(
-      response => {
+    this._towerService.getAllTower()
+      .subscribe( response => {
         this.listOfTower = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   getCondominiumById() {
@@ -72,7 +72,7 @@ export class ApartmentListComponent implements OnInit {
 
   getTowerByCondominiumId() {
 
-    this._towerService.getTowerCondominiumId(this.condominiumId)
+    this._towerService.getTowerByCondominiumId(this.condominiumId)
       .subscribe(response => {
         this.listOfTower = response;
       }, error => {
@@ -81,13 +81,13 @@ export class ApartmentListComponent implements OnInit {
   }
 
   getApartmentByTowerId() {
-    console.log('busca apartamentos');
+    console.log('busca apartamentos towerId');
     this._apartmentService.getApartmentTowerId(this.towerId)
-    .subscribe(response => {
-      this.listOfApartment = response;
-      console.log(response);
-    }, error => {
-      console.log(error);
+      .subscribe(response => {
+        this.listOfApartment = response;
+        console.log(response);
+      }, error => {
+        console.log(error);
     });
   }
 }

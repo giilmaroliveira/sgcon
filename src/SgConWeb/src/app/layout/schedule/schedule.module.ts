@@ -1,10 +1,7 @@
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { LOCALE_ID } from '@angular/core';
-
-// routs
 import { ScheduleRoutingModule } from './schedule.routing.module';
 
 // components
@@ -27,11 +24,11 @@ import { CommonAreaService } from '../../shared/services/commonarea.service';
     declarations: [
         ScheduleComponent,
         ScheduleEditComponent,
-        ScheduleListComponent
+        ScheduleListComponent,
     ],
     providers: [
         CommonAreaService,
-        {provide: LOCALE_ID, useValue: 'pt-BR'}
+        { provide: LOCALE_ID, useValue: 'pt-Br' },
     ],
 })
 export class ScheduleModule { }

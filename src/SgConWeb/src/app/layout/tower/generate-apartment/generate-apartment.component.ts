@@ -58,6 +58,12 @@ export class GenerateApartmentComponent implements OnInit {
 
   setDefaultValuesForm() {
     this.generateForm = this.form.group({
+      id: 0,
+      active: true,
+      createdAt: Date.now,
+      updatedAt: Date.now,
+      createdBy: null,
+      updatedBy: null,
       condominiumId: [null, [Validators.required]],
       towerId: [null, [Validators.required]],
       quantityByFloor: [null, [Validators.required]],
@@ -72,19 +78,19 @@ export class GenerateApartmentComponent implements OnInit {
         this.listOfCondominium = response;
       }, error => {
         console.log(error);
-      })
+    })
   }
 
   getTowerByCondominiumId() {
 
-    let condominiumId = this.generateForm.value.condominiumId;
+    const condominiumId = this.generateForm.value.condominiumId;
 
-    this._towerService.getTowerCondominiumId(condominiumId)
+    this._towerService.getTowerByCondominiumId(condominiumId)
       .subscribe(response => {
         this.listOfTower = response;
       }, error => {
         console.log(error);
-      });
+    });
   }
 
   onSubmit() {

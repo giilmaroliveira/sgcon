@@ -102,8 +102,8 @@ export class TowerEditComponent implements OnInit {
   }
 
   getTower(id) {
-    this._towerService.getTowerById(id).subscribe(
-      response => {
+    this._towerService.getTowerById(id)
+      .subscribe( response => {
         this.towerModel = response;
         this.populateForm(this.towerModel);
       },
@@ -114,8 +114,8 @@ export class TowerEditComponent implements OnInit {
   }
 
   updateTower() {
-    this._towerService.updateTower(this.towerModel, this.towerId).subscribe(
-      response => {
+    this._towerService.updateTower(this.towerModel, this.towerId)
+      .subscribe( response => {
         this.towerModel = response;
         alert('Dados atualizados com sucesso');
         this._router.navigate(['tower/towerList']);
@@ -138,8 +138,8 @@ export class TowerEditComponent implements OnInit {
   }
 
   postTower() {
-    this._towerService.postTower(this.towerModel).subscribe(
-      response => {
+    this._towerService.postTower(this.towerModel)
+      .subscribe( response => {
         this.towerModel = response;
         // message success
         alert('Dados salvos com sucesso!');

@@ -48,7 +48,7 @@ export class TowerService {
         return this._httpBase.delete(url, 'Torre');
     }
 
-    getTowerCondominiumId(id: number): Observable<any> {
+    getTowerByCondominiumId(id: number): Observable<any> {
 
         let url = this._apiRoute.getApiRouteByAlias('getTowerByCondominiumId') + id;
 

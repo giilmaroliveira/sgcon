@@ -120,10 +120,12 @@ export class ApartmentEditComponent implements OnInit {
   }
 
   updateApartment() {
-    this._apartmentService.updateApartment(this.apartmentModel, this.apartmentId).subscribe(
-      response => {
+    this._apartmentService.updateApartment(this.apartmentModel, this.apartmentId)
+      .subscribe( response => {
         this.apartmentModel = response;
         alert('Dados atualizados com sucesso');
+        console.log(response);
+
         // Voltar página
         this._router.navigate(['apartment/apartmentList']);
       },
@@ -145,6 +147,7 @@ export class ApartmentEditComponent implements OnInit {
   }
 
   postApartment() {
+
     this._apartmentService.postApartment(this.apartmentModel).subscribe(
       response => {
         this.apartmentModel = response;
@@ -161,6 +164,7 @@ export class ApartmentEditComponent implements OnInit {
   }
 
   getAllCondominium() {
+
     this._condominiumService.getAllCondominium()
       .subscribe(response => {
         this.listOfCondominium = response;
@@ -170,23 +174,12 @@ export class ApartmentEditComponent implements OnInit {
   }
 
   getTowerByCondominiumId() {
-    const towerId = this.apartmentForm.value.towerId;
-    this._towerService.getTowerCondominiumId(towerId)
+
+    this._towerService.getTowerByCondominiumId(this.apartmentForm.value.condominiumId)
       .subscribe(response => {
         this.listOfTower = response;
       }, error => {
         console.log(error);
     });
   }
-  /*
-  getCondominiumById() {
-    const condominiumId = this.apartmentForm.value.condominiumId;
-    this._condominiumService.getCondominiumById(condominiumId)
-      .subscribe(response => {
-        this.listOfCondominium = response;
-      }, error => {
-        console.log(error);
-    });
-  }
-  */
 }
