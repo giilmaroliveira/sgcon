@@ -8,6 +8,9 @@ import { ResidentRoutingModule } from './resident.routing.module';
 
 // services
 import { ResidentService } from './../../shared/services/resident.service';
+import { TowerService } from './../../shared/services/tower.service';
+import { CondominiumService } from './../../shared/services/condominium.service';
+import { ApartmentService } from './../../shared/services/apartment.service';
 
 // components
 import { ResidentComponent } from './resident.component';
@@ -29,7 +32,10 @@ import { ResidentEditComponent } from './resident-edit/resident-edit.component';
         ResidentListComponent
     ],
     providers: [
-        ResidentService
+        ResidentService,
+        TowerService,
+        CondominiumService,
+        ApartmentService
     ]
 })
 export class ResidentModule { }

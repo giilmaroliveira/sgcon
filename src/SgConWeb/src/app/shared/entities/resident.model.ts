@@ -9,5 +9,5 @@ export class ResidentModel extends BaseModel {
     dddCellPhone: string;
     cellPhone: string;
     userName: string;
-    password: string;
+    passWord: string;
 }

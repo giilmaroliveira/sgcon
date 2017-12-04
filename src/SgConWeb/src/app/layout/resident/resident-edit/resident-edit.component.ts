@@ -1,10 +1,18 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 // service
 import { ResidentService } from './../../../shared/services/resident.service';
+import { TowerService } from '../../../shared/services/tower.service';
+import { CondominiumService } from '../../../shared/services/condominium.service';
+import { ApartmentService } from '../../../shared/services/apartment.service';
+
 // models
 import { ResidentModel } from './../../../shared/entities/resident.model';
+import { TowerModel } from '../../../shared/entities/tower.model';
+import { CondominiumModel } from '../../../shared/entities/condominium.model';
+import { ApartmentModel } from '../../../shared/entities/apartment.model';
 
 @Component({
   selector: 'app-resident-edit',
@@ -17,15 +25,24 @@ export class ResidentEditComponent implements OnInit {
   residentModel: ResidentModel = new ResidentModel();
   residentId: number;
 
+  listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
+  listOfTower: TowerModel[] = new Array<TowerModel>();
+  listOfApartment: ApartmentModel[] = new Array<ApartmentModel>();
+
   constructor(
-    private form: FormBuilder,
     private _residentService: ResidentService,
-    private _route: ActivatedRoute
+    private _towerService: TowerService,
+    private _condominiumService: CondominiumService,
+    private _apartmentService: ApartmentService,
+    private form: FormBuilder,
+    private _route: ActivatedRoute,
+    private _router: Router
   ) { }
 
   ngOnInit() {
     this.setDefaultValuesForm();
 
+    this.getAllCondominium();
     this._route.params.subscribe(params => {
 
       if (params['id']) {
@@ -63,13 +80,16 @@ export class ResidentEditComponent implements OnInit {
       updatedBy: null,
       name: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.email, Validators.required]],
-      cpf: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(9)]],
+      cpf: [null, [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
       dddComercialPhone: [null, [Validators.required, Validators.maxLength(2), Validators.minLength(2)]],
       comercialPhone: [null, [Validators.required, Validators.maxLength(8), Validators.minLength(8)]],
       dddCellPhone: [null, [Validators.maxLength(2), Validators.minLength(2)]],
       cellPhone: [null, [Validators.maxLength(9), Validators.minLength(9)]],
       userName: [null, [Validators.required, Validators.minLength(4)]],
-      password: [null, [Validators.required, Validators.minLength(4)]]
+      password: [null, [Validators.required, Validators.minLength(4)]],
+      condominiumId: null,
+      towerId: null,
+      apartmentId: null
     });
   }
 
@@ -108,7 +128,7 @@ export class ResidentEditComponent implements OnInit {
       dddCellPhone: data.dddCellPhone,
       cellPhone: data.cellPhone,
       userName: data.userName,
-      password: data.password,
+      password: data.passWord,
     });
 
   }
@@ -117,27 +137,10 @@ export class ResidentEditComponent implements OnInit {
 
     this.residentModel = this.residentForm.value;
 
-    console.log(this.residentModel);
-
     if (!this.residentId) {
-      this._residentService.postResident(this.residentModel)
-        .subscribe(response => {
-          this.residentModel = response;
-          // message success
-          alert('Dados salvos com sucesso!');
-          // reset dataForm
-          this.residentForm.reset();
-        }, error => {
-          console.log(error);
-        });
+      this.postResident();
     } else {
-      this._residentService.updateResident(this.residentModel, this.residentId)
-        .subscribe(response => {
-          this.residentModel = response;
-          alert('Dados atualizados com sucesso');
-        }, error => {
-          console.log(error);
-        });
+      this.updateResident();
     }
   }
 
@@ -158,7 +161,8 @@ export class ResidentEditComponent implements OnInit {
     this._residentService.updateResident(this.residentModel, this.residentId)
       .subscribe(response => {
         this.residentModel = response;
-        console.log(response);
+        alert('Dados atualizados com sucesso');
+        this._router.navigate(['resident/residentList']);
       }, error => {
         console.log(error);
       });
@@ -179,9 +183,43 @@ export class ResidentEditComponent implements OnInit {
 
     this._residentService.postResident(this.residentModel)
       .subscribe(response => {
-        console.log(response);
+        this.residentModel = response;
+        // message success
+        alert('Dados salvos com sucesso!');
+        // reset dataForm
+        this.residentForm.reset();
+
+        this._router.navigate(['resident/residentList']);
       }, error => {
         console.log(error);
       });
+  }
+
+  getAllCondominium() {
+
+    this._condominiumService.getAllCondominium()
+      .subscribe(response => {
+        this.listOfCondominium = response;
+      }, error => {
+        console.log(error);
+      })
+  }
+
+  getTowerByCondominiumId() {
+
+    this._towerService.getTowerCondominiumId(this.residentForm.value.condominiumId)
+      .subscribe(response => {
+        this.listOfTower = response;
+      }, error => {
+        console.log(error);
+      });
+  }
+
+  getApartmentsByTowerId() {
+    
+    this._apartmentService.getApartmentTowerId(this.residentForm.value.towerId)
+      .subscribe(response => {
+        this.listOfApartment = response;
+      }, error => console.log(error));
   }
 }

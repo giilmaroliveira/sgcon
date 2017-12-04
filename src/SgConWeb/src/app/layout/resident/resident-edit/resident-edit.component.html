@@ -5,72 +5,82 @@
             <div>
                 <div class="row col-sm-8" [ngClass]="applyCss('name')">
                     <label class="form-control-label">Nome</label>
-                    <input type="text" id="name" placeholder=""
-                    class="form-control form-control-success form-control-danger"
-                    formControlName="name">
+                    <input type="text" id="name" placeholder="" class="form-control form-control-success form-control-danger" formControlName="name">
                 </div>
                 <div class="row col-sm-6" [ngClass]="applyCss('cpf')">
                     <label class=" form-control-label ">Cpf</label>
-                    <input type="text" maxlength="8" id="cpf" placeholder=""
-                    class="form-control form-control-success form-control-danger"
-                    formControlName="cpf">
+                    <input type="text" id="cpf" placeholder="" class="form-control form-control-success form-control-danger" formControlName="cpf">
                 </div>
                 <div class="row col-sm-8" [ngClass]="applyCss('email')">
                     <label class="form-control-label">Email</label>
-                    <input type="email" id="email" placeholder=""
-                    class="form-control form-control-success form-control-danger"
-                    formControlName="email">
+                    <input type="email" id="email" placeholder="" class="form-control form-control-success form-control-danger" formControlName="email">
                 </div>
             </div>
         </fieldset>
         <fieldset>
             <legend>Telefone</legend>
             <div class="row">
-                    <div  class="col-sm-2" [ngClass]="applyCss('dddComercialPhone')">
-                        <label class="form-control-label">DDD</label>
-                        <input type="text" maxlength="2" id="dddComercialPhone" placeholder=""
-                        class="form-control form-control-success form-control-danger" 
+                <div class="col-sm-2" [ngClass]="applyCss('dddComercialPhone')">
+                    <label class="form-control-label">DDD</label>
+                    <input type="text" maxlength="2" id="dddComercialPhone" placeholder="" class="form-control form-control-success form-control-danger"
                         formControlName="dddComercialPhone">
-                    </div>
-                    <div class="col-sm-3" [ngClass]="applyCss('comercialPhone')">
-                        <label class="form-control-label">Comercial</label>
-                        <input type="text" maxlength="8" id="comercialPhone" placeholder="" 
-                        class="form-control form-control-success form-control-danger" 
+                </div>
+                <div class="col-sm-3" [ngClass]="applyCss('comercialPhone')">
+                    <label class="form-control-label">Comercial</label>
+                    <input type="text" maxlength="8" id="comercialPhone" placeholder="" class="form-control form-control-success form-control-danger"
                         formControlName="comercialPhone">
-                    </div>
-                    <div class="col-sm-2" [ngClass]="applyCss('dddCellPhone')">
-                        <label class="form-control-label">DDD</label>
-                        <input type="text" maxlength="2" id="dddCellPhone" placeholder=""
-                        class="form-control form-control-success form-control-danger"
+                </div>
+                <div class="col-sm-2" [ngClass]="applyCss('dddCellPhone')">
+                    <label class="form-control-label">DDD</label>
+                    <input type="text" maxlength="2" id="dddCellPhone" placeholder="" class="form-control form-control-success form-control-danger"
                         formControlName="dddCellPhone">
-                    </div>
-                    <div class="col-sm-3" [ngClass]="applyCss('cellPhone')">
-                        <label class="form-control-label">Celular</label>
-                        <input type="text" maxlength="9" id="cellPhone" placeholder=""
-                        class="form-control form-control-success form-control-danger"
+                </div>
+                <div class="col-sm-3" [ngClass]="applyCss('cellPhone')">
+                    <label class="form-control-label">Celular</label>
+                    <input type="text" maxlength="9" id="cellPhone" placeholder="" class="form-control form-control-success form-control-danger"
                         formControlName="cellPhone">
-                    </div>
+                </div>
             </div>
             <div>
                 <div class="row col-sm-4" [ngClass]="applyCss('userName')">
                     <label class="form-control-label">Login</label>
-                    <input type="text" id="userName" placeholder=""
-                    class="form-control form-control-success form-control-danger"
-                    formControlName="userName">
+                    <input type="text" id="userName" placeholder="" class="form-control form-control-success form-control-danger" formControlName="userName">
                 </div>
                 <div class="row col-sm-4" [ngClass]="applyCss('password')">
                     <label class="form-control-label">Senha</label>
-                    <input type="password" id="password" placeholder=""
-                    class="form-control form-control-success form-control-danger"
-                    formControlName="password">
+                    <input type="password" id="password" placeholder="" class="form-control form-control-success form-control-danger" formControlName="password">
                 </div>
             </div>
-        </fieldset>        
+        </fieldset>
+        <fieldset>
+            <legend>Apartamento</legend>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label class="form-control-label">Condomínio</label>
+                    <select class="form-control form-control-success form-control-danger" 
+                    (change)="getTowerByCondominiumId()" formControlName="condominiumId">
+                        <option *ngFor="let item of listOfCondominium" value="{{ item.id }}">{{ item.name }}</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="form-control-label">Torre</label>
+                    <select class="form-control form-control-success form-control-danger" 
+                    (change)="getApartmentsByTowerId()" name="towerId" formControlName="towerId">
+                        <option *ngFor="let item of listOfTower" value="{{ item.id }}">{{ item.block }}</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-3">
+                    <label class="form-control-label">Apartamento</label>
+                    <select class="form-control form-control-success form-control-danger" formControlName="apartmentId">
+                        <option *ngFor="let item of listOfApartment" value="{{ item.id }}">{{ item.number }}</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
         <div style=" margin-top: 10px; ">
-            <button type="submit" class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2"
-            [disabled]="!residentForm.valid"
-            (click)="onSubmit()">salvar</button>
+            <button type="submit" class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2" [disabled]="!residentForm.valid" (click)="onSubmit()">salvar</button>
         </div>
     </form>
-  </div>
-  
+</div>

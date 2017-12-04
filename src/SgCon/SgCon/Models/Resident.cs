@@ -53,5 +53,11 @@ namespace SgConAPI.Models
         public int ProfileId { get; set; }
 
         public DateTime? ExpiredAt { get; set; }
+        [Required]
+        public string DDDComercialPhone { get; set; }
+        [Required]
+        public string ComercialPhone { get; set; }
+        public string DDDCellPhone { get; set; }
+        public string CellPhone { get; set; }
     }
 }

@@ -8,8 +8,9 @@ import { ResidentListComponent } from './resident-list/resident-list.component';
 const routes: Routes = [
   { path: '', component: ResidentComponent,
   children: [
-    { path: 'residentList', component: ResidentListComponent},
-    { path: 'residentEdit', component: ResidentEditComponent}
+    { path: 'residentList', component: ResidentListComponent },
+    { path: 'residentEdit', component: ResidentEditComponent },
+    { path: 'residentEdit/:id', component: ResidentEditComponent },
   ]},
 ];
 
