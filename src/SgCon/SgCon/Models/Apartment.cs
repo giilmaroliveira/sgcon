@@ -16,5 +16,6 @@ namespace SgConAPI.Models
         public int TowerId { get; set; }
         public Tower Tower { get; set; }
         public IQueryable<CommonAreaSchedule> CommonAreaSchedule { get; set; }
+        public ICollection<Resident> Resident { get; set; }
     }
 }

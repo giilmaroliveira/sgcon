@@ -59,5 +59,7 @@ namespace SgConAPI.Models
         public string ComercialPhone { get; set; }
         public string DDDCellPhone { get; set; }
         public string CellPhone { get; set; }
+        public int ApartmentId { get; set; }
+        public Apartment Apartment { get; set; }
     }
 }
