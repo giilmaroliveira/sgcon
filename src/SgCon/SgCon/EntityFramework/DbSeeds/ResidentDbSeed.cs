@@ -27,7 +27,8 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     CreatedAt = DateTime.Now,
                     Profile = context.Profiles.Find(3),
                     DDDComercialPhone = "11",
-                    ComercialPhone = "12345678"
+                    ComercialPhone = "12345678",
+                    Apartment = context.Apartments.Find(1)
                 };
                 residents.Add(residentOne);
 
@@ -43,7 +44,8 @@ namespace SgConAPI.EntityFramework.DbSeeds
                     CreatedAt = DateTime.Now,
                     Profile = context.Profiles.Find(3),
                     DDDComercialPhone = "11",
-                    ComercialPhone = "12345678"
+                    ComercialPhone = "12345678",
+                    Apartment = context.Apartments.Find(2)
                 };
                 residents.Add(residentTwo);
 
