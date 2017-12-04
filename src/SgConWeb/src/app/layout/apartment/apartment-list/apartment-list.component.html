@@ -23,7 +23,7 @@
               <div class="col-sm-4">
                   <label class="form-control-label">Torre</label>
                   <select class="form-control form-control-success form-control-danger" 
-                  (change)="getApartmentTowerId()" [(ngModel)]="towerId">
+                  (change)="getApartmentByTowerId()" [(ngModel)]="towerId">
                       <option *ngFor="let item of listOfTower" value="{{ item.id }}">{{ item.block }}</option>
                   </select>
               </div>

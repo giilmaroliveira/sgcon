@@ -41,7 +41,7 @@ export class ApartmentEditComponent implements OnInit {
     this._route.params.subscribe(params => {
       if (params['id']) {
         this.apartmentId = +params['id'];
-        this.getTower(this.apartmentId);
+        this.getApartment(this.apartmentId);
       }
     });
 

@@ -52,7 +52,8 @@ export class ApartmentListComponent implements OnInit {
       });
   }
 
-  getApartmentTowerId() {
+  getApartmentByTowerId() {
+    console.log('busca apartamentos');
     this._apartmentService.getApartmentTowerId(this.towerId)
     .subscribe(response => {
       this.listOfApartment = response;
