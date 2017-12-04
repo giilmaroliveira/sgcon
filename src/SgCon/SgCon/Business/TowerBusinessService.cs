@@ -58,18 +58,18 @@ namespace SgConAPI.Business
             return result;
         }
 
-        public List<Apartment> GenerateApartments(Tower tower)
+        public List<Apartment> GenerateApartments(GenerateApartment generateModel)
         {
             List<Apartment> listApartments = new List<Apartment>();
 
-            for (var i = 1; i <= tower.QuantityByFloor; i++)
+            for (var i = 1; i <= generateModel.QuantityByFloor; i++)
             {
                 Apartment apartment = new Apartment
                 {
-                    Number = tower.Floor.ToString() + i.ToString(),
-                    Floor = tower.Floor.ToString(),
+                    Number = generateModel.Floor.ToString() + i.ToString(),
+                    Floor = generateModel.Floor.ToString(),
                     Active = true,
-                    TowerId = tower.Id,
+                    TowerId = generateModel.TowerId,
                     CreatedAt = DateTime.Now
                 };
                 listApartments.Add(apartment);

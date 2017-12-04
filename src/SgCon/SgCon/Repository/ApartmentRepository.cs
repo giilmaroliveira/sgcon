@@ -3,6 +3,7 @@ using SgConAPI.EntityFramework;
 using SgConAPI.Models;
 using SgConAPI.Repository.Base;
 using SgConAPI.Repository.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace SgConAPI.Repository
 {
@@ -16,9 +17,10 @@ namespace SgConAPI.Repository
         public IQueryable<Apartment> GetByTowerId(int id)
         {
             return (from a in base.Entities
+                    .Include(a => a.Tower)
                     where a.DeletedAt == null
                     && a.TowerId == id
-                    select a);
+                    select a).OrderBy(x => x.Number);
         }
     }
 }

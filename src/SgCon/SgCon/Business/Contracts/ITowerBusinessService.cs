@@ -13,6 +13,6 @@ namespace SgConAPI.Business.Contracts
         void DeleteTower(int id);
         IQueryable<Tower> GetAll(string filters);
         IQueryable<Tower> GetByCondominiumId(int id);
-        List<Apartment> GenerateApartments(Tower tower);
+        List<Apartment> GenerateApartments(GenerateApartment generateModel);
     }
 }

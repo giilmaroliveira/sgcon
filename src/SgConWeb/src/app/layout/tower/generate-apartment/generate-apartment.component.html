@@ -11,7 +11,7 @@
         </div>
         <div class="col-sm-4">
           <label class="form-control-label">Torre</label>
-          <select class="form-control form-control-success form-control-danger" (change)="getApartmentTowerId()" formControlName="towerId">
+          <select class="form-control form-control-success form-control-danger" formControlName="towerId">
             <option *ngFor="let item of listOfTower" value="{{ item.id }}">{{ item.block }}</option>
           </select>
         </div>
@@ -19,7 +19,7 @@
 
       <div class="row">
         <div class="col-sm-4" [ngClass]="applyCss('quantityByFloor')">
-          <label class="form-control-label">Número</label>
+          <label class="form-control-label">Qtde por andar</label>
           <input type="text" class="form-control form-control-success form-control-danger" formControlName="quantityByFloor">
         </div>
         <div class="col-sm-4" [ngClass]="applyCss('floor')">

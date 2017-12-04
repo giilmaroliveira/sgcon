@@ -16,10 +16,5 @@ namespace SgConAPI.Models
         public Condominium Condominium { get; set; }
         public int FloorsNumber { get; set; }
         public ICollection<Apartment> Apartment { get; set; }
-
-        [NotMapped]
-        public int QuantityByFloor { get; set; }
-        [NotMapped]
-        public int Floor { get; set; }
     }
 }

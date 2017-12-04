@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // models
 import { TowerModel } from '../../../shared/entities/tower.model';
 import { CondominiumModel } from '../../../shared/entities/condominium.model';
+import { GenerateApartment } from '../../../shared/entities/generate-apartment.model';
 
 // services
 import { TowerService } from '../../../shared/services/tower.service';
@@ -20,7 +21,7 @@ import { CondominiumService } from '../../../shared/services/condominium.service
 export class GenerateApartmentComponent implements OnInit {
 
   public generateForm: FormGroup;
-  towerModel: TowerModel = new TowerModel();
+  generateApartment: GenerateApartment = new GenerateApartment();
   listOfCondominium: CondominiumModel[] = new Array<CondominiumModel>();
   listOfTower: TowerModel[] = new Array<TowerModel>();
 
@@ -57,12 +58,6 @@ export class GenerateApartmentComponent implements OnInit {
 
   setDefaultValuesForm() {
     this.generateForm = this.form.group({
-      id: 0,
-      active: true,
-      createdAt: Date.now,
-      updatedAt: Date.now,
-      createdBy: null,
-      updatedBy: null,
       condominiumId: [null, [Validators.required]],
       towerId: [null, [Validators.required]],
       quantityByFloor: [null, [Validators.required]],
@@ -93,6 +88,18 @@ export class GenerateApartmentComponent implements OnInit {
   }
 
   onSubmit() {
+
+    this.generateApartment.condominiumId = this.generateForm.value.condominiumId;
+    this.generateApartment.towerId = this.generateForm.value.towerId;
+    this.generateApartment.floor = this.generateForm.value.floor;
+    this.generateApartment.quantityByFloor = this.generateForm.value.quantityByFloor;
+
+    this._towerService.generateApartment(this.generateApartment)
+      .subscribe(response => {
+        alert('Apartamentos gerados com sucesso!');
+
+        this._router.navigate(['tower/towerList']);
+      }, error => console.log(error));
 
   }
 

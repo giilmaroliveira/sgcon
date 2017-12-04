@@ -56,6 +56,7 @@ export class ApartmentListComponent implements OnInit {
     this._apartmentService.getApartmentTowerId(this.towerId)
     .subscribe(response => {
       this.listOfApartment = response;
+      console.log(response);
     }, error => {
       console.log(error);
     });

@@ -54,4 +54,12 @@ export class TowerService {
 
         return this._httpBase.get(url, 'Torre');
     }
+
+    generateApartment(generate): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('generateApartments');
+
+        return this._httpBase.post(url, generate, 'Torre');
+
+    }
 }
