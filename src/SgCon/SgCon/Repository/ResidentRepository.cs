@@ -28,11 +28,24 @@ namespace SgConAPI.Repository
         {
             return base.Entities
                 .AsNoTracking()
+                .Include(r => r.Apartment)
+                .Include(r => r.Apartment.Tower)
+                .Include(r => r.Apartment.Tower.Condominium)
                 .Include(r => r.Profile)
                 .Include(p => p.Profile.ProfilePolicies)
                 .ThenInclude(pp => pp.Policy)
                 .Include(p => p.Profile.Role)
                 .FirstOrDefault(r => r.UserName == userName);
+        }
+
+        public override Resident Get(int id)
+        {
+            return (from c in base.Entities
+                        .Include(r => r.Apartment)
+                        .Include(r => r.Apartment.Tower)
+                        .Include(r => r.Apartment.Tower.Condominium)
+                    where c.Id == id
+                    select c).FirstOrDefault();
         }
     }
 }
