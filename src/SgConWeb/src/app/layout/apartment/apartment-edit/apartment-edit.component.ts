@@ -44,13 +44,11 @@ export class ApartmentEditComponent implements OnInit {
       if (params['id']) {
         this.apartmentId = +params['id'];
         this.getApartment(this.apartmentId);
-    
-      } 
-      
+      }
     });
-    
+
     this.getAllCondominium();
-    
+
 
   }
   // check ngValidatos
@@ -131,7 +129,6 @@ export class ApartmentEditComponent implements OnInit {
         this.apartmentModel = response;
         alert('Dados atualizados com sucesso');
         console.log(response);
-
         // Voltar página
         this._router.navigate(['apartment/apartmentList']);
       },
@@ -159,7 +156,6 @@ export class ApartmentEditComponent implements OnInit {
         this.apartmentModel = response;
         // message success
         alert('Dados salvos com sucesso!');
-
         // Voltar página
         this._router.navigate(['apartment/apartmentList']);
       },

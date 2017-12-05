@@ -1,5 +1,5 @@
 import { Http } from '@angular/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/add/operator/map';
@@ -11,6 +11,7 @@ import { CondominiumModel } from '../../../shared/entities/condominium.model';
 // services
 import { CondominiumService } from '../../../shared/services/condominium.service';
 import { CommonAreaService } from '../../../shared/services/commonarea.service';
+import { Alert } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-commonarea-edit',
@@ -28,6 +29,7 @@ export class CommonareaEditComponent implements OnInit {
   constructor(
     private form: FormBuilder,
     private _route: ActivatedRoute,
+    private _router: Router,
     private _condominiumService: CondominiumService,
     private _commonareaService: CommonAreaService,
   ) { }
@@ -119,6 +121,8 @@ export class CommonareaEditComponent implements OnInit {
       response => {
         this.commonareaModel = response;
         console.log(response);
+        alert('Dados salvos com sucesso!');
+        this._router.navigate(['commonarea/commonareaList']);
       },
       error => {
         console.log(error);
