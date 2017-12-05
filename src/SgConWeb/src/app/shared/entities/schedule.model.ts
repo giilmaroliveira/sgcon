@@ -1,4 +1,5 @@
 import { BaseModel } from './base.model';
+import { CommonAreaModel } from './commonarea.model';
 
 export class ScheduleModel  extends BaseModel {
     apartmentId: number;
@@ -8,4 +9,6 @@ export class ScheduleModel  extends BaseModel {
     // endTime: number;
     scheduleId: number;
     used: boolean;
+
+    commonArea: CommonAreaModel;
 }

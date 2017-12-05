@@ -56,5 +56,12 @@ namespace SgConAPI.Business
 
             return result;
         }
+
+        public IQueryable<CommonAreaSchedule> GetUserSchedule(int apartmentId)
+        {
+            var result = _commonAreaScheduleRepository.GetUserSchedule(apartmentId);
+
+            return result;
+        }
     }   
 }

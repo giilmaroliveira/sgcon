@@ -204,10 +204,15 @@ namespace SgConAPI.Controllers
         [Route("schedule")]
         [ProducesResponseType(typeof(CommonAreaSchedule), 200)]
         [ProducesResponseType(typeof(string), 420)]
-        [AllowAnonymous]
         public IActionResult PostSchedule([FromBody, Required] CommonAreaSchedule schedule)
         {
             if (schedule == null) { return StatusCode(400, "Dados não encontrados"); }
+
+            var user = _jwtFactory.GetCurrentResidentUser();
+
+            if (user == null) return StatusCode(400, "Nenhum usuário logado");
+
+            schedule.ApartmentId = user.ApartmentId;
 
             ModelState.Clear();
 
@@ -223,6 +228,34 @@ namespace SgConAPI.Controllers
             {
                 return StatusCode(400, ModelState);
             }
+        }
+
+        [HttpGet]
+        [Route("userSchedules")]
+        [ProducesResponseType(typeof(CommonAreaSchedule), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        public IActionResult GetUserSchedules(string authorization)
+        {
+            var user = _jwtFactory.GetCurrentResidentUser();
+
+            if (user == null) return StatusCode(400, "Nenhum usuário logado");
+
+            var apartmentId = user.ApartmentId;
+
+            if (apartmentId != null)
+            {
+                var result = _scheduleBusinessService.GetUserSchedule(apartmentId);
+
+                if (result == null)
+                    return StatusCode(400, "Dados não encontrados");
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, "Dados de condomínio não encontrados!");
+            }
+
         }
     }
 }

@@ -82,4 +82,11 @@ export class CommonAreaService {
 
         return this._httpBase.get(url, 'Areas Comuns', null, headers);
     }
+
+    getUserSchedules(): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('getUserSchedules');
+
+        return this._httpBase.get(url, 'Areas Comuns');
+    }
 }

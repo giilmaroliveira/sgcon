@@ -27,6 +27,7 @@ export class ApiRoutesService {
         { alias: 'getCommonAreaByUser', verb: 'get', path: '/api/commonarea/condominiumUser/' },
         { alias: 'postCommonAreaSchedule', verb: 'post', path: '/api/commonarea/schedule' },
         { alias: 'getSchedulesByCommonAreaId', verb: 'get', path: '/api/commonarea/schedule/'},
+        { alias: 'getUserSchedules', verb: 'get', path: '/api/commonarea/userSchedules/'},
 
         // company
         { alias: 'getCompanyById', verb: 'get', path: '/api/company/' },

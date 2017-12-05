@@ -15,5 +15,6 @@ namespace SgConAPI.Business.Contracts
         void DeleteSchedule(int id);
         IQueryable<CommonAreaSchedule> GetAll(string filters);
         IQueryable<CommonAreaSchedule> GetByCommonAreaId(int id, string date);
+        IQueryable<CommonAreaSchedule> GetUserSchedule(int apartmentId);
     }
 }
