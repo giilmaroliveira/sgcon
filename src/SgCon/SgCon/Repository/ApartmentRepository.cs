@@ -14,6 +14,16 @@ namespace SgConAPI.Repository
 
         }
 
+        public override Apartment Get(int id)
+        {
+            return (from a in base.Entities
+                    .Include(a => a.Tower)
+                    .Include(a => a.Tower.Condominium)
+                    where a.DeletedAt == null
+                    && a.Id == id
+                    select a).OrderBy(x => x.Number).FirstOrDefault();
+        }
+
         public IQueryable<Apartment> GetByTowerId(int id)
         {
             return (from a in base.Entities

@@ -44,10 +44,13 @@ export class ApartmentEditComponent implements OnInit {
       if (params['id']) {
         this.apartmentId = +params['id'];
         this.getApartment(this.apartmentId);
-      }
+    
+      } 
+      
     });
-
+    
     this.getAllCondominium();
+    
 
   }
   // check ngValidatos
@@ -92,9 +95,11 @@ export class ApartmentEditComponent implements OnInit {
       updatedBy: data.updatedBy,
       number: data.number,
       floor: data.floor,
-      towerId: data.towerId,
-      condominiumId: data.condominiumId
+      condominiumId: data.tower.condominium.id,
+      towerId: data.towerId
     });
+
+    this.getTowerByCondominiumId();
   }
 
   onSubmit() {
@@ -111,6 +116,7 @@ export class ApartmentEditComponent implements OnInit {
     this._apartmentService.getApartmentById(id).subscribe(
       response => {
         this.apartmentModel = response;
+        console.log(this.apartmentModel);
         this.populateForm(this.apartmentModel);
       },
       error => {
