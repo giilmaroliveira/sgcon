@@ -129,12 +129,13 @@ export class ResidentEditComponent implements OnInit {
       cellPhone: data.cellPhone,
       userName: data.userName,
       password: data.passWord,
-      condominiumId: data.condominiumId,
-      towerId: data.towerId,
+      condominiumId: data.apartment.tower.condominium.id,
+      towerId: data.apartment.tower.id,
       apartmentId: data.apartmentId,
-
     });
 
+    this.getTowerByCondominiumId();
+    this.getApartmentsByTowerId();
   }
 
   onSubmit() {

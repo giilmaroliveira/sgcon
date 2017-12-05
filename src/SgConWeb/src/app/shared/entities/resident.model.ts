@@ -1,4 +1,5 @@
 import { BaseModel } from './base.model';
+import { ApartmentModel } from './apartment.model';
 
 export class ResidentModel extends BaseModel {
     name: string;
@@ -13,4 +14,6 @@ export class ResidentModel extends BaseModel {
     condominiumId: number;
     towerId: number;
     apartmentId: number;
+
+    apartment: ApartmentModel;
 }
