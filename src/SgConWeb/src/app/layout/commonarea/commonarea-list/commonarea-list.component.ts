@@ -44,7 +44,7 @@ export class CommonareaListComponent implements OnInit {
 
   getCommonareaByCondominiumId() {
 
-    this._commonareaService.getCommonareaCondominiumId(this.condominiumId)
+    this._commonareaService.getCommonAreaCondominiumId(this.condominiumId)
       .subscribe(response => {
         this.commonAreaList = response;
       }, error => {

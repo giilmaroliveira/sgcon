@@ -14,5 +14,6 @@ namespace SgConAPI.Business.Contracts
         CommonAreaSchedule UpdateSchedule(CommonAreaSchedule model, int id);
         void DeleteSchedule(int id);
         IQueryable<CommonAreaSchedule> GetAll(string filters);
+        IQueryable<CommonAreaSchedule> GetByCommonAreaId(int id, string date);
     }
 }

@@ -8,6 +8,6 @@ namespace SgConAPI.Repository.Contracts
 {
     public interface ICommonAreaScheduleRepository : IBaseDataService<CommonAreaSchedule>
     {
-
+        IQueryable<CommonAreaSchedule> GetByCommonAreaId(int id, DateTime date);
     }
 }

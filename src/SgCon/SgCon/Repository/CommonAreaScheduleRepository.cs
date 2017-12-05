@@ -15,5 +15,12 @@ namespace SgConAPI.Repository
         {
 
         }
+
+        public IQueryable<CommonAreaSchedule> GetByCommonAreaId(int id, DateTime date)
+        {
+            return (from c in base.Entities
+                    where c.CommonAreaId == id && c.Date == date
+                    select c);
+        }
     }
 }

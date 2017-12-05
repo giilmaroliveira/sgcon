@@ -51,9 +51,16 @@ export class CommonAreaService {
         return this._httpBase.delete(url, 'Areas Comuns');
     }
 
-    getCommonareaCondominiumId(id: number): Observable<any> {
+    getCommonAreaCondominiumId(id: number): Observable<any> {
 
-        let url = this._apiRoute.getApiRouteByAlias('getCommonareaByCondominiumId') + id;
+        let url = this._apiRoute.getApiRouteByAlias('getCommonareaByCondominiumId');
+
+        return this._httpBase.get(url, 'Areas Comuns');
+    }
+
+    getCommonAreaByUser(): Observable<any> {
+
+        let url = this._apiRoute.getApiRouteByAlias('getCommonAreaByUser');
 
         return this._httpBase.get(url, 'Areas Comuns');
     }
@@ -64,5 +71,15 @@ export class CommonAreaService {
         let body = JSON.stringify(schedule)
 
         return this._httpBase.post(url, body, 'Reserva de Horário');
+    }
+
+    getSchedulesByCommonAreaId(id: number, date) {
+
+        let url = this._apiRoute.getApiRouteByAlias('getSchedulesByCommonAreaId') + id;
+
+        let headers: { [id: string]: string } = {};
+        headers["scheduleDate"] = date.toString();
+
+        return this._httpBase.get(url, 'Areas Comuns', null, headers);
     }
 }

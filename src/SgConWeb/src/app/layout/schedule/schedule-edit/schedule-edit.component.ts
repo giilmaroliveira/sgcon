@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { NgbDatepicker, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Models
 import { ScheduleModel } from '../../../shared/entities/schedule.model';
@@ -18,6 +19,8 @@ import { CommonAreaService } from '../../../shared/services/commonarea.service';
 export class ScheduleEditComponent implements OnInit {
   listOfCommonArea: CommonAreaModel[] = new Array<CommonAreaModel>();
   scheduleModel: ScheduleModel = new ScheduleModel();
+  listOfSchedules: ScheduleModel[] = new Array<ScheduleModel>();
+  canShowInputs: boolean = false;
 
   listOfTimes = [
     {key: 1, value: '08:00 11:00'},
@@ -26,38 +29,66 @@ export class ScheduleEditComponent implements OnInit {
     {key: 4, value: '18:00 22:00'},
   ];
 
-  constructor(private _commonAreaService: CommonAreaService) { }
+  listOfTimesFilter = [];
+
+  constructor(
+    private _commonAreaService: CommonAreaService,
+    private _router: Router) { }
 
   ngOnInit() {
     this.getCommonAreaByCondominiumId();
   }
 
   getCommonAreaByCondominiumId() {
-    const id: number = 1;
-
-    this._commonAreaService.getCommonareaCondominiumId(id)
+  
+    this._commonAreaService.getCommonAreaByUser()
       .subscribe(response => {
-        console.log(response);
         this.listOfCommonArea = response;
       }, error => {
         console.log(error);
       })
   }
 
-  onSumit() {
+  getScheduleByCommonArea() {
+
+    this._commonAreaService.getSchedulesByCommonAreaId(this.scheduleModel.commonAreaId, this.scheduleModel.date)
+      .subscribe(response => {
+        this.listOfSchedules = response;
+
+        this.listOfTimes.forEach(item => {
+          let time = this.listOfSchedules.find(x => x.scheduleId == item.key);
+
+          if (time == null) {
+            this.listOfTimesFilter.push(item);
+          }
+
+        });
+        
+      }, error => {
+        console.log(error);
+      })
+  }  
+
+  onSubmit() {
 
     this.scheduleModel.used = false;
     this.scheduleModel.apartmentId = 1;
 
-    console.log(this.scheduleModel);
-
     this._commonAreaService.postCommonAreaSchedule(this.scheduleModel)
       .subscribe(response => {
         console.log(response);
-        console.log('gravou');
+        alert('Agendamento feito com sucesso!');
+
+        this._router.navigate(['schedule/scheduleList']);
       }, error => {
         console.log(error);
       });
+  }
+
+  showInputs() {
+
+    if (this.scheduleModel.date && this.scheduleModel.date != null)
+      this.canShowInputs = true;
   }
 
 }

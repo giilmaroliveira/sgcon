@@ -5,31 +5,31 @@
             <div class="row">
                 <div class="input-group col-sm-4">
                     <input class="form-control " placeholder="escolha o dia" name="dp" 
-                    [(ngModel)]="scheduleModel.date" ngbDatepicker #dp="ngbDatepicker">
+                    [(ngModel)]="scheduleModel.date" (change)="showInputs()" ngbDatepicker #dp="ngbDatepicker">
                 </div>                
                 <div class="col-sm-4">
                     <button class="btn btn-outline-success btn-lg my-2 my-sm-0 col-sm-6" (click)="dp.toggle()">Data</button>
                 </div>
             </div>
             <br>
-            <div class="row col-sm-6">
+            <div class="row col-sm-6" *ngIf="canShowInputs">
                 <label class="form-control-label">Área Comum</label>
                 <select class="form-control form-control-success form-control-danger" 
-                [(ngModel)]="scheduleModel.commonAreaId" >
+                [(ngModel)]="scheduleModel.commonAreaId" (change)="getScheduleByCommonArea()" >
                     <option value="0">Selecione</option>
                     <option *ngFor="let area of listOfCommonArea" value="{{ area.id }}">{{ area.name }}</option>
                 </select>
             </div>
             <br>
-            <div class="row col-sm-6">
+            <div class="row col-sm-6" *ngIf="canShowInputs">
                 <label class="form-control-label">Horário</label>
                 <select class="form-control form-control-success form-control-danger" [(ngModel)]="scheduleModel.scheduleId" >
                     <option value="0">Selecione</option>
-                    <option *ngFor="let time of listOfTimes" value="{{ time.key }}">{{ time.value }}</option>
+                    <option *ngFor="let time of listOfTimesFilter" value="{{ time.key }}">{{ time.value }}</option>
                 </select>
             </div>
             <br>
-            <button class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2" (click)="onSumit()">Cadastrar</button>
+            <button class=" btn btn-outline-primary btn-lg my-2 my-sm-0 col-sm-2" (click)="onSubmit()">Cadastrar</button>
         </div>
     </fieldset>
 </div>

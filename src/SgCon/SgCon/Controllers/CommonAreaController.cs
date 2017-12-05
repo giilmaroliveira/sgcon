@@ -6,6 +6,8 @@ using System.ComponentModel.DataAnnotations;
 using SgConAPI.Repository.Contracts;
 using SgConAPI.Business.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using SgConAPI.Jwt;
+using System;
 
 namespace SgConAPI.Controllers
 {
@@ -14,12 +16,19 @@ namespace SgConAPI.Controllers
     {
         private readonly ICommonAreaBusinessService _commonAreaBusinessService;
         private readonly ICommonAreaScheduleBusinessService _scheduleBusinessService;
+        private readonly JwtCurrentUserFactory _jwtCurrentUserFactory;
+        private readonly JwtFactory _jwtFactory;
         public CommonAreaController(
             ICommonAreaBusinessService commonAreaBusinessService,
-            ICommonAreaScheduleBusinessService commonAreaScheduleBusinessService)
+            ICommonAreaScheduleBusinessService commonAreaScheduleBusinessService,
+            JwtCurrentUserFactory jwtCurrentUserFactory,
+            JwtFactory jwtFactory)
         {
             _commonAreaBusinessService = commonAreaBusinessService;
             _scheduleBusinessService = commonAreaScheduleBusinessService;
+
+            _jwtCurrentUserFactory = jwtCurrentUserFactory;
+            _jwtFactory = jwtFactory;
         }
 
         [HttpGet]
@@ -55,15 +64,44 @@ namespace SgConAPI.Controllers
         [Route("condominium/{id}")]
         [ProducesResponseType(typeof(CommonArea), 200)]
         [ProducesResponseType(typeof(string), 420)]
-        [AllowAnonymous]
-        public IActionResult GetByCondominiumId([FromRoute] int id)
+        public IActionResult GetByCondominiumId(string authorization,[FromRoute] int id)
         {
+
             var result = _commonAreaBusinessService.GetByCondominiumId(id);
 
             if (result == null)
                 return StatusCode(400, "Dados não encontrados");
 
             return Ok(result);
+
+        }
+
+        [HttpGet]
+        [Route("condominiumUser")]
+        [ProducesResponseType(typeof(CommonArea), 200)]
+        [ProducesResponseType(typeof(string), 420)]
+        public IActionResult GetByUserId(string authorization)
+        {
+            var user = _jwtFactory.GetCurrentResidentUser();
+
+            if (user == null) return StatusCode(400, "Nenhum usuário logado");
+
+            var condominiumId = user.Apartment.Tower.CondominiumId;
+
+            if (condominiumId != null)
+            {
+                var result = _commonAreaBusinessService.GetByCondominiumId(condominiumId);
+
+                if (result == null)
+                    return StatusCode(400, "Dados não encontrados");
+
+                return Ok(result);
+            }
+            else
+            {
+                return StatusCode(400, "Dados de condomínio não encontrados!");
+            }
+
         }
 
         [HttpPost]
@@ -137,9 +175,9 @@ namespace SgConAPI.Controllers
         [ProducesResponseType(typeof(CommonAreaSchedule), 200)]
         [ProducesResponseType(typeof(string), 420)]
         [AllowAnonymous]
-        public IActionResult GetScheduleById([FromRoute] int id)
+        public IActionResult GetScheduleById([FromRoute] int id, [FromHeader] string scheduleDate)
         {
-            var result = _scheduleBusinessService.GetById(id);
+            var result = _scheduleBusinessService.GetByCommonAreaId(id, scheduleDate);
 
             if (result == null)
                 return StatusCode(400, "Nenhuma agendamento encontrado");

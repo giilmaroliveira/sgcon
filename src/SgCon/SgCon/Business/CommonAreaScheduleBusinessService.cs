@@ -47,5 +47,14 @@ namespace SgConAPI.Business
 
             return result;
         }
+
+        public IQueryable<CommonAreaSchedule> GetByCommonAreaId(int id, string date)
+        {
+            DateTime convertedDate = Convert.ToDateTime(date);
+
+            var result = _commonAreaScheduleRepository.GetByCommonAreaId(id, convertedDate);
+
+            return result;
+        }
     }   
 }
